@@ -15,9 +15,13 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.css" 
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/soundmanager2/script/soundmanager2.js",
+        "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
@@ -38,7 +42,7 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
+    "styleExt": "scss",
     "prefixInterfaces": false
   }
 }
