@@ -5,50 +5,36 @@ import { AuthService }      from './auth.service';
 
 @Component({
   template: `
-    <h2>LOGIN</h2>
+    <h2>Se loguer pour accéder à l'interface administrateur</h2>
     <p>{{message}}</p>
-    <p>
-      <button (click)="login()"  *ngIf="!authService.isLoggedIn">Login</button>
-      <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-    </p>`
+    <p><i>{{errorMessage}}</i></p>
+
+    <input #email type="text" placeholder="Email"/>
+    <input #password type="text" placeholder="Mot de passe" 
+      (keyup.enter)="login(email.value, password.value)"/>
+
+    <button (click)="login(email.value, password.value)">Login</button>
+    <button (click)="authService.logout()">Logout</button>
+`
 })
 export class LoginComponent {
-  message: string;
+  message: string = '';
+  errorMessage : string = '';
 
-  constructor(public authService: AuthService, public router: Router) {
-    this.setMessage();
-  }
+  constructor(public authService: AuthService, public router: Router) {}
 
-  setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
-  }
+  login(email, password) {
+    this.message = 'Login en cours ...';
 
-  login() {
-    this.message = 'Trying to log in ...';
-
-    this.authService.login().subscribe(() => {
-      this.setMessage();
-      if (this.authService.isLoggedIn) {
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
+    this.authService.loginAsUser(email,password).then( () => {
+      if (this.authService.isLoggedIn)
+      {
         let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/admin';
 
-        // Set our navigation extras object
-        // that passes on our global query params and fragment
-        let navigationExtras: NavigationExtras = {
-          preserveQueryParams: true,
-          preserveFragment: true
-        };
-
         // Redirect the user
-        this.router.navigate([redirect], navigationExtras);
-      }
-    });
-  }
-
-  logout() {
-    this.authService.logout();
-    this.setMessage();
+        this.router.navigate([redirect]);
+      }        
+    } ).catch( (error) => { this.message = 'Erreur ! Essaye encore mon gars'; this.errorMessage = error.message});    
   }
 }
 

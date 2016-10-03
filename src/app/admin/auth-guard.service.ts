@@ -9,31 +9,46 @@ import {
 }                           from '@angular/router';
 import { AuthService }      from './login/auth.service';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/take';
+
+
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean 
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean>
   {
     let url: string = state.url;
-    return this.checkLogin(url);
+    this.authService.redirectUrl = url;
+
+    return this.authService.isLoggedIn.take(1).do(islogged => {
+      if (!islogged) 
+      {
+        this.authService.redirectUrl = url;
+        this.router.navigate(['/login']); 
+      }
+    });     
   }
 
-  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean 
+  canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean>
   {
     return this.canActivate(route, state);
   }
 
-  checkLogin(url: string): boolean 
+  /*checkLogin(url: string) : Observable<boolean>
   {
-    if (this.authService.isLoggedIn) { return true; }
+    return this.authService.isLoggedIn;.subscribe( (value) =>
+      {
+        if (value) return true;
+        // Store the attempted URL for redirecting when logged
+        this.authService.redirectUrl = url;
 
-    // Store the attempted URL for redirecting when logged
-    this.authService.redirectUrl = url;
-
-    this.router.navigate(['/login']);
-    return false;
-  }
+        this.router.navigate(['/login']);
+        return false;
+      });
+  }*/
 }
 
 
