@@ -11,7 +11,7 @@ import { HapchotWebRadioRoutingModule } from './app.routing';
 import { AdminModule } from './admin/admin.module';
 import { CoreModule } from './core/core.module';
 
-
+import { DatabaseService } from './shared/database.service';
 
 /*import { BetaTestsComponent } from './beta-tests/beta-tests.component';
 import { HomeComponent } from './home/home.component';
@@ -44,7 +44,7 @@ var myFirebaseConfig = {
     CoreModule,
     AdminModule
   ],
-  providers: [ AngularFire ],
+  providers: [ AngularFire, DatabaseService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

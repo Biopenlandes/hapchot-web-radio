@@ -1,3 +1,20 @@
-<p>
-  hangouts-manager works!
-</p>
+
+  <button *ngIf="editMode" (click)="initAddingMode()">Ajouter une actu</button>
+  <h2 *ngIf="!editMode">Ajouter une nouvelle actu</h2>
+  <h2 *ngIf="editMode">Modifier l'actu</h2>
+
+  <input [(ngModel)]="hangout.title" #title='ngModel' type="text" placeholder="Titre de l'actu">
+  <input [(ngModel)]="hangout.content" type="text" placeholder="Descriptif">
+  <button *ngIf="!editMode" (click)="addHangout()">Ajouter</button>
+  <button *ngIf="editMode" (click)="updateHangout(hangout)">Sauvegarder modifs</button>
+  <button *ngIf="editMode" (click)="initAddingMode()">Annuler</button>
+
+  <h2>Liste des actus</h2>
+  <ul>
+    <li *ngFor="let hangout of hangouts | async">
+      <span>{{ hangout.title }}</span>
+      <button (click)="editHangout(hangout.$key)">Modifier</button>
+      <button (click)="deleteHangout(hangout.$key)">Supprimer</button>
+    </li>
+  </ul>
+

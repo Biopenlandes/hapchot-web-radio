@@ -6,6 +6,10 @@ import { AdminComponent }      from './admin.component';
 import { LoginComponent }      from './login/login.component';
 import { AuthGuardService }    from './auth-guard.service';
 
+import { HangoutsManagerComponent }  from './hangouts-manager/hangouts-manager.component';
+import { NewsManagerComponent }  from './news-manager/news-manager.component';
+import {AdminHomeComponent } from './admin-home.component';
+
 const adminRoutes: Routes = [
   { 
     path: 'login', 
@@ -15,17 +19,12 @@ const adminRoutes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuardService],
-    /*children: [
-      {
-        path: '',
-        canActivateChild: [AuthGuard],
-        children: [
-          { path: 'crises', component: ManageCrisesComponent },
-          { path: 'heroes', component: ManageHeroesComponent },
-          { path: '', component: AdminDashboardComponent }
-        ]
-      }
-    ]*/
+    /*canActivateChild: [AuthGuardService],*/
+    children: [
+      { path: 'sorties', component: HangoutsManagerComponent },
+      { path: 'actus', component: NewsManagerComponent },
+      { path: '', component: AdminHomeComponent },
+    ]
   }
 ];
 
