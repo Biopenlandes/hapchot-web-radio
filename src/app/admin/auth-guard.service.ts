@@ -21,15 +21,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean>
   {
     let url: string = state.url;
-    this.authService.redirectUrl = url;
-
-    return this.authService.isLoggedIn.take(1).do(islogged => {
-      if (!islogged) 
-      {
-        this.authService.redirectUrl = url;
-        this.router.navigate(['/login']); 
-      }
-    });     
+    return this.checkLogin(url);       
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean>
@@ -37,18 +29,23 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
     return this.canActivate(route, state);
   }
 
-  /*checkLogin(url: string) : Observable<boolean>
-  {
-    return this.authService.isLoggedIn;.subscribe( (value) =>
-      {
-        if (value) return true;
-        // Store the attempted URL for redirecting when logged
-        this.authService.redirectUrl = url;
+  canLoad(route: Route): Observable<boolean> {
+    let url = `/${route.path}`;
 
-        this.router.navigate(['/login']);
-        return false;
-      });
-  }*/
+    return this.checkLogin(url);
+  }
+
+  checkLogin(url: string) : Observable<boolean>
+  {
+    this.authService.redirectUrl = url;
+    return this.authService.isLoggedIn.take(1).do(islogged => {
+      if (!islogged) 
+      {
+        this.authService.redirectUrl = url;
+        this.router.navigate(['/login']); 
+      }
+    });  
+  }
 }
 
 

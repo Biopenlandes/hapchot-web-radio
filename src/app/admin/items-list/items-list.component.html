@@ -1,0 +1,20 @@
+  <!-- LIST OF HANGOUTS -->
+<div id="list">
+  <h2>Liste {{ itemConfig.textPluriel }}</h2>
+
+  <button id="btn-new-item"
+          class="waves-effect waves-light btn" routerLink="new">
+    Ajouter une nouvelle sortie
+  </button>
+
+  <ul class="collection" id="items-list">
+    <li class="collection-item" id="item-{{index}}"
+        *ngFor="let item of items;">
+      {{ item.index }} : {{item.slug}} | {{ item.title }}
+      <span class="secondary-content">        
+          <a ><i (click)="editItem(item);" class="material-icons left">edit</i></a>
+          <i (click)="deleteItem(item)" class="material-icons left">delete</i>
+      </span>
+    </li>
+  </ul>
+</div>

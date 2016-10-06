@@ -6,12 +6,11 @@ import { AdminComponent }      from './admin.component';
 import { LoginComponent }      from './login/login.component';
 import { AuthGuardService }    from './auth-guard.service';
 
-import { HangoutsManagerComponent }  from './hangouts-manager/hangouts-manager.component';
-import { NewsManagerComponent }  from './news-manager/news-manager.component';
+import { ItemEditComponent }  from './item-edit/item-edit.component';
+import { ItemsListComponent }  from './items-list/items-list.component';
 import { AdminHomeComponent } from './admin-home.component';
-import { HangoutEditComponent } from './hangouts-manager/hangout-edit/hangout-edit.component';
+/*import { ItemEditResolve } from './item-edit/item-edit-resolve.service';*/
 
-import { hangoutsRoutes }                   from './hangouts-manager/hangouts.routes'
 
 const adminRoutes: Routes = [
   { 
@@ -22,22 +21,22 @@ const adminRoutes: Routes = [
     path: 'admin',
     component: AdminComponent,
     canActivate: [AuthGuardService],
-    /*canActivateChild: [AuthGuardService],*/
+    canActivateChild: [AuthGuardService],
+    canLoad :[AuthGuardService],
     children: [
-      /*...hangoutsRoutes,*/
-      /*{ path: 'sorties', 
-        component: HangoutsManagerComponent,
-        children: []
-        children: [ 
-          { path: 'new', component: HangoutEditComponent },
-          { path: 'edit/:key', component: HangoutEditComponent },
-          { path: '', component: AdminHomeComponent },
+      { path: ':itemType/edit/:slug', component: ItemEditComponent },
+      { path: ':itemType/new', component: ItemEditComponent }, 
+      { path: ':itemType', component: ItemsListComponent}, 
+      /*{ // sorties, /actus etc..
+        path: ':itemType', 
+        component: ItemsManagerComponent,
+        children: [                   
+          { path: 'list', component: ItemsListComponent },
+          { path: 'edit/:slug', component: ItemEditComponent,  resolve: { item: ItemEditResolve } },
+          { path: 'new', component: ItemEditComponent }                 
         ]
       },*/
-      { path: 'sorties', component: HangoutsManagerComponent },
-      { path: 'sorties/edit/:slug', component: HangoutEditComponent },
-      { path: 'sorties/new', component: HangoutEditComponent },
-      { path: 'actus', component: NewsManagerComponent },
+      { path: 'calendar', component: AdminHomeComponent },
       { path: '', component: AdminHomeComponent },
     ]
   }

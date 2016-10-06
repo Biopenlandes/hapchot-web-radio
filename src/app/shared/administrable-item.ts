@@ -2,7 +2,7 @@ export class AdmnistrableItem {
   
   public slug : string; // uses as key id
   public title : string; // to show in manager list
-  public index : number; // index in manager list
+  public index : number = -1; // index in manager list
 
   constructor() {}
 
@@ -17,3 +17,4 @@ export class AdmnistrableItem {
     return this;
   }
 }
+

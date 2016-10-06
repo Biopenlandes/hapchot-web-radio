@@ -11,10 +11,13 @@ import { LoginComponent }          from './login/login.component';
 
 import { AuthGuardService }        from './auth-guard.service';
 import { AuthService}              from './login/auth.service';
-import { NewsManagerComponent }    from './news-manager/news-manager.component';
-import { HangoutsManagerComponent }from './hangouts-manager/hangouts-manager.component';
+
 import { AdminHomeComponent }      from './admin-home.component';
-import { HangoutEditComponent } from './hangouts-manager/hangout-edit/hangout-edit.component';
+import { HangoutEditComponent } from './item-edit/hangout-edit/hangout-edit.component';
+import { ItemEditComponent } from './item-edit/item-edit.component';
+import { ItemsListComponent } from './items-list/items-list.component';
+
+import { ItemEditResolve } from './item-edit/item-edit-resolve.service';
 
 @NgModule({
   imports:      [ 
@@ -25,13 +28,13 @@ import { HangoutEditComponent } from './hangouts-manager/hangout-edit/hangout-ed
   ],
   declarations: [ 
     AdminComponent, 
-    LoginComponent, 
-    NewsManagerComponent, 
-    HangoutsManagerComponent,
+    LoginComponent,     
     AdminHomeComponent,
-    PolymerElement('vaadin-upload'),
-    HangoutEditComponent 
+    ItemsListComponent, 
+    ItemEditComponent,
+    HangoutEditComponent,
+    PolymerElement('vaadin-upload'),    
   ],
-  providers:    [ AuthService, AuthGuardService],
+  providers:    [ AuthService, AuthGuardService, ItemEditResolve],
 })
 export class AdminModule {}

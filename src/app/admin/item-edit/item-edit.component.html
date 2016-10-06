@@ -1,0 +1,28 @@
+<!-- EDIT/NEW HANGOUT -->
+<div id="edit">
+
+  <h2 *ngIf="!editMode">Ajouter {{ itemConfig.textSingulier }}</h2>
+  <h2 *ngIf="editMode">Modifier {{ itemConfig.textSingulier }}</h2>
+  
+  <input [(ngModel)]="item.title" type="text" placeholder="Titre" required>
+  
+  <app-hangout-edit [hangout]="item"></app-hangout-edit>
+
+  <p class="center-align">
+      <button class="waves-effect waves-light btn" 
+              *ngIf="!editMode" 
+              (click)="addItem()"
+              [disabled]="!item.title">
+        Ajouter
+      </button>
+      <button class="waves-effect waves-light btn" 
+              *ngIf="editMode" 
+              (click)="updateItem()">
+        Sauvegarder les modifs
+      </button>
+      <button class="waves-effect waves-light btn" 
+              (click)="redirectToListComponent()">
+        Annuler
+      </button>
+  </p>
+</div>

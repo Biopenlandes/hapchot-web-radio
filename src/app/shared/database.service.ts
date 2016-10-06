@@ -1,85 +1,100 @@
 import { Injectable } from '@angular/core';
 import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import { Subscription } from 'rxjs/Subscription';
 
+import { AdminItemConfig, AIType, getAdminItemConfigFromRoute } from './administrable-items-type';
 import { Hangout } from '../hangouts/entity/hangout';
+import { AdmnistrableItem } from './administrable-item';
 
 @Injectable()
 export class DatabaseService {
 
-  hangouts : Hangout[];
+  items : AdmnistrableItem[] = [];
+  itemConfig : AdminItemConfig;
+  subscription: Subscription;
 
   constructor(public af: AngularFire) 
-  {
-    console.log("DB constructor");
-    this.getHangouts().subscribe(hangouts => {this.hangouts = hangouts;console.log("DB hangouts", hangouts)});
+  {    
   }
 
-  addHangout(hangout: Hangout)
+  getItemConfig() : AdminItemConfig
   {
-    hangout.slug = this.slugify(hangout.title); 
+    return this.itemConfig;
+  }
 
-    if (!hangout.index)
+  setItemConfig(config : AdminItemConfig)
+  {
+    if (this.subscription) this.subscription.unsubscribe();
+    this.itemConfig = config;
+    this.subscription = this.af.database.list(this.itemConfig.dbKey).subscribe(items => this.items = items);
+  }
+
+  addItem(item: AdmnistrableItem)
+  {
+    item.slug = this.slugify(item.title); 
+    
+    if (item.index < 0)
     {
-      hangout.index = this.hangouts.length; 
+      item.index = this.items.length; 
     }
 
-    if(this.hangoutExist(hangout.slug)) 
+    if(this.itemExist(item.slug)) 
     {
       console.log("DB slug déjà pris");
       return false;
     }
     else
     {
-      console.log("DB adding hangout : ", hangout);
-      this.getHangoutBySlug(hangout.slug).set(hangout);
+      console.log("DB item added : ", item);
+      this.getItemBySlug(item.slug).set(item);
       return true;
     }         
   }
 
-  getHangouts()
+  getItems()
   {
-     return this.af.database.list('/hangouts', {
+     return this.af.database.list(this.itemConfig.dbKey, {
               query: {
                 orderByChild: 'index',
               }
             })
   }
 
-  getHangoutBySlug(slug: string) {    
-    return this.af.database.object('/hangouts/'+slug);
+  getItemBySlug(slug: string) {    
+    return this.af.database.object(this.itemConfig.dbKey+'/'+slug);
   }
 
-  hangoutExist(slug: string)
+  itemExist(slug: string)
   {
-    return this.hangouts.find(hangout => hangout.slug === slug);
+    return this.items.find(item => item.slug === slug);
   }  
 
-  updateHangout(hangout: Hangout) {
-    console.log("updateHangout hangout", hangout);
-    this.getHangouts().update(hangout.slug, hangout);
+  updateItem(item: AdmnistrableItem) {
+    console.log("updateItem item", item);
+    this.getItems().update(item.slug, item);
   }
 
-  updateHangoutIndex(hangout: Hangout, index: number) 
+  updateItemIndex(item: AdmnistrableItem, index: number) 
   {
-    if (!hangout) return;
-    //console.log(`updateHangoutIndex hangout ${hangout.slug} to index ${index}`);
-    this.getHangoutBySlug(hangout.slug).update({index : index});
+    if (!item) return;
+    //console.log(`updateItemIndex item ${item.slug} to index ${index}`);
+    this.getItemBySlug(item.slug).update({index : index});
   }
 
-  deleteHangout(hangout: Hangout) {  
+  deleteItem(item: AdmnistrableItem) {  
 
-    this.deleteHangoutFromSlug(hangout.slug);
+    this.deleteItemFromSlug(item.slug);
   }
 
-  deleteHangoutFromSlug(slug: string) 
+  deleteItemFromSlug(slug: string) 
   {    
-    if (this.getHangoutBySlug(slug))
+    if (this.getItemBySlug(slug))
     {
-      this.getHangoutBySlug(slug).remove();
+      this.getItemBySlug(slug).remove();
     }
     else
     {
-      console.log("delete hangout, ce hangout n'existe pas");
+      console.log("delete item, ce item n'existe pas");
     }
   }
 
