@@ -1,20 +1,49 @@
+  <!-- LIST OF HANGOUTS -->
+<div id="list" class="col s12">
+  <h2>Liste des sorties</h2>
 
-  <button *ngIf="editMode" (click)="initAddingMode()">Ajouter une actu</button>
-  <h2 *ngIf="!editMode">Ajouter une nouvelle actu</h2>
-  <h2 *ngIf="editMode">Modifier l'actu</h2>
+  <button id="btn-new-hangout"
+          class="waves-effect waves-light btn" (click)="initAddingMode();scrollToNewHangout()">
+    Ajouter une nouvelle sortie
+  </button>
 
-  <input [(ngModel)]="hangout.title" #title='ngModel' type="text" placeholder="Titre de l'actu">
-  <input [(ngModel)]="hangout.content" type="text" placeholder="Descriptif">
-  <button *ngIf="!editMode" (click)="addHangout()">Ajouter</button>
-  <button *ngIf="editMode" (click)="updateHangout(hangout)">Sauvegarder modifs</button>
-  <button *ngIf="editMode" (click)="initAddingMode()">Annuler</button>
-
-  <h2>Liste des actus</h2>
-  <ul>
-    <li *ngFor="let hangout of hangouts | async">
-      <span>{{ hangout.title }}</span>
-      <button (click)="editHangout(hangout.$key)">Modifier</button>
-      <button (click)="deleteHangout(hangout.$key)">Supprimer</button>
+  <ul class="collection" id="hangouts-list">
+    <li class="collection-item" id="hangout-{{index}}"
+        *ngFor="let hangout of hangouts;">
+      {{ hangout.index }} : {{hangout.slug}} | {{ hangout.title }}
+      <span class="secondary-content">        
+          <a ><i (click)="editHangout(hangout);scrollToNewHangout()" class="material-icons left">edit</i></a>
+          <i (click)="deleteHangout(hangout)" class="material-icons left">delete</i>
+      </span>
     </li>
   </ul>
+
+<!-- EDIT/NEW HANGOUT -->
+<div id="edit">
+  
+  <h2 *ngIf="!editMode">Ajouter une nouvelle sortie</h2>
+  <h2 *ngIf="editMode">Modifier la sortie</h2>
+
+  <input [(ngModel)]="hangout.title" #title='ngModel' type="text" placeholder="Titre de l'actu">
+
+  <div *ngIf="hangout.pictureUrl">
+    <h3>Image actuelle</h3>
+    <img [src]="hangout.pictureUrl" width=400 />
+  </div>
+
+  <h3>Ajouter/Modifier l'image de couverture</h3>
+  <vaadin-upload max-files="1" target="/api/upload-image" method="POST" timeout="300000"></vaadin-upload>
+
+  <h3>Le descriptif de la sortie</h3>
+
+  <ckeditor [(ngModel)]="hangout.content" debounce="500"></ckeditor> 
+
+  <p class="center-align">
+    <button class="waves-effect waves-light btn" *ngIf="!editMode" (click)="addHangout()" >Ajouter</button>
+    <button class="waves-effect waves-light btn" *ngIf="editMode" (click)="updateHangout()"  >Sauvegarder les modifs</button>
+    <button class="waves-effect waves-light btn" *ngIf="editMode" (click)="initAddingMode();scrollTop()"  >Annuler</button>
+  </p>
+
+</div>
+
 

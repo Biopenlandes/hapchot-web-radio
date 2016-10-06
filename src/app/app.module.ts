@@ -1,17 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
-import { AngularFireModule, AngularFire } from 'angularfire2';
+import { BrowserModule }                 from '@angular/platform-browser';
+import { NgModule }                      from '@angular/core';
+import { FormsModule }                   from '@angular/forms';
+import { HttpModule }                    from '@angular/http';
+import { RouterModule }                  from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { HapchotWebRadioRoutingModule } from './app.routing';
+import { AppComponent }                  from './app.component';
+import { HapchotWebRadioRoutingModule }  from './app.routing';
 
-import { AdminModule } from './admin/admin.module';
-import { CoreModule } from './core/core.module';
+import { AdminModule }                   from './admin/admin.module';
+import { CoreModule }                    from './core/core.module';
 
-import { DatabaseService } from './shared/database.service';
+import { AngularFireModule, AngularFire }from 'angularfire2';
+
+import { DatabaseService }               from './shared/database.service';
+import { firebaseConfig } from './shared/db-config';
 
 /*import { BetaTestsComponent } from './beta-tests/beta-tests.component';
 import { HomeComponent } from './home/home.component';
@@ -19,28 +21,24 @@ import { SoundPlayerComponent } from './sound-player/sound-player.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { PresentationComponent } from './presentation/presentation.component';*/
 
+import "materialize-css";
+import { MaterializeModule } from 'angular2-materialize';
 
 
-// Must export the config
-var myFirebaseConfig = {
-    apiKey: "AIzaSyBLhBiu0MS5q-Z_FXQpSHxyOPYssyMfCzs",
-    authDomain: "hapchot-web-radio.firebaseapp.com",
-    databaseURL: "https://hapchot-web-radio.firebaseio.com",
-    storageBucket: "hapchot-web-radio.appspot.com",
-    messagingSenderId: "615568695822"
-};
+
 
 @NgModule({
   declarations: [
-    AppComponent      
+    AppComponent,     
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule,
+    MaterializeModule,
     HapchotWebRadioRoutingModule,
-    AngularFireModule.initializeApp(myFirebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig),
     CoreModule,
     AdminModule
   ],

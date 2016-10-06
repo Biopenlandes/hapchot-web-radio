@@ -1,8 +1,16 @@
 <nav>
-  <a routerLink="actus" routerLinkActive="active">Actualités</a>
-  <a routerLink="sorties" routerLinkActive="active">Sorties</a>
-  <button (click)="logout()">Logout</button>
-</nav>
-<router-outlet></router-outlet>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo right">Interface Administrateur</a>
+      <ul id="nav-mobile" class="left">
+        <li><a routerLink="actus" routerLinkActive="active">Actualités</a></li>
+        <li><a routerLink="sorties" routerLinkActive="active">Sorties</a></li>
+        <li><a (click)="logout()">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+<section id="main-container">
+  <router-outlet></router-outlet>
+</section>
+
 
 

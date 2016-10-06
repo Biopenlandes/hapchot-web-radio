@@ -4,18 +4,8 @@ import { Router,
 import { AuthService }      from './auth.service';
 
 @Component({
-  template: `
-    <h2>Se loguer pour accéder à l'interface administrateur</h2>
-    <p>{{message}}</p>
-    <p><i>{{errorMessage}}</i></p>
-
-    <input #email type="text" placeholder="Email"/>
-    <input #password type="text" placeholder="Mot de passe" 
-      (keyup.enter)="login(email.value, password.value)"/>
-
-    <button (click)="login(email.value, password.value)">Login</button>
-    <button (click)="authService.logout()">Logout</button>
-`
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   message: string = '';
