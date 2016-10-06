@@ -1,22 +1,21 @@
-export class Hangout {
+import { AdmnistrableItem } from '../../shared/administrable-item';
+
+export class Hangout extends AdmnistrableItem { 
   
-  public title : string;
-  public index : number; // index dans la liste des hangouts
   public pictureUrl : string;
   public content : string;
-  public slug : string; // uses as key id
 
-  constructor() {}
+  constructor() {
+    super();
+  }
 
   getValuesFrom(hangoutModel)
   {
+    super.getCoreValuesFrom(hangoutModel);
     if (hangoutModel)
     {
-      this.title      = hangoutModel.title;
-      this.index      = hangoutModel.index;
       this.pictureUrl = hangoutModel.pictureUrl;
-      this.content    = hangoutModel.content;
-      this.slug       = hangoutModel.slug;
+      this.content    = hangoutModel.content;      
     }
     return this;
   }

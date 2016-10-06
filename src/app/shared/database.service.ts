@@ -8,50 +8,54 @@ export class DatabaseService {
 
   hangouts : Hangout[];
 
-  constructor(public af: AngularFire) {}
-
-  ngOnInit()
+  constructor(public af: AngularFire) 
   {
+    console.log("DB constructor");
+    this.getHangouts().subscribe(hangouts => {this.hangouts = hangouts;console.log("DB hangouts", hangouts)});
   }
-
 
   addHangout(hangout: Hangout)
   {
-    hangout.slug = this.slugify(hangout.title);   
-    console.log("add hangout", hangout.slug);
+    hangout.slug = this.slugify(hangout.title); 
 
-    let itemObservable = this.af.database.object('/hangouts/'+hangout.slug);
-    // vérifie que l'item est bien vide
-    itemObservable.take(1).subscribe( (value) => {
-      console.log("suscribe adding", value.slug);
-      if(value.slug) 
-      {
-        console.log("slug déjà pris");
-      }
-      else
-      {
-        console.log("really adding hangout : ", hangout);
-        itemObservable.set(hangout);
-      }       
-    });
+    if (!hangout.index)
+    {
+      hangout.index = this.hangouts.length; 
+    }
+
+    if(this.hangoutExist(hangout.slug)) 
+    {
+      console.log("DB slug déjà pris");
+      return false;
+    }
+    else
+    {
+      console.log("DB adding hangout : ", hangout);
+      this.getHangoutBySlug(hangout.slug).set(hangout);
+      return true;
+    }         
   }
 
   getHangouts()
   {
-    return this.af.database.list('/hangouts', {
+     return this.af.database.list('/hangouts', {
               query: {
                 orderByChild: 'index',
               }
-            });
-          
-  }  
+            })
+  }
 
   getHangoutBySlug(slug: string) {    
     return this.af.database.object('/hangouts/'+slug);
   }
 
+  hangoutExist(slug: string)
+  {
+    return this.hangouts.find(hangout => hangout.slug === slug);
+  }  
+
   updateHangout(hangout: Hangout) {
-    console.log("updateHangout hangout key = ", hangout.slug);
+    console.log("updateHangout hangout", hangout);
     this.getHangouts().update(hangout.slug, hangout);
   }
 
@@ -69,19 +73,14 @@ export class DatabaseService {
 
   deleteHangoutFromSlug(slug: string) 
   {    
-    let itemObservable2 = this.af.database.object('/hangouts/'+slug);
-    // vérifie que l'item n'est pas vide
-    itemObservable2.take(1).subscribe( (value) => {
-      if(value.slug) 
-      {
-        console.log("really deleting hangout : ", slug);
-        itemObservable2.remove();
-      }
-      else
-      {
-        console.log("hangout n'existe pas");
-      }       
-    });
+    if (this.getHangoutBySlug(slug))
+    {
+      this.getHangoutBySlug(slug).remove();
+    }
+    else
+    {
+      console.log("delete hangout, ce hangout n'existe pas");
+    }
   }
 
   slugify (value) {    

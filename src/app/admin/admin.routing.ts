@@ -35,6 +35,8 @@ const adminRoutes: Routes = [
         ]
       },*/
       { path: 'sorties', component: HangoutsManagerComponent },
+      { path: 'sorties/edit/:slug', component: HangoutEditComponent },
+      { path: 'sorties/new', component: HangoutEditComponent },
       { path: 'actus', component: NewsManagerComponent },
       { path: '', component: AdminHomeComponent },
     ]

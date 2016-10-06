@@ -9,10 +9,9 @@ export const hangoutsRoutes: Routes = [
     component : HangoutsManagerComponent,
     children : [
         { path: 'new', component : HangoutEditComponent },
-        { path: 'edit/:key', component : HangoutEditComponent },
-        { path: '', component : HangoutEditComponent }
+        { path: 'edit/:key', component : HangoutEditComponent }
     ]
   },
-  { path: 'new', component : HangoutEditComponent },
-  { path: 'edit/:key', component : HangoutEditComponent }
+  /*{ path: 'new', component : HangoutEditComponent },
+  { path: 'edit/:key', component : HangoutEditComponent }*/
 ];
