@@ -1,10 +1,10 @@
   <!-- LIST OF HANGOUTS -->
 <div id="list">
-  <h2>Liste {{ itemConfig.textPluriel }}</h2>
+  <h2>Liste des {{ itemConfig.text + 's'  }}</h2>
 
   <button id="btn-new-item"
           class="waves-effect waves-light btn" routerLink="new">
-    Ajouter une nouvelle sortie
+    Ajouter {{ itemConfig.textArticleIndefini }}
   </button>
 
   <ul class="collection" id="items-list">

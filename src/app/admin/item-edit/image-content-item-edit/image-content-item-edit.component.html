@@ -1,0 +1,13 @@
+<app-program-edit *ngIf="itemConfig.type == AIType.Program" [program]="image-content-item"></app-program-edit>
+
+<div *ngIf="imageContentItem.pictureUrl">
+    <h3>Image actuelle</h3>
+    <img [src]="imageContentItem.pictureUrl" width=400 />
+</div>
+
+<h3>Ajouter/Modifier l'image de couverture</h3>
+<vaadin-upload max-files="1" target="/api/upload-image" method="POST" timeout="300000"></vaadin-upload>
+
+<h3>Contenu {{ itemConfig.textArticleDefini }}</h3>
+
+<ckeditor [(ngModel)]="imageContentItem.content" debounce="500"></ckeditor>  

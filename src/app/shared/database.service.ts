@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
-import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AdminItemConfig, AIType, getAdminItemConfigFromRoute } from './administrable-items-type';
-import { Hangout } from '../hangouts/entity/hangout';
-import { AdmnistrableItem } from './administrable-item';
+import { AdminItemConfig } from '../admin/shared/admin-item-config.class';
+
+import { AdmnistrableItem }from './administrable-item';
+import { Hangout }         from '../hangouts/entity/hangout';
+import { Theme }           from '../podcasts/entity/theme';
+import { Podcast }         from '../podcasts/entity/podcast';
+import { Program }         from '../podcasts/entity/program';
+import { News }            from '../news/entity/news';
 
 @Injectable()
 export class DatabaseService {
@@ -17,9 +22,39 @@ export class DatabaseService {
   {    
   }
 
-  getItemConfig() : AdminItemConfig
+  getHangouts() : FirebaseListObservable<Hangout[]>
   {
-    return this.itemConfig;
+    return this.af.database.list('/hangouts', {
+      query: { orderByChild: 'index' }
+    });
+  }
+
+  getThemes() : FirebaseListObservable<Theme[]>
+  {
+    return this.af.database.list('/themes', {
+      query: { orderByChild: 'index' }
+    });
+  }
+
+  getPrograms() : FirebaseListObservable<Program[]>
+  {
+    return this.af.database.list('/programs', {
+      query: { orderByChild: 'index' }
+    });
+  }
+
+  getNews() : FirebaseListObservable<News[]>
+  {
+    return this.af.database.list('/podcasts', {
+      query: { orderByChild: 'index' }
+    });
+  }
+
+  getLatestPodcasts(value : number = 3) : FirebaseListObservable<Podcast[]>
+  {
+    return this.af.database.list('/programs', {
+      query: { orderByChild: 'date', limitToLast: value }
+    });
   }
 
   setItemConfig(config : AdminItemConfig)
@@ -33,9 +68,9 @@ export class DatabaseService {
   {
     item.slug = this.slugify(item.title); 
     
-    if (item.index < 0)
+    if (item.index == null)
     {
-      item.index = this.items.length; 
+      item.index = this.itemConfig.orderAsc ? this.items.length : 0 - this.items.length; 
     }
 
     if(this.itemExist(item.slug)) 
@@ -53,11 +88,9 @@ export class DatabaseService {
 
   getItems()
   {
-     return this.af.database.list(this.itemConfig.dbKey, {
-              query: {
-                orderByChild: 'index',
-              }
-            })
+    return this.af.database.list(this.itemConfig.dbKey, {
+      query: { orderByChild: 'index' }
+    });
   }
 
   getItemBySlug(slug: string) {    

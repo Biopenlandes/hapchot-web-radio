@@ -14,8 +14,5 @@ export class HangoutEditComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var vaadinUpload = document.querySelector('vaadin-upload');
-    vaadinUpload.addEventListener('upload-success', 
-      (event:any) => this.hangout.pictureUrl = 'assets/uploads/' + event.detail.file.name);
   }  
 }

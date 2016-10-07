@@ -1,10 +1,15 @@
 <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo right">Interface Administrateur</a>
-      <ul id="nav-mobile" class="left">
-        <li><a routerLink="actus" routerLinkActive="active">Actualités</a></li>
-        <li><a routerLink="sorties" routerLinkActive="active">Sorties</a></li>
-        <li><a (click)="logout()">Logout</a></li>
+      <a href="#" class="brand-logo left">Admin</a>
+      <ul id="nav-mobile" class="right">
+        <li *ngFor="let config of itemConfigList">
+          <a routerLink="{{ config.route }}" routerLinkActive="active">
+            {{ config.text + 's' | uppercase}}
+          </a>
+        </li>
+        <li></li>
+        <li><a routerLink="calendar" routerLinkActive="active">CALENDRIER</a></li>
+        <li><a (click)="logout()">LOGOUT</a></li>
       </ul>
     </div>
   </nav>

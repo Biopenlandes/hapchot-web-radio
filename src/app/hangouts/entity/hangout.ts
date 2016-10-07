@@ -1,22 +1,8 @@
-import { AdmnistrableItem } from '../../shared/administrable-item';
+import { ImageContentAdmnistrableItem } from '../../shared/image-content-administrable-item';
 
-export class Hangout extends AdmnistrableItem { 
+export class Hangout extends ImageContentAdmnistrableItem { 
   
-  public pictureUrl : string;
-  public content : string;
-
   constructor() {
     super();
-  }
-
-  getValuesFrom(hangoutModel)
-  {
-    super.getCoreValuesFrom(hangoutModel);
-    if (hangoutModel)
-    {
-      this.pictureUrl = hangoutModel.pictureUrl;
-      this.content    = hangoutModel.content;      
-    }
-    return this;
   }
 }

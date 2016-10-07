@@ -8,18 +8,20 @@ import 'rxjs/add/operator/first';
 
 import { AdmnistrableItem } from '../../shared/administrable-item';
 import { DatabaseService } from '../../shared/database.service';
-import { AdminItemConfig, AIType, getAdminItemConfigFromRoute } from '../../shared/administrable-items-type';
+import { AdminItemConfig, AIType, AdminItemConfigService } from '../shared/admin-item-config.module';
 
 
 @Injectable()
 export class ItemEditResolve implements Resolve<AdmnistrableItem> {
 
-  constructor(private db: DatabaseService, private router: Router) {}
+  constructor(private db: DatabaseService, 
+              private router: Router,
+              private itemConfService : AdminItemConfigService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any>|Promise<AdmnistrableItem>|boolean 
   {
     console.log("editItem resolve begin");  
-    let itemConfig = getAdminItemConfigFromRoute(route.params['itemType']);
+    let itemConfig = this.itemConfService.getConfFromRoute(route.params['itemType']);
     if (itemConfig == null) this.router.navigate(['admin']);
     else
     {

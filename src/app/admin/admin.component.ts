@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService }      from './login/auth.service';
 import { Router } from '@angular/router';
+import { AdminItemConfigService, AdminItemConfig } from './shared/admin-item-config.module';
 
 @Component({
   selector: 'app-admin',
@@ -10,9 +11,14 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private authService : AuthService, private router : Router) {  }
+  itemConfigList : AdminItemConfig[];
+
+  constructor(private authService : AuthService, 
+              private router : Router,
+              private itemConfService: AdminItemConfigService) {  }
 
   ngOnInit() {
+    this.itemConfigList = this.itemConfService.getConfigs();
   }
 
   logout()

@@ -1,12 +1,25 @@
 <!-- EDIT/NEW HANGOUT -->
 <div id="edit">
 
-  <h2 *ngIf="!editMode">Ajouter {{ itemConfig.textSingulier }}</h2>
-  <h2 *ngIf="editMode">Modifier {{ itemConfig.textSingulier }}</h2>
+  <h2 *ngIf="!editMode">Ajouter {{ itemConfig.textArticleIndefini }}</h2>
+  <h2 *ngIf="editMode">Modifier {{ itemConfig.textArticleIndefini }}</h2>
   
-  <input [(ngModel)]="item.title" type="text" placeholder="Titre" required>
-  
-  <app-hangout-edit [hangout]="item"></app-hangout-edit>
+  <input [(ngModel)]="item.title" type="text" placeholder="Titre" required>  
+
+  <app-image-content-item-edit 
+    *ngIf="itemConfig.type == AIType.Hangout  
+        || itemConfig.type == AIType.News  
+        || itemConfig.type == AIType.Program" 
+    [imageContentItem]="item"
+    [itemConfig]="itemConfig" >
+  </app-image-content-item-edit>
+
+  <app-theme-edit   *ngIf="itemConfig.type == AIType.Theme"
+                    [theme]="item">  
+  </app-theme-edit>
+  <!-- <app-podcast-edit *ngIf="itemConfig.type == AIType.Podcast"
+                    [podcast]="item">
+  </app-podcast-edit> -->
 
   <p class="center-align">
       <button class="waves-effect waves-light btn" 

@@ -11,13 +11,17 @@ import { LoginComponent }          from './login/login.component';
 
 import { AuthGuardService }        from './auth-guard.service';
 import { AuthService}              from './login/auth.service';
+import { AdminItemConfigService } from './shared/admin-item-config.service';
 
 import { AdminHomeComponent }      from './admin-home.component';
 import { HangoutEditComponent } from './item-edit/hangout-edit/hangout-edit.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ItemsListComponent } from './items-list/items-list.component';
 
-import { ItemEditResolve } from './item-edit/item-edit-resolve.service';
+/*import { ItemEditResolve } from './item-edit/item-edit-resolve.service';*/
+import { ThemeEditComponent } from './item-edit/theme-edit/theme-edit.component';
+import { ProgramEditComponent } from './item-edit/program-edit/program-edit.component';
+import { ImageContentItemEditComponent } from './item-edit/image-content-item-edit/image-content-item-edit.component';
 
 @NgModule({
   imports:      [ 
@@ -33,8 +37,15 @@ import { ItemEditResolve } from './item-edit/item-edit-resolve.service';
     ItemsListComponent, 
     ItemEditComponent,
     HangoutEditComponent,
-    PolymerElement('vaadin-upload'),    
+    PolymerElement('vaadin-upload'),
+    ThemeEditComponent,
+    ProgramEditComponent,
+    ImageContentItemEditComponent,    
   ],
-  providers:    [ AuthService, AuthGuardService, ItemEditResolve],
+  providers: [ 
+    AuthService, 
+    AuthGuardService, 
+    AdminItemConfigService
+  ],
 })
 export class AdminModule {}
