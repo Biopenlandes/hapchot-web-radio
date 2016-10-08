@@ -8,6 +8,6 @@
 <h3>Ajouter/Modifier l'image de couverture</h3>
 <vaadin-upload max-files="1" target="/api/upload-image" method="POST" timeout="300000"></vaadin-upload>
 
-<h3>Contenu {{ itemConfig.textArticleDefini }}</h3>
+<h3>Contenu {{ itemConfig.textArticleDu }}</h3>
 
 <ckeditor [(ngModel)]="imageContentItem.content" debounce="500"></ckeditor>  

@@ -22,6 +22,8 @@ import { ItemsListComponent } from './items-list/items-list.component';
 import { ThemeEditComponent } from './item-edit/theme-edit/theme-edit.component';
 import { ProgramEditComponent } from './item-edit/program-edit/program-edit.component';
 import { ImageContentItemEditComponent } from './item-edit/image-content-item-edit/image-content-item-edit.component';
+import { ItemManagerComponent } from './item-manager/item-manager.component';
+import { ItemManagerService } from './item-manager/item-manager.service';
 
 @NgModule({
   imports:      [ 
@@ -40,12 +42,14 @@ import { ImageContentItemEditComponent } from './item-edit/image-content-item-ed
     PolymerElement('vaadin-upload'),
     ThemeEditComponent,
     ProgramEditComponent,
-    ImageContentItemEditComponent,    
+    ImageContentItemEditComponent,
+    ItemManagerComponent,    
   ],
   providers: [ 
     AuthService, 
     AuthGuardService, 
-    AdminItemConfigService
+    AdminItemConfigService,
+    ItemManagerService
   ],
 })
 export class AdminModule {}

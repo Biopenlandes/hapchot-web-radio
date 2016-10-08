@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Theme } from '../../../podcasts/entity/theme';
 
+
 @Component({
   selector: 'app-theme-edit',
   templateUrl: './theme-edit.component.html',
@@ -8,11 +9,12 @@ import { Theme } from '../../../podcasts/entity/theme';
 })
 export class ThemeEditComponent implements OnInit {
 
-  @Input() theme : Theme;
+  @Input() theme : Theme;  
 
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

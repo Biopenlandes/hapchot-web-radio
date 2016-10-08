@@ -4,16 +4,17 @@ import { DatabaseService } from '../../shared/database.service';
 
 import { AIType } from './admin-item-config.types';
 import { AdminItemConfig } from './admin-item-config.class';
+import 'rxjs/add/operator/share';
 
 
 const AIConfigList : AdminItemConfig[] = 
 [
-  new AdminItemConfig(AIType.Hangout,"sortie","une sortie", "de la sortie", "/hangouts", "sorties",false),
-  new AdminItemConfig(AIType.News,"actualité","une actualité", "de l'actualité", "/news", "actus", false),
-  new AdminItemConfig(AIType.Podcast,"podcast","un podcast", "du podcast", "/podcasts", "podcasts", false),
-  new AdminItemConfig(AIType.Program,"émission","une émission", "de l'émission", "/programs", "emissions", true),
-  new AdminItemConfig(AIType.Theme,"thème","un thème", "du thème", "/themes", "themes", true),
-]
+  new AdminItemConfig(AIType.Hangout,"sortie"    ,"une sortie"      , "la sortie"  ,"de la sortie"    , "sorties",false, false),
+  new AdminItemConfig(AIType.News   ,"actualité"  ,"une actualité"   ,"l'actualité", "de l'actualité"  , "actus", false, false),
+  new AdminItemConfig(AIType.Podcast,"podcast"    ,"un podcast"    ,"le podcast"    , "du podcast"    , "podcasts", false, false, AIType.Program),
+  new AdminItemConfig(AIType.Program,"émission"  ,"une émission"    ,"l'émission"  , "de l'émission"  , "emissions", true, false, AIType.Theme),
+  new AdminItemConfig(AIType.Theme  ,"thème"    ,"un thème"        , "le thème"  , "de la sortie"      , "themes", true, true),
+  ]
 
 @Injectable()
 export class AdminItemConfigService {
@@ -24,6 +25,15 @@ export class AdminItemConfigService {
   getConfigs()
   {
     return AIConfigList;
+  }
+
+  getConfFromType(type : number) : AdminItemConfig
+  {
+    for(var config of AIConfigList)
+    {
+      if (config.type == type) return config;
+    }
+    return null;
   }
 
   private getConfFromRouteValue(value : string) : AdminItemConfig
@@ -48,20 +58,6 @@ export class AdminItemConfigService {
   getConfFromRoute(route : ActivatedRoute) : AdminItemConfig
   {
     return this.getConfFromSnapchot(route.snapshot);
-  }
-
-  checkConfFromParams(params : Params) : AdminItemConfig
-  {
-    let itemConfig = this.getConfFromParams(params);
-    if (itemConfig == null) 
-    {
-      this.router.navigate(['admin']);
-    }
-    else
-    {
-      this.db.setItemConfig(itemConfig);
-    } 
-    return itemConfig;
   }
 
   checkConfFromSnapchot(route : ActivatedRouteSnapshot) : AdminItemConfig

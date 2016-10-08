@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/share';
 
-import { AdminItemConfig } from '../admin/shared/admin-item-config.class';
+import { AdminItemConfig, AIType } from '../admin/shared/admin-item-config.module';
 
 import { AdmnistrableItem }from './administrable-item';
 import { Hangout }         from '../hangouts/entity/hangout';
@@ -11,99 +13,98 @@ import { Podcast }         from '../podcasts/entity/podcast';
 import { Program }         from '../podcasts/entity/program';
 import { News }            from '../news/entity/news';
 
+
+
 @Injectable()
 export class DatabaseService {
 
-  items : AdmnistrableItem[] = [];
-  itemConfig : AdminItemConfig;
-  subscription: Subscription;
+  itemType : AIType;
+  ownerType : AIType;
+  ownerSlug = '';
+
+  KeyList = [
+    { type: AIType.Hangout, path : "/hangouts" },
+    { type: AIType.News, path : "/news" },
+    { type: AIType.Podcast, path : "/podcasts" },
+    { type: AIType.Program, path : "/programs" },
+    { type: AIType.Theme, path : "/themes" }
+  ];
 
   constructor(public af: AngularFire) 
   {    
   }
 
-  getHangouts() : FirebaseListObservable<Hangout[]>
+  getPathFromType(type : number) : string
   {
-    return this.af.database.list('/hangouts', {
-      query: { orderByChild: 'index' }
-    });
-  }
-
-  getThemes() : FirebaseListObservable<Theme[]>
-  {
-    return this.af.database.list('/themes', {
-      query: { orderByChild: 'index' }
-    });
-  }
-
-  getPrograms() : FirebaseListObservable<Program[]>
-  {
-    return this.af.database.list('/programs', {
-      query: { orderByChild: 'index' }
-    });
-  }
-
-  getNews() : FirebaseListObservable<News[]>
-  {
-    return this.af.database.list('/podcasts', {
-      query: { orderByChild: 'index' }
-    });
-  }
-
-  getLatestPodcasts(value : number = 3) : FirebaseListObservable<Podcast[]>
-  {
-    return this.af.database.list('/programs', {
-      query: { orderByChild: 'date', limitToLast: value }
-    });
-  }
-
-  setItemConfig(config : AdminItemConfig)
-  {
-    if (this.subscription) this.subscription.unsubscribe();
-    this.itemConfig = config;
-    this.subscription = this.af.database.list(this.itemConfig.dbKey).subscribe(items => this.items = items);
-  }
-
-  addItem(item: AdmnistrableItem)
-  {
-    item.slug = this.slugify(item.title); 
-    
-    if (item.index == null)
+    for(var item of this.KeyList)
     {
-      item.index = this.itemConfig.orderAsc ? this.items.length : 0 - this.items.length; 
+      if (item.type == type) return item.path;
     }
+    return null;
+  }
 
-    if(this.itemExist(item.slug)) 
-    {
-      console.log("DB slug déjà pris");
-      return false;
-    }
+  setItemType(type : AIType)
+  {
+    this.itemType = type; 
+  }
+
+  setOwnerType(type : AIType)
+  {
+    this.ownerType = type; 
+  }
+
+  setOwnerSlug(slug : string)
+  {
+    this.ownerSlug = slug;
+  }
+
+  getItemsFromPath(path : string) : FirebaseListObservable<AdmnistrableItem[]>
+  {
+    return this.af.database.list( path, {
+      query: { orderByChild: 'index' }
+    });
+  }
+
+  getItemsFromType(type : number) : FirebaseListObservable<AdmnistrableItem[]>
+  {
+    return this.getItemsFromPath(this.getPathFromType(type));
+  }
+
+  getItemsPath() : string
+  {
+    if (!this.ownerType)
+      return this.getPathFromType(this.itemType);
     else
-    {
-      console.log("DB item added : ", item);
-      this.getItemBySlug(item.slug).set(item);
-      return true;
-    }         
+      return this.getPathFromType(this.ownerType) + '/'
+            + this.ownerSlug + '/'
+            + this.getPathFromType(this.itemType);
   }
 
   getItems()
   {
-    return this.af.database.list(this.itemConfig.dbKey, {
-      query: { orderByChild: 'index' }
-    });
+    return this.getItemsFromPath(this.getItemsPath());
   }
 
-  getItemBySlug(slug: string) {    
-    return this.af.database.object(this.itemConfig.dbKey+'/'+slug);
+  getItemBySlug(slug: string) 
+  {    
+    return this.af.database.object(this.getItemsPath() + '/' + slug);
   }
 
-  itemExist(slug: string)
+  getOwners() : FirebaseListObservable<AdmnistrableItem[]>
   {
-    return this.items.find(item => item.slug === slug);
-  }  
+    return this.getItemsFromType(this.ownerType);
+  }
+
+  
+
+  addItem(item: AdmnistrableItem)
+  {
+    console.log("DB item added : ", item);
+    this.getItemBySlug(item.slug).set(item);      
+  } 
 
   updateItem(item: AdmnistrableItem) {
-    console.log("updateItem item", item);
+    console.log("DB updateItem item", item);
     this.getItems().update(item.slug, item);
   }
 
@@ -131,31 +132,32 @@ export class DatabaseService {
     }
   }
 
-  slugify (value) {    
-     var rExps=[
-     {re:/[\xC0-\xC6]/g, ch:'A'},
-     {re:/[\xE0-\xE6]/g, ch:'a'},
-     {re:/[\xC8-\xCB]/g, ch:'E'},
-     {re:/[\xE8-\xEB]/g, ch:'e'},
-     {re:/[\xCC-\xCF]/g, ch:'I'},
-     {re:/[\xEC-\xEF]/g, ch:'i'},
-     {re:/[\xD2-\xD6]/g, ch:'O'},
-     {re:/[\xF2-\xF6]/g, ch:'o'},
-     {re:/[\xD9-\xDC]/g, ch:'U'},
-     {re:/[\xF9-\xFC]/g, ch:'u'},
-     {re:/[\xC7-\xE7]/g, ch:'c'},
-     {re:/[\xD1]/g, ch:'N'},
-     {re:/[\xF1]/g, ch:'n'} ];
-     
-     // converti les caractères accentués en leurs équivalent alpha
-     
-     for (var i = rExps.length - 1; i >= 0; i--) {
-       value=value.replace(rExps[i].re, rExps[i].ch);
-     }
+  getHangouts() : FirebaseListObservable<Hangout[]>
+  {
+    return this.getItemsFromType(AIType.Hangout);
+  }
 
-      return value.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^a-z0-9-]/g, '')
-          .replace(/\-{2,}/g,'-');
-    };
+  getThemes() : FirebaseListObservable<Theme[]>
+  {
+    return this.getItemsFromType(AIType.Theme);
+  }
+
+  getPrograms() : FirebaseListObservable<Program[]>
+  {
+    return this.getItemsFromType(AIType.Program);
+  }
+
+  getNews() : FirebaseListObservable<News[]>
+  {
+    return this.getItemsFromType(AIType.News);
+  }
+
+  getLatestPodcasts(value : number = 3) : FirebaseListObservable<Podcast[]>
+  {
+    return this.af.database.list(this.getPathFromType(AIType.Podcast), {
+      query: { orderByChild: 'date', limitToLast: value }
+    });
+  }
+
+  
 }

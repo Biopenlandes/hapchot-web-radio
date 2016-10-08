@@ -29,7 +29,7 @@ import { MaterializeModule } from 'angular2-materialize';
 
 @NgModule({
   declarations: [
-    AppComponent,     
+    AppComponent   
   ],
   imports: [
     BrowserModule,

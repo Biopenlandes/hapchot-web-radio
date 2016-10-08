@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo left">Admin</a>
-      <ul id="nav-mobile" class="right">
+      <!-- <a href="#" class="brand-logo left">Admin</a> -->
+      <ul id="nav-mobile" class="center">
         <li *ngFor="let config of itemConfigList">
           <a routerLink="{{ config.route }}" routerLinkActive="active">
             {{ config.text + 's' | uppercase}}

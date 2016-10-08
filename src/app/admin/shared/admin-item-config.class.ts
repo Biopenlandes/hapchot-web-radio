@@ -6,8 +6,10 @@ export class AdminItemConfig
               public text : string,
               public textArticleIndefini : string,
               public textArticleDefini : string,
-              public dbKey : string,
+              public textArticleDu : string,
               public route : string,
-              public orderAsc : boolean) {
+              public orderAsc : boolean,
+              public showEditInSameWindow : boolean,
+              public ownerType?: AIType) {
   }
 }
