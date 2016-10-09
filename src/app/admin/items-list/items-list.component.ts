@@ -16,6 +16,7 @@ export class ItemsListComponent implements OnInit {
   @Input() items : AdmnistrableItem[] = [];
   @Input() itemConfig : AdminItemConfig;
   @Output() onEditItem = new EventEmitter<AdmnistrableItem>();
+  @Output() onDeleteItem = new EventEmitter<AdmnistrableItem>();
   @Output() onNewItem = new EventEmitter();
 
   constructor(private itemService : ItemManagerService) { }
@@ -42,6 +43,6 @@ export class ItemsListComponent implements OnInit {
 
   deleteItem(item :AdmnistrableItem)
   {
-    this.itemService.deleteItem(item);
+    this.onDeleteItem.emit(item);
   }
 }

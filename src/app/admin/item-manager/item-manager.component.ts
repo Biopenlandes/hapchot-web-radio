@@ -45,6 +45,7 @@ export class ItemManagerComponent implements OnInit {
       
       this.items = [];
       this.owners = [];
+      this.ownerSlug = '';
 
       let result = this.itemService.initializeFromParams(params); 
       if (!result) { this.router.navigate(['admin']); }
@@ -87,10 +88,23 @@ export class ItemManagerComponent implements OnInit {
 
   onEditItem(item: AdmnistrableItem)
   {
-    this.initItemBeingEdited();
+    this.itemBeingEdited = item;
     this.editMode = true;
     this.navigateToEditcomponent();
   } 
+
+  onDeleteItem(item : AdmnistrableItem)
+  {
+    this.itemService.deleteItem(item);
+    // Bug : deleteing Item met le le owner select vide
+    // on fait un cagade pour le remettre d'aplomb après 500ms
+    let slug = this.ownerSlug;
+    this.ownerSlug = 'blop';
+    setTimeout(() =>     
+    {    
+      this.ownerSlug = slug;
+    }, 500);
+  }
 
   onItemEditDone()
   {

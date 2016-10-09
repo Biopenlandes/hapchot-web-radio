@@ -18,10 +18,6 @@ import { News }            from '../news/entity/news';
 @Injectable()
 export class DatabaseService {
 
-  /*itemType : AIType;
-  ownerType : AIType;
-  ownerSlug = '';*/
-
   KeyList = [
     { type: AIType.Hangout, path : "/hangouts" },
     { type: AIType.News, path : "/news" },
@@ -42,21 +38,6 @@ export class DatabaseService {
     }
     return null;
   }
-
-/*  setItemType(type : AIType)
-  {
-    this.itemType = type; 
-  }
-
-  setOwnerType(type : AIType)
-  {
-    this.ownerType = type; 
-  }
-
-  setOwnerSlug(slug : string)
-  {
-    this.ownerSlug = slug;
-  }*/
 
   private getItemsFromPath(path : string) : FirebaseListObservable<AdmnistrableItem[]>
   {
@@ -107,10 +88,6 @@ export class DatabaseService {
          + this.getPathFromType(itemType);    
   }
 
-  /*getOwners() : FirebaseListObservable<AdmnistrableItem[]>
-  {
-    return this.getItemsFromType(this.ownerType);
-  }*/  
 
   addItem(item: AdmnistrableItem)
   {
@@ -142,7 +119,6 @@ export class DatabaseService {
 
   private deleteDbItem(dbItem: FirebaseObjectObservable<any>) 
   {    
-    console.log("  -> deleteDBItem. observable = ", dbItem);
     if (dbItem) dbItem.remove();
     else console.log("delete item, ce item n'existe pas");
   }

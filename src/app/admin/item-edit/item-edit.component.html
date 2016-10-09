@@ -4,7 +4,9 @@
   <h2 *ngIf="!editMode">Ajouter {{ itemConfig.textArticleIndefini }}</h2>
   <h2 *ngIf="editMode">Modifier {{ itemConfig.textArticleIndefini }}</h2>
   
-  <input [(ngModel)]="item.title" type="text" placeholder="Titre" required>  
+  <input [(ngModel)]="item.title"
+         *ngIf="itemConfig.type != AIType.Podcast" 
+         type="text" placeholder="Titre" required>  
 
   <app-image-content-item-edit 
     *ngIf="itemConfig.type == AIType.Hangout  
@@ -17,9 +19,10 @@
   <app-theme-edit   *ngIf="itemConfig.type == AIType.Theme"
                     [theme]="item">  
   </app-theme-edit>
-  <!-- <app-podcast-edit *ngIf="itemConfig.type == AIType.Podcast"
+  
+  <app-podcast-edit *ngIf="itemConfig.type == AIType.Podcast"
                     [podcast]="item">
-  </app-podcast-edit> -->
+  </app-podcast-edit> 
 
   <p class="center-align">
       <button class="waves-effect waves-light btn" 

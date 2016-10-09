@@ -3,6 +3,7 @@ import { CommonModule }            from '@angular/common';
 import { FormsModule }             from '@angular/forms';
 import { CKEditorModule }          from 'ng2-ckeditor';
 import { PolymerElement }          from '@vaadin/angular2-polymer';
+import { HttpModule, JsonpModule }  from '@angular/http';
 
 
 import { AdminComponent }          from './admin.component';
@@ -21,16 +22,21 @@ import { ItemsListComponent } from './items-list/items-list.component';
 /*import { ItemEditResolve } from './item-edit/item-edit-resolve.service';*/
 import { ThemeEditComponent } from './item-edit/theme-edit/theme-edit.component';
 import { ProgramEditComponent } from './item-edit/program-edit/program-edit.component';
+import { PodcastEditComponent } from './item-edit/podcast-edit/podcast-edit.component';
 import { ImageContentItemEditComponent } from './item-edit/image-content-item-edit/image-content-item-edit.component';
 import { ItemManagerComponent } from './item-manager/item-manager.component';
 import { ItemManagerService } from './item-manager/item-manager.service';
+
+import { PodcastsService } from '../podcasts/podcasts.service';
 
 @NgModule({
   imports:      [ 
     CommonModule, 
     AdminRouting, 
     FormsModule, 
-    CKEditorModule
+    CKEditorModule,
+    HttpModule,
+    JsonpModule
   ],
   declarations: [ 
     AdminComponent, 
@@ -42,6 +48,7 @@ import { ItemManagerService } from './item-manager/item-manager.service';
     PolymerElement('vaadin-upload'),
     ThemeEditComponent,
     ProgramEditComponent,
+    PodcastEditComponent,
     ImageContentItemEditComponent,
     ItemManagerComponent,    
   ],
@@ -49,7 +56,8 @@ import { ItemManagerService } from './item-manager/item-manager.service';
     AuthService, 
     AuthGuardService, 
     AdminItemConfigService,
-    ItemManagerService
+    ItemManagerService,
+    PodcastsService
   ],
 })
 export class AdminModule {}

@@ -84,7 +84,7 @@ export class ItemManagerService {
     this.itemsSubscriber = this.db.getItems(this.itemConfig.type, this.itemConfig.ownerType, this.ownerSlug).subscribe( (items) => 
     {
       this.items = items; 
-      console.log("Getting items", items);
+      //console.log("Getting items", items);
       this.itemsSubject.next(items);      
     });
   }
@@ -97,10 +97,6 @@ export class ItemManagerService {
     {
       console.log("edit en cours");
       // TODO traiter ce cas là
-      // on re initialize l'index pour qu'il soit actualisé dans la nouvelle liste
-      //itemBeingEdited.index = null;
-      
-      //this.deleteItem(itemBeingEdited);
     }
     this.ownerSlug = slug;
     this.subscribeToItems();
@@ -133,7 +129,6 @@ export class ItemManagerService {
 
   updateItem(item : AdmnistrableItem)
   {
-    //let oldItem = this.item;
     delete item['$key']; 
     delete item['$exists']; 
     console.log("updateItem",item);
