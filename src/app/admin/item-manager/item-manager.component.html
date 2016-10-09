@@ -1,24 +1,30 @@
 <div *ngIf="itemConfig.ownerType && !showEdit">
         
   <h2>Sélectionnez {{ ownerConfig.textArticleDefini }}</h2>      
-  <select (change)="onOwnerChanged($event.target.value)" 
+  <select [ngModel]="ownerSlug" (ngModelChange)="onOwnerChanged($event)" 
           style="display: block" >
-    <option *ngFor="let owner of owners" [value]="owner.slug">{{owner.title}}</option>
+    <option *ngFor="let owner of owners" [ngValue]="owner.slug">{{owner.title}}</option>
+    <option *ngIf="owners.length == 0"><i>Chargement des {{ ownerConfig.text + 's'  }} </i>
+    </option>
   </select>
 </div>
 
-<app-items-list
-  *ngIf="showList"
-  [items]="items"
-  [itemConfig]="itemConfig"
-  (onEditItem)="onEditItem($event)"
-  (onNewItem)="onNewItem()">
-</app-items-list>
+<!-- <h2 *ngIf="noOwnersAvaible">Ajoute d'abord {{ ownerConfig.textArticleIndefini}} avant d'ajouter {{ itemConfig.textArticleIndefini}}</h2> -->
 
-<app-item-edit
-  *ngIf="showEdit"
-  [item]="itemBeingEdited"
-  [itemConfig]="itemConfig"
-  [editMode]="editMode"
-  (onItemEditDone)="onItemEditDone()">
-</app-item-edit>
+<div *ngIf="!itemConfig.ownerType || ownerSlug">
+  <app-items-list
+    *ngIf="showList"
+    [items]="items"
+    [itemConfig]="itemConfig"
+    (onEditItem)="onEditItem($event)"
+    (onNewItem)="onNewItem()">
+  </app-items-list>
+
+  <app-item-edit
+    *ngIf="showEdit"
+    [item]="itemBeingEdited"
+    [itemConfig]="itemConfig"
+    [editMode]="editMode"
+    (onItemEditDone)="onItemEditDone()">
+  </app-item-edit>
+</div>

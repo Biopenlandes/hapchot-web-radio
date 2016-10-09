@@ -21,9 +21,8 @@ export class ItemManagerService {
   itemsSubscriber : Subscription;
   ownerSubscriber : Subscription;
 
-
-
-  itemConfig : AdminItemConfig = new AdminItemConfig(0,'','','','',false,false);
+  itemConfig : AdminItemConfig = new AdminItemConfig(0,'','','','','',false,false);
+  ownerSlug : string;
 
   constructor(private db : DatabaseService,
               private itemConfService : AdminItemConfigService) { }
@@ -32,23 +31,21 @@ export class ItemManagerService {
   {
     // getting conf    
     this.itemConfig = this.itemConfService.getConfFromParams(params);
-    
+
     if (!this.itemConfig) return false;
 
-    this.db.setItemType(this.itemConfig.type);
-    this.db.setOwnerType(this.itemConfig.ownerType);
+    if (!this.itemConfig.ownerType) this.subscribeToItems();    
 
-    if (!this.itemConfig.ownerType) this.subscribeToItems();
-    
     if (this.ownerSubscriber) this.ownerSubscriber.unsubscribe();
     // subscribing to owners
     if (this.itemConfig.ownerType)
     {
-      this.ownerSubscriber = this.db.getOwners().take(1).subscribe(owners => 
+      this.ownerSlug = null;
+      this.ownerSubscriber = this.db.getItems(this.itemConfig.ownerType).subscribe(owners => 
       {
         this.ownersSubject.next(owners);        
-        console.log("calling onOwnerChanged to initialize default select value");
-        if (owners[0]) this.onOwnerChanged(owners[0].slug, false);          
+        //console.log("receiving owners", owners);        
+        // TODO else dire qu'il faut rentrer des owners avant de remplir les items         
       });
     }
 
@@ -65,6 +62,11 @@ export class ItemManagerService {
     return this.itemConfService.getConfFromType(this.itemConfig.ownerType);
   }
 
+  getOwnerSlug() : string
+  {
+    return this.ownerSlug;
+  }
+
   getItems() : Observable<AdmnistrableItem[]>
   {
     return this.itemsSubject;
@@ -79,9 +81,10 @@ export class ItemManagerService {
   {
     // subscribing to Items
     if (this.itemsSubscriber) this.itemsSubscriber.unsubscribe();
-    this.itemsSubscriber = this.db.getItems().subscribe( (items) => 
+    this.itemsSubscriber = this.db.getItems(this.itemConfig.type, this.itemConfig.ownerType, this.ownerSlug).subscribe( (items) => 
     {
       this.items = items; 
+      console.log("Getting items", items);
       this.itemsSubject.next(items);      
     });
   }
@@ -99,15 +102,24 @@ export class ItemManagerService {
       
       //this.deleteItem(itemBeingEdited);
     }
-    this.db.setOwnerSlug(slug);
+    this.ownerSlug = slug;
     this.subscribeToItems();
+  }
+
+  private addingOwnersInfosToItem(item : AdmnistrableItem)
+  {
+    if (this.itemConfig.ownerType && this.ownerSlug)
+    {
+      item.ownerType = this.itemConfig.ownerType;
+      item.ownerSlug = this.ownerSlug;
+    }
   }
 
   addItem(item : AdmnistrableItem) : boolean
   {    
     item.slug = this.slugify(item.title); 
+    this.addingOwnersInfosToItem(item);
     
-    debugger;
     if (item.index == null)
     {
       item.index = this.itemConfig.orderAsc ? this.items.length : 0 - this.items.length;
@@ -125,13 +137,14 @@ export class ItemManagerService {
     delete item['$key']; 
     delete item['$exists']; 
     console.log("updateItem",item);
-    this.db.deleteItemFromSlug(item.slug);
+    this.db.deleteItem(item);
     this.addItem(item);
   } 
 
   deleteItem(item: AdmnistrableItem)
   {
-    this.updateFromDeleteingIndex(item.index);
+    this.addingOwnersInfosToItem(item);
+    this.updateIndexesAfterDeleteingIndex(item.index);
     this.db.deleteItem(item);
   } 
 
@@ -140,7 +153,7 @@ export class ItemManagerService {
     return this.items.find(item => item.slug == slug);
   } 
 
-  updateFromDeleteingIndex(index)
+  updateIndexesAfterDeleteingIndex(index)
   {
     if (this.itemConfig.orderAsc)
     {

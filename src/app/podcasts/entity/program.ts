@@ -1,5 +1,6 @@
 import { ImageContentAdmnistrableItem } from '../../shared/image-content-administrable-item';
 import { Podcast } from './podcast';
+import { AIType } from '../../admin/shared/admin-item-config.module';
 
 export class Program extends ImageContentAdmnistrableItem { 
   
@@ -8,7 +9,7 @@ export class Program extends ImageContentAdmnistrableItem {
   public podcasts : Podcast[];
 
   constructor() {
-    super();
+    super(AIType.Program);
   }
 }
 

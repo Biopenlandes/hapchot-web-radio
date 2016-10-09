@@ -11,7 +11,7 @@ import { ItemManagerService } from '../item-manager/item-manager.service';
 })
 export class ItemEditComponent implements OnInit {
 
-  @Input() item : AdmnistrableItem = new AdmnistrableItem();
+  @Input() item : AdmnistrableItem;
   @Input() itemConfig : AdminItemConfig;
   @Input() editMode : boolean = true;
   @Output() onItemEditDone = new EventEmitter();

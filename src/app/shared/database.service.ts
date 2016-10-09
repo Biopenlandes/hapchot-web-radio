@@ -18,9 +18,9 @@ import { News }            from '../news/entity/news';
 @Injectable()
 export class DatabaseService {
 
-  itemType : AIType;
+  /*itemType : AIType;
   ownerType : AIType;
-  ownerSlug = '';
+  ownerSlug = '';*/
 
   KeyList = [
     { type: AIType.Hangout, path : "/hangouts" },
@@ -34,7 +34,7 @@ export class DatabaseService {
   {    
   }
 
-  getPathFromType(type : number) : string
+  private getPathFromType(type : number) : string
   {
     for(var item of this.KeyList)
     {
@@ -43,7 +43,7 @@ export class DatabaseService {
     return null;
   }
 
-  setItemType(type : AIType)
+/*  setItemType(type : AIType)
   {
     this.itemType = type; 
   }
@@ -56,100 +56,115 @@ export class DatabaseService {
   setOwnerSlug(slug : string)
   {
     this.ownerSlug = slug;
-  }
+  }*/
 
-  getItemsFromPath(path : string) : FirebaseListObservable<AdmnistrableItem[]>
+  private getItemsFromPath(path : string) : FirebaseListObservable<AdmnistrableItem[]>
   {
     return this.af.database.list( path, {
       query: { orderByChild: 'index' }
     });
   }
 
-  getItemsFromType(type : number) : FirebaseListObservable<AdmnistrableItem[]>
+  getItems(type : AIType, ownerType? : AIType, ownerSlug? : string) : FirebaseListObservable<AdmnistrableItem[]>
   {
-    return this.getItemsFromPath(this.getPathFromType(type));
+    if (ownerType && ownerSlug) return this.getItemsInOwnerSlug(type, ownerType, ownerSlug);
+    return this.getItemsFromPath(this.getPathFromType(type));    
   }
 
-  getItemsPath() : string
+  getOwners(type : AIType) : FirebaseListObservable<AdmnistrableItem[]>
   {
-    if (!this.ownerType)
-      return this.getPathFromType(this.itemType);
-    else
-      return this.getPathFromType(this.ownerType) + '/'
-            + this.ownerSlug + '/'
-            + this.getPathFromType(this.itemType);
+    return this.af.database.list( this.getPathFromType(type), {
+      query: { orderByChild: 'index' }
+    });   
   }
 
-  getItems()
+  getItemsInOwnerSlug(itemType :AIType, ownerType : AIType, ownerSlug : string)
   {
-    return this.getItemsFromPath(this.getItemsPath());
+    let itemsPath = this.getItemsPathWithOwnerSlug(itemType, ownerType, ownerSlug);
+    return this.getItemsFromPath(itemsPath);
   }
 
-  getItemBySlug(slug: string) 
+  getItem(itemType : AIType, slug: string) 
   {    
-    return this.af.database.object(this.getItemsPath() + '/' + slug);
+    return this.af.database.object(this.getPathFromType(itemType) + '/' + slug);
   }
 
-  getOwners() : FirebaseListObservable<AdmnistrableItem[]>
+  getDbItem(item : AdmnistrableItem)
+  {
+    return this.af.database.object(this.getPathFromType(item.type) + '/' + item.slug);
+  }
+
+  getDbItemInOwnerSlug(item : AdmnistrableItem) 
+  {    
+    let itemsPath = this.getItemsPathWithOwnerSlug(item.type, item.ownerType, item.ownerSlug);
+    return this.af.database.object(itemsPath + '/' + item.slug);
+  }
+
+  private getItemsPathWithOwnerSlug(itemType :AIType, ownerType : AIType, ownerSlug : string) : string
+  {
+    return this.getPathFromType(ownerType) + '/'
+         + ownerSlug + '/'
+         + this.getPathFromType(itemType);    
+  }
+
+  /*getOwners() : FirebaseListObservable<AdmnistrableItem[]>
   {
     return this.getItemsFromType(this.ownerType);
-  }
-
-  
+  }*/  
 
   addItem(item: AdmnistrableItem)
   {
     console.log("DB item added : ", item);
-    this.getItemBySlug(item.slug).set(item);      
+    this.getDbItem(item).set(item);
+    if (item.ownerType) this.getDbItemInOwnerSlug(item).set(item);      
   } 
 
   updateItem(item: AdmnistrableItem) {
     console.log("DB updateItem item", item);
-    this.getItems().update(item.slug, item);
+
+    this.getItems(item.type).update(item.slug, item);
+    if (item.ownerType) this.getItemsInOwnerSlug(item.type, item.ownerType, item.ownerSlug).update(item.slug, item);
   }
 
   updateItemIndex(item: AdmnistrableItem, index: number) 
   {
     if (!item) return;
-    //console.log(`updateItemIndex item ${item.slug} to index ${index}`);
-    this.getItemBySlug(item.slug).update({index : index});
+    console.log(`updateItemIndex item ${item.slug} to index ${index}`);
+    this.getDbItem(item).update({index : index});
+    if (item.ownerType) this.getDbItemInOwnerSlug(item).update({index : index});
   }
 
-  deleteItem(item: AdmnistrableItem) {  
-
-    this.deleteItemFromSlug(item.slug);
+  deleteItem(item: AdmnistrableItem) { 
+    console.log("deleting item", item);
+    this.deleteDbItem(this.getDbItem(item));
+    if (item.ownerType) this.deleteDbItem(this.getDbItemInOwnerSlug(item));
   }
 
-  deleteItemFromSlug(slug: string) 
+  private deleteDbItem(dbItem: FirebaseObjectObservable<any>) 
   {    
-    if (this.getItemBySlug(slug))
-    {
-      this.getItemBySlug(slug).remove();
-    }
-    else
-    {
-      console.log("delete item, ce item n'existe pas");
-    }
+    console.log("  -> deleteDBItem. observable = ", dbItem);
+    if (dbItem) dbItem.remove();
+    else console.log("delete item, ce item n'existe pas");
   }
 
   getHangouts() : FirebaseListObservable<Hangout[]>
   {
-    return this.getItemsFromType(AIType.Hangout);
+    return this.getItems(AIType.Hangout);
   }
 
   getThemes() : FirebaseListObservable<Theme[]>
   {
-    return this.getItemsFromType(AIType.Theme);
+    return this.getItems(AIType.Theme);
   }
 
   getPrograms() : FirebaseListObservable<Program[]>
   {
-    return this.getItemsFromType(AIType.Program);
+    return this.getItems(AIType.Program);
   }
 
   getNews() : FirebaseListObservable<News[]>
   {
-    return this.getItemsFromType(AIType.News);
+    return this.getItems(AIType.News);
   }
 
   getLatestPodcasts(value : number = 3) : FirebaseListObservable<Podcast[]>
