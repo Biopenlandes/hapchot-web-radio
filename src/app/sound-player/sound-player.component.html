@@ -1,3 +1,25 @@
-<p>
-  sound-player works!
-</p>
+<button (click)="soundPlayer.playRadio()" class="hapchot-btn">Ecouter en Direct</button>
+
+<div id="radio-player" *ngIf="modeRadio">
+  <img (click)="soundPlayer.stopRadio()" [src]="track.cover"/> 
+  <div id="track-title">{{ track.title }}</div>
+  <div id="track-artist">{{ track.artist}} / {{ track.album}}</div>
+</div>
+
+<div>radioMode {{ radioMode ? "oui" : "non" }}</div>
+<div>radioState {{ radioState }}</div>
+
+<h3>Derniers podcasts</h3>
+<ul id="podcasts-list" >  
+  <li class="item" *ngFor="let podcast of podcasts" (click)="soundPlayer.playPodcast(podcast)">   
+    <img [src]="podcast.pictures?.thumbnail" alt="" class="circle">
+    <span class="title">{{ podcast.title }}</span>
+    <!-- <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>  -->
+  </li>
+</ul>
+
+<div id="podcast-player" [hidden]="modeRadio">
+  <h3>En écoute</h3>
+  <iframe id="mixcloud-frame" width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fhapchot%2Fvie-de-m%25C3%25A8re-la-motricit%25C3%25A9%2F&hide_cover=1&light=1" frameborder="0"></iframe>
+</div>
+

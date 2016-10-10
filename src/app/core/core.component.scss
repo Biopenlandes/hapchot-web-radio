@@ -1,0 +1,21 @@
+@import 'variables';
+
+app-sound-player
+{
+  position: absolute;
+  top : 0;
+  bottom :0;
+  left : 0;
+  width : $sidebar-width;
+}
+
+#main-page
+{
+  position: absolute;
+  top : 0;
+  bottom : 0;
+  right : 0;
+  left : $sidebar-width;
+
+  background-color: $color-yellow;
+}

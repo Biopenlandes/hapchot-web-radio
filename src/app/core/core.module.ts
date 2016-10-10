@@ -12,13 +12,16 @@ import { HangoutsModule }    from '../hangouts/hangouts.module';
 
 import { PresentationComponent }  from '../presentation/presentation.component';
 import { CalendarModule } from '../calendar/calendar.module';
+import { HeaderComponent } from './header/header.component';
+
+import {SoundPlayerComponent } from '../sound-player/sound-player.component';
 
 @NgModule({
   imports: [ 
     CommonModule, 
     CoreRouting,
-    SoundPlayerModule,
     HomeModule,
+    SoundPlayerModule,
     NewsModule,
     PodcastsModule,
     HangoutsModule,
@@ -26,7 +29,9 @@ import { CalendarModule } from '../calendar/calendar.module';
   ],
   declarations: [ 
     CoreComponent,  
-    PresentationComponent,
+    PresentationComponent, 
+    HeaderComponent,
+    SoundPlayerComponent
   ],
   providers: [ ]
 })

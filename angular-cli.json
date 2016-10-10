@@ -20,7 +20,7 @@
         "../node_modules/materialize-css/dist/css/materialize.css" 
       ],
       "scripts": [
-        "../node_modules/soundmanager2/script/soundmanager2.js",
+        "../node_modules/soundmanager2/script/soundmanager2-nodebug-jsmin.js",
         "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.js",
         "assets/bower_components/webcomponentsjs/webcomponents-lite.min.js",
         "../node_modules/jquery/dist/jquery.js",

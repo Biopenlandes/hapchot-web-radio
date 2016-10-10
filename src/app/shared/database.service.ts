@@ -143,10 +143,13 @@ export class DatabaseService {
     return this.getItems(AIType.News);
   }
 
-  getLatestPodcasts(value : number = 3) : FirebaseListObservable<Podcast[]>
+  getLatestPodcasts(value : number = 3) : Observable<Podcast[]>
   {
     return this.af.database.list(this.getPathFromType(AIType.Podcast), {
-      query: { orderByChild: 'date', limitToLast: value }
+      query: { orderByChild: 'updatedTime', limitToLast: value }
+    }).map(array =>
+    {
+      return array.reverse();
     });
   }
 

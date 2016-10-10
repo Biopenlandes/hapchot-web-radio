@@ -24,6 +24,7 @@ export class PodcastsService {
     podcast.url         = podcastModel.url;
     podcast.updatedTime = podcastModel.updatedTime;
     podcast.createdTime = podcastModel.createdTime;
+    podcast.key         = podcastModel.key;
 
     return podcast;
   }
