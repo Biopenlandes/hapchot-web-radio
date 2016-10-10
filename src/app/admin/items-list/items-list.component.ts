@@ -2,7 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { AdmnistrableItem } from '../../shared/administrable-item';
 import { ItemManagerService } from '../item-manager/item-manager.service';
-import { AdminItemConfig } from '../shared/admin-item-config.module';
+import { AdminItemConfig, AIType } from '../shared/admin-item-config.module';
+import { PodcastsService } from '../../podcasts/podcasts.service';
+import { Podcast } from '../../podcasts/entity/podcast';
 
 declare var Sortable : any;
 
@@ -19,7 +21,9 @@ export class ItemsListComponent implements OnInit {
   @Output() onDeleteItem = new EventEmitter<AdmnistrableItem>();
   @Output() onNewItem = new EventEmitter();
 
-  constructor(private itemService : ItemManagerService) { }
+  AIType = AIType;
+
+  constructor(private itemService : ItemManagerService, private podcastsService :PodcastsService) { }
 
   ngOnInit() 
   {
@@ -39,6 +43,14 @@ export class ItemsListComponent implements OnInit {
   editItem(item :AdmnistrableItem)
   {
     this.onEditItem.emit(item);
+  }
+
+  updateItem(item : AdmnistrableItem)
+  {
+    if (this.itemConfig.type == AIType.Podcast)
+    {
+      this.podcastsService.updatePodcastInfos(item as Podcast);
+    }
   }
 
   deleteItem(item :AdmnistrableItem)

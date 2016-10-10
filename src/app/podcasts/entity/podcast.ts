@@ -3,10 +3,17 @@ import { AIType } from '../../admin/shared/admin-item-config.module';
 
 export class Podcast extends AdmnistrableItem { 
 
+  public key : string;
   public description : string;
-  public image : string;
+  public pictures : {};
+  public audioLength : number;
+  public url : string;
+  public updatedTime : Date;
+  public createdTime : Date;
   
   constructor() {
     super(AIType.Podcast);
   }
+
+  
 }

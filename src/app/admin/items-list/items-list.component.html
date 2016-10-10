@@ -11,9 +11,12 @@
   <ul class="collection" id="items-list">
     <li class="collection-item" id="item-{{index}}"
         *ngFor="let item of items;">
-      {{ item.index }} : {{item.slug}} | {{ item.title }}
+      {{ item.title }}
       <span class="secondary-content">        
-          <a ><i (click)="editItem(item);" class="material-icons left">edit</i></a>
+          <i *ngIf="itemConfig.type == AIType.Podcast" 
+             (click)="updateItem(item);" class="material-icons left">loop</i>
+          <i (click)="editItem(item);" class="material-icons left">edit</i>
+          <!-- <i (click)="" class="material-icons left">visibility</i> -->
           <i (click)="deleteItem(item)" class="material-icons left">delete</i>
       </span>
     </li>

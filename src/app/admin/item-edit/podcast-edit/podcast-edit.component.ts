@@ -29,8 +29,11 @@ export class PodcastEditComponent implements OnInit {
   getInfosFromUrl(url: string) 
   { 
     this.podcastsService.fillPodcastInfosFromUrl(url).subscribe(
-      podcast => { this.podcast.title = podcast.title; this.podcast.description = podcast.description; },
-      err => { this.podcast = new Podcast(); this.podcast.title = "Podcast introuvable" });
+      podcast => this.podcast = this.podcastsService.transferInfosFrom(this.podcast, podcast),
+      err => { 
+        this.podcast = this.podcastsService.transferInfosFrom(this.podcast, new Podcast());
+        this.podcast.title = "Podcast introuvable"; 
+      });
   } 
 
 }

@@ -1,10 +1,10 @@
-<div *ngIf="itemConfig.ownerType && !showEdit">
+<div *ngIf="itemConfig.ownerType">
         
   <h2>Sélectionnez {{ ownerConfig.textArticleDefini }}</h2>      
   <select [ngModel]="ownerSlug" (ngModelChange)="onOwnerChanged($event)" 
           style="display: block" >
     <option *ngFor="let owner of owners" [ngValue]="owner.slug">{{owner.title}}</option>
-    <option *ngIf="owners.length == 0"><i>Chargement des {{ ownerConfig.text + 's'  }} </i>
+    <option disabled *ngIf="owners.length == 0"><i>Chargement des {{ ownerConfig.text + 's'  }} ... </i>
     </option>
   </select>
 </div>

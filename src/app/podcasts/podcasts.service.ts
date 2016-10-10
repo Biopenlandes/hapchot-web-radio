@@ -10,6 +10,24 @@ import 'rxjs/add/operator/catch';
 export class PodcastsService {
   constructor(private http : Http) {}
 
+  updatePodcastInfos(podcast : Podcast)
+  {
+    this.fillPodcastInfosFromUrl(podcast.key).toPromise().then(result => this.transferInfosFrom(podcast, result));
+  }
+
+  transferInfosFrom(podcast : Podcast, podcastModel : Podcast) : Podcast
+  {
+    podcast.title       = podcastModel.title;
+    podcast.description = podcastModel.description;
+    podcast.pictures    = podcastModel.pictures;
+    podcast.audioLength = podcastModel.audioLength;
+    podcast.url         = podcastModel.url;
+    podcast.updatedTime = podcastModel.updatedTime;
+    podcast.createdTime = podcastModel.createdTime;
+
+    return podcast;
+  }
+
   fillPodcastInfosFromUrl(url : string) : Observable<Podcast>
   {
     if (url[0] != '/') url = '/' + url;
@@ -24,6 +42,11 @@ export class PodcastsService {
       let podcast = new Podcast();
       podcast.title = result.name;
       podcast.description = result.description;
+      podcast.audioLength = result.audio_length;
+      podcast.url = result.url;
+      podcast.pictures = result.pictures;
+      podcast.updatedTime = result.updated_time;
+      podcast.createdTime = result.created_time;
       return podcast;
     });
   }

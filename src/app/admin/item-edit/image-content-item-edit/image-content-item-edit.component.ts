@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ImageContentAdmnistrableItem } from '../../../shared/image-content-administrable-item';
 import { AIType } from '../../shared/admin-item-config.types';
 import { AdminItemConfig } from '../../shared/admin-item-config.class';
+import { Picture } from '../../../shared/picture.class';
 
 @Component({
   selector: 'app-image-content-item-edit',
@@ -21,7 +22,7 @@ export class ImageContentItemEditComponent implements OnInit {
 
     var vaadinUpload = document.querySelector('vaadin-upload');
     vaadinUpload.addEventListener('upload-success', 
-      (event:any) => this.imageContentItem.pictureUrl = 'assets/uploads/' + event.detail.file.name);
+      (event:any) => this.imageContentItem.picture = new Picture(event.detail.file.name));
   }  
 
 }

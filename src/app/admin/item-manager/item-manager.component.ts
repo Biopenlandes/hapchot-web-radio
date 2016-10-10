@@ -96,6 +96,11 @@ export class ItemManagerComponent implements OnInit {
   onDeleteItem(item : AdmnistrableItem)
   {
     this.itemService.deleteItem(item);
+    this.restoreOwnerSelectValue();
+  }
+
+  private restoreOwnerSelectValue()
+  {
     // Bug : deleteing Item met le le owner select vide
     // on fait un cagade pour le remettre d'aplomb après 500ms
     let slug = this.ownerSlug;
@@ -111,6 +116,7 @@ export class ItemManagerComponent implements OnInit {
     this.editMode = false;
     this.initItemBeingEdited();
     this.navigateToListcomponent();
+    this.restoreOwnerSelectValue();
   }
 
   private navigateToEditcomponent()
