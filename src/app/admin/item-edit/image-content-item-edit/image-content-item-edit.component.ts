@@ -22,7 +22,7 @@ export class ImageContentItemEditComponent implements OnInit {
 
     var vaadinUpload = document.querySelector('vaadin-upload');
     vaadinUpload.addEventListener('upload-success', 
-      (event:any) => this.imageContentItem.picture = new Picture(event.detail.file.name));
+      (event:any) => this.imageContentItem.pictures = new Picture(event.detail.file.name));
   }  
 
 }

@@ -5,7 +5,7 @@ import { Picture } from './picture.class';
 export class ImageContentAdmnistrableItem extends AdmnistrableItem { 
   
   public content : string;
-  public picture : Picture; 
+  public pictures : Picture; 
 
   constructor(type : AIType) {
     super(type);

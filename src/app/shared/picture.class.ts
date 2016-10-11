@@ -2,15 +2,15 @@ const uploadDir = "assets/uploads/";
 
 export class Picture
 {
-  public smallPath : string;
-  public mediumPath : string;
-  public largePath : string;
+  public thumbnail : string;
+  public medium : string;
+  public large : string;
 
   constructor(public pictureName : string) 
   {
-    this.smallPath = this.getPath('small');
-    this.mediumPath = this.getPath('medium');
-    this.largePath = this.getPath('large');
+    this.thumbnail = this.getPath('small');
+    this.medium = this.getPath('medium');
+    this.large = this.getPath('large');
   }
 
   private getPath(type : string)

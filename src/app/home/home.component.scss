@@ -1,0 +1,65 @@
+@import '../core/variables';
+
+#main-page
+{
+  width : 900px;
+  padding: 0 1rem;
+  margin : 0 auto;
+}
+
+.slider-item
+{
+  height: 200px;
+  width: 80%;
+  margin: 2rem auto;
+  position : relative;
+  box-shadow: 0px 2px 12px -1px rgba(36,36,36,1);
+
+  .item-picture
+  {
+    width : 65%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    left: 0;
+  }
+
+  .item-content
+  {
+    width :35%;
+    height: 100%;
+    background-color: $color-dark-blue;
+    position: absolute;
+    right: 0;
+    padding: 1rem;
+    padding-left: 2rem;
+
+    .content-title
+    {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: white;
+      overflow: hidden;
+    }
+
+    .content-description
+    {
+      position: absolute;
+      top: 3.3rem;
+      bottom: 5rem;
+      left: 2rem;
+      right: 1rem;
+      font-size: 0.9rem;
+      color: #d2cfcf;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .content-btn
+    {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+}

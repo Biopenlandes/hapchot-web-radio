@@ -1,0 +1,61 @@
+@import '../variables';
+
+#title-panel
+{
+  $panel-height: 7rem;
+
+  height: $panel-height;
+  background-color : black;
+  color : $color-yellow;
+  font-family: Anton;
+  text-align: center;
+  
+  h1
+  {
+    font-size: 4rem;
+    line-height: 7rem;
+    text-transform: uppercase;
+    margin: 0 2rem;
+    display: inline-block;
+  }
+
+  span
+  {
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: $panel-height;
+
+  }
+  
+}
+
+#nav 
+{  
+  text-align: center;
+  border-top : 1px solid black;
+  border-bottom : 1px solid black;
+  margin: 1rem 0;
+
+  .nav-item
+  {
+    font-size: .85rem;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0;
+    text-transform: uppercase;
+    padding: 0 1rem;
+    line-height: 2rem;
+
+    &:hover
+    {
+      background-color: black;
+      //font-weight: normal;
+      color: $color-yellow;
+    }
+  }
+    
+}
+
+  
