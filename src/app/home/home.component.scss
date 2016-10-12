@@ -2,26 +2,25 @@
 
 #main-page
 {
-  width : 900px;
-  padding: 0 1rem;
+  max-width : 960px;
+  padding: 0 2rem;
   margin : 0 auto;
 }
 
 .slider-item
 {
   height: 200px;
-  width: 80%;
-  margin: 2rem auto;
   position : relative;
   box-shadow: 0px 2px 12px -1px rgba(36,36,36,1);
+  margin-bottom: 2rem;
 
   .item-picture
   {
     width : 65%;
     height: 100%;
     position: absolute;
-    background-size: cover;
-    background-repeat: no-repeat;
+      background-size: cover;
+      background-repeat: no-repeat;
     left: 0;
   }
 
@@ -60,6 +59,64 @@
     {
       position: absolute;
       bottom: 0;
+    }
+  }
+}
+
+h2
+{
+  font-size:2rem;
+  text-transform: uppercase;
+  font-family: Anton;
+  margin-top: 0;
+  text-align: center;
+}
+
+#programs-container
+{
+  padding-left: 0;
+
+  .theme-item
+  {
+    /* text-align: center; */
+
+    h3
+    {
+      font-size:1.5rem;
+      margin-top: 1.2rem;
+      text-transform: capitalize;
+      font-family: Anton;
+    }
+    
+
+    button.program-item
+    {
+      margin-right:.6rem;
+      margin-top: 0;
+      margin-bottom: .5rem;
+
+      &:hover
+      {
+        background-color: #255b5d;
+        color: white;
+      }
+    }
+  }
+}
+
+#hangouts-container
+{
+  text-align: center;
+  border-left: 3px solid $color-dark-brown;
+
+  .hangout-item
+  {
+    margin: .5rem 0;
+
+    img
+    {
+      width: 200px;
+      margin: 0 auto;
     }
   }
 }

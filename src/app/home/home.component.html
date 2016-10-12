@@ -9,6 +9,28 @@
       <div class="content-btn"><button class="hapchot-btn small">Lire la news</button></div>
     </div>
   </div>
+
+  <div class="row">
+    <div id="programs-container" class="col s8">
+      <h2>Les emissions</h2>
+      <div class="theme-item" *ngFor="let theme of themes">
+        <h3>{{ theme.title }}</h3>
+        <button class="hapchot-btn small hover-blue program-item" *ngFor="let program of theme.programs">
+          {{ program.title }}
+        </button>
+      </div>
+    </div>
+  
+    <div id="hangouts-container" class=" col s4">
+      <h2>Ou sortir ?</h2>
+      <div class="hangout-item" *ngFor="let hangout of hangouts">
+          <img [src]="hangout.pictures.medium" />
+      </div>
+    </div>
+  </div> 
+
+
+
 </div>
 
 

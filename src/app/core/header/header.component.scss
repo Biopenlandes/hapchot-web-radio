@@ -5,8 +5,8 @@
   $panel-height: 7rem;
 
   height: $panel-height;
-  background-color : black;
-  color : $color-yellow;
+  background-color: $color-blue;
+  color : $color-white-light;
   font-family: Anton;
   text-align: center;
   
@@ -50,9 +50,9 @@
 
     &:hover
     {
-      background-color: black;
-      //font-weight: normal;
-      color: $color-yellow;
+      background-color: $color-red;
+      color: $color-white;
+      cursor: pointer;
     }
   }
     

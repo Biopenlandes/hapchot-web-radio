@@ -65,6 +65,11 @@ export class DatabaseService {
     return this.getItemsFromPath(itemsPath);
   }
 
+  getDbItemsInOwnerSlug(item :AdmnistrableItem)
+  {
+    return this.getItemsInOwnerSlug(item.type, item.ownerType, item.ownerSlug);
+  }
+
   getItem(itemType : AIType, slug: string) 
   {    
     return this.af.database.object(this.getPathFromType(itemType) + '/' + slug);
@@ -100,7 +105,7 @@ export class DatabaseService {
     console.log("DB updateItem item", item);
 
     this.getItems(item.type).update(item.slug, item);
-    if (item.ownerType) this.getItemsInOwnerSlug(item.type, item.ownerType, item.ownerSlug).update(item.slug, item);
+    if (item.ownerType) this.getDbItemsInOwnerSlug(item).update(item.slug, item);
   }
 
   updateItemIndex(item: AdmnistrableItem, index: number) 
@@ -128,15 +133,29 @@ export class DatabaseService {
     return this.getItems(AIType.Hangout);
   }
 
-  getThemes() : FirebaseListObservable<Theme[]>
+  getThemes() : Observable<Theme[]>
   {
-    return this.getItems(AIType.Theme);
+    return this.getItems(AIType.Theme).map( (items : Theme[]) => 
+    {
+      for(let item of items)
+      {
+        item.programs = this.transformObjectToArray(item.programs);
+      }
+      return items;
+    });
   }
 
-  getPrograms() : FirebaseListObservable<Program[]>
+  getPrograms() : Observable<Program[]>
   {
-    return this.getItems(AIType.Program);
-  }
+    return this.getItems(AIType.Program).map( (items : Program[]) => 
+    {
+      for(let item of items)
+      {
+        item.podcasts = this.transformObjectToArray(item.podcasts);
+      }
+      return items;
+    });
+  }  
 
   getNews() : FirebaseListObservable<News[]>
   {
@@ -151,6 +170,16 @@ export class DatabaseService {
     {
       return array.reverse();
     });
+  }
+
+  private transformObjectToArray(object)
+  {
+    let array = [];
+    for(var key in object)
+    {
+      array.push(object[key]);
+    }
+    return array.sort( (a, b) => a.index - b.index );
   }
 
   

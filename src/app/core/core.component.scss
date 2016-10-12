@@ -1,8 +1,14 @@
 @import 'variables';
 
+body, html
+{
+  min-height:100%;
+}
+
 app-sound-player
 {
-  position: absolute;
+  position: fixed;
+  z-index: 2;
   top : 0;
   bottom :0;
   left : 0;
@@ -11,13 +17,10 @@ app-sound-player
 
 #main-page
 {
-  position: absolute;
-  top : 0;
-  bottom : 0;
-  right : 0;
-  left : $sidebar-width;
+  position: relative;
+  min-height: 100%;
+  margin-left : $sidebar-width;
   overflow: hidden;
-
   background-color: $color-yellow;
 }
 
@@ -39,6 +42,12 @@ app-sound-player
     padding: 0 2rem;
     text-transform: uppercase;
     margin: 1rem 0;
+
+    .hover-blue:hover
+    {
+      background-color: $color-blue;
+      color: $color-white;
+    }
 
     &.small
     {

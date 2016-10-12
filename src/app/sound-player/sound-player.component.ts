@@ -33,7 +33,7 @@ export class SoundPlayerComponent implements OnInit {
     this.track.title = "Eh connard";
     this.track.album = "Dans ta guele";
     this.track.artist = "Keny Arkana";
-    this.track.cover = "assets/img/logo-yellow.png";
+    this.track.cover = "https://www.radioking.com/api/track/cover/8c7bf1e0-3e12-4ebb-a9a0-04f12439f1c7";
 
     this.soundPlayer.initMixcloudPlayer(document.getElementById('mixcloud-frame'));    
   }
