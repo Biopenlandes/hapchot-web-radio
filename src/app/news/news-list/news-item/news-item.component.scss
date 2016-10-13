@@ -1,0 +1,51 @@
+@import '../../../core/variables';
+
+.slider-item
+{
+  height: $slider-height;
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  color: $color-grey;
+
+  .item-picture
+  {
+    width : $slider-width;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    left: 0;
+  }
+
+  .item-content
+  {
+    margin-left : $slider-width;
+    height: 100%;
+    background-color: $color-white;
+    padding: 1rem;
+    padding-left: 2rem;
+
+    .content-title
+    {
+      font-size: 1rem;
+      margin-bottom: .5rem;
+      font-weight: 600;
+      text-transform: capitalize;      
+      overflow: hidden;
+    }
+
+    .content-description
+    {
+      font-size: 0.85rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .content-btn
+    {
+      position: absolute;      
+      bottom: .5rem;
+    }
+  }
+}

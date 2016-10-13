@@ -1,36 +1,21 @@
 
 <div id="main-page">
 
-  <div class="slider-item">
-    <div class="item-picture" [ngStyle]="{'background-image': 'url(' + item.pictures.medium + ')'}"></div>
-    <div class="item-content">
-      <div class="content-title">{{ item.title }}</div>
-      <div class="content-description">{{ item.description }}</div>
-      <div class="content-btn"><button class="hapchot-btn small">Lire la news</button></div>
-    </div>
-  </div>
+  <!-- <div id=#main-subtitle>La radio qui décorce</div> -->
 
   <div class="row">
-    <div id="programs-container" class="col s8">
-      <h2>Les emissions</h2>
-      <div class="theme-item" *ngFor="let theme of themes">
-        <h3>{{ theme.title }}</h3>
-        <button class="hapchot-btn small hover-blue program-item" *ngFor="let program of theme.programs">
-          {{ program.title }}
-        </button>
-      </div>
+    <div class="col s9">
+      <app-news-list></app-news-list> 
+      <app-program-list></app-program-list>
+     
     </div>
   
-    <div id="hangouts-container" class=" col s4">
-      <h2>Ou sortir ?</h2>
-      <div class="hangout-item" *ngFor="let hangout of hangouts">
-          <img [src]="hangout.pictures.medium" />
-      </div>
+    <div class="col s3 center-align">      
+      <app-newsletter></app-newsletter>
+      <app-hangouts-grid></app-hangouts-grid>
     </div>
   </div> 
-
-
-
+  
 </div>
 
 

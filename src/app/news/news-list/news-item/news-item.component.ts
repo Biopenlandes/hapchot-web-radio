@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
+import { AdmnistrableItem } from '../../../shared/administrable-item';
+
 
 @Component({
   selector: 'app-news-item',
@@ -7,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsItemComponent implements OnInit {
 
+  @Input() item : AdmnistrableItem;
+  
   constructor() { }
 
   ngOnInit() {

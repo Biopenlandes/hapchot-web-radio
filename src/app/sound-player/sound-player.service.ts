@@ -95,6 +95,8 @@ export class SoundPlayerService {
 
   playRadio()
   {
+    if( this.radioState != RadioState.Stopped) return;
+
     this.pausePodcast();
     this.setModeRadio(true);
     this.setRadioState(RadioState.Loading);
@@ -121,11 +123,15 @@ export class SoundPlayerService {
   {
     return this.http.get(radioInfosUrl).map( (result:any) =>
     {
+      
+      let resultJson = JSON.parse(result._body);
+
       let track = new Track();
-      track.artist = result.artist;
-      track.album = result.album;
-      track.title = result.title;
-      track.cover = result.cover;
+      track.artist = resultJson.artist;
+      track.album = resultJson.album;
+      track.title = resultJson.title;
+      track.cover = resultJson.cover;
+
       return track
     });
   }

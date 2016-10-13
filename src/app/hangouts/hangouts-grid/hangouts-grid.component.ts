@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../../shared/database.service';
+import { Hangout } from '../entity/hangout';
 
 @Component({
   selector: 'app-hangouts-grid',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HangoutsGridComponent implements OnInit {
 
-  constructor() { }
+  hangouts : Hangout[] = [];
+
+  constructor(private db :DatabaseService) { }
 
   ngOnInit() {
+    this.db.getHangouts().subscribe(hangouts => this.hangouts = hangouts);
   }
 
 }

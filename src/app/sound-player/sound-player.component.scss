@@ -2,9 +2,11 @@
 
 :host
 {
-  background-color : $color-dark-blue;
+  background-color : $color-dark;
   color : $color-white;
   text-align: center;
+  font-size: .8rem;
+  padding-top:2rem;
 }
 
 
@@ -12,22 +14,36 @@
 h3
 {
   padding-right: .9rem;
-  font-size : 1rem;
+  font-size: .8rem;
   margin: 0;
   font-weight: 500;
   text-transform: uppercase;
-  line-height: 2rem;
+  line-height: 1.7rem;
   border-bottom: 1px solid $color-white;
+}
+
+#hapchot-title
+{
+  font-family: Anton;
+  font-size: 1.4rem;
+  padding-top: 1rem;
+  text-transform: uppercase;
+}
+
+#listen-live-button
+{
+  font-size: 1.2rem;
+  height: 2.7rem;
 }
 
 #radio-player
 {
-  margin-bottom: 1rem;
+  margin-bottom: .7rem;
 
   img
   {
-    width : 160px;
-    height: 160px;
+    width : 150px;
+    height: 150px;
   }
   #track-title
   {
@@ -42,8 +58,7 @@ h3
 
 #next-program
 {
-  margin-bottom: 1rem;
-  & > div { padding :1rem; padding-right: 1.8rem;}
+  & > div {  padding: .5rem 1.8rem 1rem 1rem;}
 }
 
 #podcasts-list
@@ -57,10 +72,11 @@ h3
   li.item
   {
     min-height: 4rem;
-    font-size: .9rem;
+    font-size: .75rem;
     cursor: pointer;
     position: relative;
-    padding: .2rem .8rem 1rem 52px;
+    text-align: justify;
+    padding: .2rem .8rem 1rem 66px;
 
     &:hover
     {

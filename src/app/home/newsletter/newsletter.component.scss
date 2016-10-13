@@ -1,0 +1,40 @@
+@import '../../core/variables';
+
+:host
+{
+  input
+  {
+    padding: 0 1rem;
+    width: 70%;
+    border-radius: 5px;
+    font-size: .85rem;
+    color: $color-blue;
+    font-weight: 400;
+    border: 2px solid rgb(52, 54, 56);
+    height: 2.2rem;
+    margin-bottom: .5rem;
+    text-align: center;
+    box-sizing: content-box;
+    transition: all 0.3s;
+    background-color: $color-white; 
+    margin-top:1rem;   
+  }
+
+  $color-placeholder : $color-dark;
+
+  ::-webkit-input-placeholder {
+     color: $color-placeholder;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+     color: $color-placeholder;  
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+     color: $color-placeholder;  
+  }
+
+  :-ms-input-placeholder {  
+     color: $color-placeholder;  
+  }
+}

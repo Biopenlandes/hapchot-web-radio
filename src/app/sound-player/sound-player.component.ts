@@ -27,7 +27,7 @@ export class SoundPlayerComponent implements OnInit {
 
     this.soundPlayer.getModeRadio().subscribe(mode => this.modeRadio = mode);
     this.soundPlayer.getRadioState().subscribe(state => this.radioState = state);
-    //this.soundPlayer.getRadioTrack().subscribe(track =>this.track = track);
+    this.soundPlayer.getRadioTrack().subscribe(track => this.track = track);
     // fake track
     this.track = new Track();
     this.track.title = "Eh connard";

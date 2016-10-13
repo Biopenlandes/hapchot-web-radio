@@ -2,121 +2,25 @@
 
 #main-page
 {
-  max-width : 960px;
-  padding: 0 2rem;
+  max-width: 900px;
+  padding: 2rem;
+  padding-top: 1.5rem;
   margin : 0 auto;
+  background-color: $color-yellow;
 }
 
-.slider-item
+#main-subtitle
 {
-  height: 200px;
-  position : relative;
-  box-shadow: 0px 2px 12px -1px rgba(36,36,36,1);
-  margin-bottom: 2rem;
-
-  .item-picture
-  {
-    width : 65%;
-    height: 100%;
-    position: absolute;
-      background-size: cover;
-      background-repeat: no-repeat;
-    left: 0;
-  }
-
-  .item-content
-  {
-    width :35%;
-    height: 100%;
-    background-color: $color-dark-blue;
-    position: absolute;
-    right: 0;
-    padding: 1rem;
-    padding-left: 2rem;
-
-    .content-title
-    {
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: white;
-      overflow: hidden;
-    }
-
-    .content-description
-    {
-      position: absolute;
-      top: 3.3rem;
-      bottom: 5rem;
-      left: 2rem;
-      right: 1rem;
-      font-size: 0.9rem;
-      color: #d2cfcf;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .content-btn
-    {
-      position: absolute;
-      bottom: 0;
-    }
-  }
-}
-
-h2
-{
-  font-size:2rem;
-  text-transform: uppercase;
   font-family: Anton;
-  margin-top: 0;
+  font-size: 1.3rem;
+  text-transform: capitalize;
   text-align: center;
 }
 
-#programs-container
-{
-  padding-left: 0;
 
-  .theme-item
-  {
-    /* text-align: center; */
 
-    h3
-    {
-      font-size:1.5rem;
-      margin-top: 1.2rem;
-      text-transform: capitalize;
-      font-family: Anton;
-    }
-    
 
-    button.program-item
-    {
-      margin-right:.6rem;
-      margin-top: 0;
-      margin-bottom: .5rem;
 
-      &:hover
-      {
-        background-color: #255b5d;
-        color: white;
-      }
-    }
-  }
-}
 
-#hangouts-container
-{
-  text-align: center;
-  border-left: 3px solid $color-dark-brown;
 
-  .hangout-item
-  {
-    margin: .5rem 0;
 
-    img
-    {
-      width: 200px;
-      margin: 0 auto;
-    }
-  }
-}

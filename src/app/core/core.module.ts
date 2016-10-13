@@ -14,7 +14,7 @@ import { PresentationComponent }  from '../presentation/presentation.component';
 import { CalendarModule } from '../calendar/calendar.module';
 import { HeaderComponent } from './header/header.component';
 
-import {SoundPlayerComponent } from '../sound-player/sound-player.component';
+import { SoundPlayerComponent } from '../sound-player/sound-player.component';
 
 @NgModule({
   imports: [ 

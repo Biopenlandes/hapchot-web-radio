@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseService } from '../../shared/database.service';
+import { Theme } from '../entity/theme';
 
 @Component({
   selector: 'app-program-list',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgramListComponent implements OnInit {
 
-  constructor() { }
+  themes : Theme[] = [];
+
+  constructor(private db :DatabaseService) { }
 
   ngOnInit() {
+    this.db.getThemes().subscribe(themes => {console.log("themes",themes);this.themes = themes;});
   }
 
 }

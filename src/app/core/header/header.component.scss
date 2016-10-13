@@ -5,8 +5,8 @@
   $panel-height: 7rem;
 
   height: $panel-height;
-  background-color: $color-blue;
-  color : $color-white-light;
+  background-color:$color-dark;
+  color : $color-yellow;
   font-family: Anton;
   text-align: center;
   
@@ -26,7 +26,6 @@
     text-transform: uppercase;
     margin: 0;
     line-height: $panel-height;
-
   }
   
 }
@@ -34,25 +33,29 @@
 #nav 
 {  
   text-align: center;
-  border-top : 1px solid black;
+  /* border-top : 1px solid black;
   border-bottom : 1px solid black;
-  margin: 1rem 0;
+  margin: 1rem 0; */
+  background-color: $color-dark;
+  color: $color-white;
+  
 
   .nav-item
   {
-    font-size: .85rem;
+    font-size: .9rem;    
     font-weight: bold;
     display: inline-block;
     margin: 0;
     text-transform: uppercase;
     padding: 0 1rem;
-    line-height: 2rem;
+    line-height: 2.5rem;
 
     &:hover
     {
-      background-color: $color-red;
-      color: $color-white;
+      background-color: $color-yellow;
+      transition : .3s ease;
       cursor: pointer;
+      color: $color-dark; 
     }
   }
     

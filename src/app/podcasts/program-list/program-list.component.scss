@@ -1,0 +1,59 @@
+@import "../../core/variables";
+
+:host
+{
+  display: block;
+  min-height: 600px;
+  padding-bottom: 1rem;
+  background-color: $color-white;
+}
+
+.theme-item
+{
+  /* text-align: center; */
+  padding: .5rem 1rem;  
+
+  h3
+  {
+    font-size: 1.2rem;
+    letter-spacing: .2px;
+    color: $color-blue;
+    margin-top: .6rem;
+    margin-bottom: .4rem;
+    text-transform: capitalize;
+    font-family: Anton;
+  }
+
+
+
+  .program-item
+  {
+    line-height: 1.5rem;
+
+    &:hover
+    {
+      //background-color: $color-yellow;
+      cursor: pointer;
+      background-color: #e8bc47;
+      transition: background-color .3s ease;
+      .program-title{  }
+      .program-subtitle {  }
+    }
+
+    .program-title
+    {
+      font-size: .85rem;
+      font-weight: 900;
+      color: $color-grey;
+      text-transform: uppercase;
+      /* text-shadow: 1px 1px 1px rgba(37, 41, 44, 0.48); */
+    }
+
+    .program-subtitle
+    {
+      color: $color-dark;
+      font-size: .85rem;
+      font-style: italic;
+    }
+  }
+}
