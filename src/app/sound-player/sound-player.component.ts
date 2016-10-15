@@ -18,24 +18,29 @@ export class SoundPlayerComponent implements OnInit {
   isRadioPlaying;
   modeRadio;
   radioState : RadioState;
+  RadioState = RadioState;
 
   constructor(private db : DatabaseService,
               private soundPlayer : SoundPlayerService) { }
 
-  ngOnInit() {
-    this.db.getLatestPodcasts().subscribe(podcasts => this.podcasts = podcasts);
+  ngOnInit() 
+  {
+    this.soundPlayer.initMixcloudPlayer(document.getElementById('mixcloud-frame'));    
 
     this.soundPlayer.getModeRadio().subscribe(mode => this.modeRadio = mode);
     this.soundPlayer.getRadioState().subscribe(state => this.radioState = state);
     this.soundPlayer.getRadioTrack().subscribe(track => this.track = track);
-    // fake track
-    this.track = new Track();
-    this.track.title = "Eh connard";
-    this.track.album = "Dans ta guele";
-    this.track.artist = "Keny Arkana";
-    this.track.cover = "https://www.radioking.com/api/track/cover/8c7bf1e0-3e12-4ebb-a9a0-04f12439f1c7";
 
-    this.soundPlayer.initMixcloudPlayer(document.getElementById('mixcloud-frame'));    
+    this.db.getLatestPodcasts().subscribe(podcasts => this.podcasts = podcasts);    
+  }
+
+  setStateClasses() {
+    let classes =  {
+      stopped: this.radioState == RadioState.Stopped,      
+      loading: this.radioState == RadioState.Loading, // false
+      playing: this.radioState == RadioState.Playing,     // true
+    };
+    return classes;
   }
 
 }

@@ -14,7 +14,7 @@ export class ProgramListComponent implements OnInit {
   constructor(private db :DatabaseService) { }
 
   ngOnInit() {
-    this.db.getThemes().subscribe(themes => {console.log("themes",themes);this.themes = themes;});
+    this.db.getThemes().subscribe(themes => this.themes = themes);
   }
 
 }

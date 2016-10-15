@@ -3,12 +3,36 @@
     
 
     <div id="hapchot-title">[ Hapchot Webradio ]</div>
-    <button (click)="soundPlayer.playRadio()" class="hapchot-btn color-light" id="listen-live-button">Ecouter en Direct</button>
+    <button (click)="soundPlayer.toggleRadio()" class="hapchot-btn color-light" id="listen-live-button">
+      <div [ngSwitch]="radioState">
+        <div *ngSwitchCase="RadioState.Stopped">Ecouter en Direct</div>
+        <div *ngSwitchCase="RadioState.Loading">Chargement ...</div> 
+        <div *ngSwitchCase="RadioState.Playing">Arrêter le direct</div>  
+      </div>
+    </button>
 
     <div id="radio-player" *ngIf="modeRadio">
-      <img (click)="soundPlayer.stopRadio()" [src]="track.cover"/> 
-      <div id="track-title">{{ track.title }}</div>
-      <div id="track-artist">{{ track.artist}}<span *ngIf="track.album"> / {{ track.album}}</span></div>
+      <div id="player-picture">
+        <img (click)="soundPlayer.stopRadio()" [src]="(track.cover && (radioState == RadioState.Playing)) ? track.cover : 'assets/img/radio-cover.jpg'" /> 
+        <div id="picture-actions">
+            <div *ngIf="radioState == RadioState.Loading" class="preloader-wrapper active">
+              <div class="spinner-layer spinner-blue-only">
+                <div class="circle-clipper left">
+                  <div class="circle"></div>
+                </div><div class="gap-patch">
+                  <div class="circle"></div>
+                </div><div class="circle-clipper right">
+                  <div class="circle"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      
+      <div *ngIf="track.title && (radioState == RadioState.Playing)" id="track-title">{{ track.title }}</div>
+      <div *ngIf="track.artist && (radioState == RadioState.Playing)" id="track-artist">
+        {{ track.artist}}<span *ngIf="track.album"> / {{ track.album}}</span>
+      </div>
     </div>
 
     <div id="next-program">

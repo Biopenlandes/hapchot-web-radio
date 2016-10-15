@@ -12,6 +12,8 @@ declare var Mixcloud: any;
 const radioStream = "http://www.radioking.com/play/hapchot-webradio";
 const radioInfosUrl = 'https://www.radioking.com/widgets/currenttrack.php?radio=3046&format=json';
 
+const checkRadioTrackIntevalSeconde = 15;
+
 export enum RadioState
 {
   Stopped, Loading, Playing
@@ -21,10 +23,13 @@ export class SoundPlayerService {
 
   radio : any;
   mixcloudPlayer : any;
+  isMixclouPayerInitialized : boolean = false;
   modeRadio : boolean = true;
   modeRadioStream : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   radioState : RadioState = RadioState.Stopped;
   radioStateStream : BehaviorSubject<RadioState> = new BehaviorSubject<RadioState>(RadioState.Stopped);
+  radioTrackStream : BehaviorSubject<Track> = new BehaviorSubject<Track>(new Track());
+  checkTrackTimer;
 
   constructor(private http : Http) { 
     soundManager.setup({
@@ -36,7 +41,20 @@ export class SoundPlayerService {
       ontimeout: function() {
         console.log("SoundManager problème démarrage");
       }
-    });    
+    });  
+
+    this.radioStateStream.subscribe(state =>
+    {
+      switch (state) {
+        case RadioState.Loading:
+          this.getTrackFromRadioKing()
+          this.checkTrackTimer = setInterval(() => this.getTrackFromRadioKing(), checkRadioTrackIntevalSeconde * 1000);
+          break;
+        case RadioState.Stopped:
+          if (this.checkTrackTimer) clearInterval(this.checkTrackTimer);
+          break;
+      }
+    });  
   }
 
   // -----------------
@@ -46,21 +64,24 @@ export class SoundPlayerService {
   initMixcloudPlayer(mixcloudFrame)
   {
     this.mixcloudPlayer = Mixcloud.PlayerWidget(mixcloudFrame);
-    /*this.mixcloudPlayer.ready.then(function() {
-        console.log("HEY MIXLOUD");
-    });*/
+    this.mixcloudPlayer.ready.then(() => this.isMixclouPayerInitialized = true);
   }
 
   playPodcast(podcast : Podcast)
   {
-    this.stopRadio();
-    this.setModeRadio(false);
-    this.mixcloudPlayer.load(podcast.key, true)/*.then( () => this.mixcloudPlayer.play())*/;
+    if (this.isMixclouPayerInitialized) 
+    {
+      this.stopRadio();
+      this.setModeRadio(false);
+      this.mixcloudPlayer.load(podcast.key, true);
+    }
+    else console.log("Mixcloud is not yet initialized");    
   }
 
   pausePodcast()
   {
-    this.mixcloudPlayer.pause();
+    if (this.isMixclouPayerInitialized) this.mixcloudPlayer.pause();
+    else console.log("Mixcloud is not yet initialized");
   }
 
   // -----------------
@@ -93,6 +114,12 @@ export class SoundPlayerService {
     return this.radioStateStream.asObservable();
   }
 
+  toggleRadio()
+  {
+    if( this.radioState == RadioState.Playing) this.stopRadio();
+    else this.playRadio();
+  }
+
   playRadio()
   {
     if( this.radioState != RadioState.Stopped) return;
@@ -121,9 +148,14 @@ export class SoundPlayerService {
 
   getRadioTrack() : Observable<Track>
   {
-    return this.http.get(radioInfosUrl).map( (result:any) =>
+    return this.radioTrackStream.asObservable();    
+  }
+
+  private getTrackFromRadioKing()
+  {
+    //console.log("GetTrackFromRadioKing", this.http);
+    this.http.get(radioInfosUrl).map( (result:any) =>
     {
-      
       let resultJson = JSON.parse(result._body);
 
       let track = new Track();
@@ -133,7 +165,7 @@ export class SoundPlayerService {
       track.cover = resultJson.cover;
 
       return track
-    });
+    }).toPromise().then(track => this.radioTrackStream.next(track));
   }
 
 

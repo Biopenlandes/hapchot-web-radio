@@ -11,7 +11,7 @@
 .theme-item
 {
   /* text-align: center; */
-  padding: .5rem 1rem;  
+  padding: 1rem;  
 
   h3
   {
@@ -22,13 +22,13 @@
     margin-bottom: .4rem;
     text-transform: capitalize;
     font-family: Anton;
+    padding: 0 1rem;
   }
-
-
 
   .program-item
   {
     line-height: 1.5rem;
+    padding: 0 1rem;
 
     &:hover
     {
