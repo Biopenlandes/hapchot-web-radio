@@ -1,0 +1,40 @@
+@import "../../core/variables";
+
+#program-picture
+{
+  height: 200px;
+  text-align: center;
+
+  img
+  {
+    height: 100%;
+  }
+}
+
+.divider
+{
+  height: 2px;
+  overflow: hidden;
+  background-color: $color-white;
+  margin: 1.5rem 0;
+}
+
+#content
+{
+  text-align: center;
+
+}
+
+#broadcasting
+{
+  text-align: center;
+  font-style: italic;
+}
+
+.podcast-container
+{
+  width: 50%;
+  height: 200px;
+  display: inline-block;
+  margin-bottom: 1rem;
+}

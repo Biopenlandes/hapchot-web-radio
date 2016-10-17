@@ -1,8 +1,9 @@
-<h2 class="color-blue">Les emissions</h2>
+<h2 class="square color-blue">Les emissions</h2>
+
 <div class="theme-item" *ngFor="let theme of themes">
   <h3>{{ theme.title }}</h3>
   <!-- <button class="hapchot-btn hover-blue program-item" *ngFor="let program of theme.programs"> -->
-  <div class="program-item" *ngFor="let program of theme.programs">
+  <div class="program-item" *ngFor="let program of theme.programs" (click)="onSelect(program)">
     <span class="program-title">{{ program.title }}</span>
     <span class="program-subtitle">{{ program.subtitle }}</span>
   </div>

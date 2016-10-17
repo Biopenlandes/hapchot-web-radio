@@ -1,3 +1,13 @@
-<p>
-  podcast works!
-</p>
+<div class="row">
+  <div class="image col s6" (click)="onPlay.emit(podcast)">
+    <div class="btn-play"></div>
+    <img [src]="podcast.pictures.large" />
+  </div>
+  <div class="content col s6">
+    <h4>{{ podcast.title }}</h4>
+    <span class="date">{{ podcast.updatedTime | date:"dd/MM/yy" }}</span> - 
+    <span class="audio-length">Durée : {{ getAudioLength() }}</span>
+    <div class="description">{{ podcast.description }}</div>
+  </div>
+</div> 
+

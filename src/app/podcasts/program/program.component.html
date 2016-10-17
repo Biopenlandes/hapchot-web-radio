@@ -1,3 +1,25 @@
-<p>
-  program works!
-</p>
+<h2>{{ program.title }}</h2>
+<h3>{{ program.subtitle }}</h3>
+
+<div *ngIf="program.pictures" id="program-picture">
+  <img [src]="program.pictures.large" />
+</div>
+
+<div id="content"></div>
+<div id="broadcasting">{{ program.broadcasting }}</div>
+
+<div class="divider"></div>
+
+<div class="podcast-container" *ngFor="let podcast of program.podcasts">
+  <app-podcast [podcast]="podcast" (onPlay)="onPlay($event)"></app-podcast>
+</div>  
+
+<!-- <div class="row">
+  <div class="col s9">
+      
+  </div>
+  <div class="col s3">
+  </div>
+  
+</div> -->
+

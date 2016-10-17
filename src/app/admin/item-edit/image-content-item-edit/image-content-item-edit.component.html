@@ -1,8 +1,8 @@
 <app-program-edit *ngIf="itemConfig.type == AIType.Program" [program]="imageContentItem"></app-program-edit>
 
-<div *ngIf="imageContentItem.picture">
+<div *ngIf="imageContentItem.pictures">
     <h3>Image actuelle</h3>
-    <img [src]="imageContentItem.picture.mediumPath" width=400 />
+    <img [src]="imageContentItem.pictures.medium" width=400 />
 </div>
 
 <h3>Ajouter/Modifier l'image de couverture</h3>

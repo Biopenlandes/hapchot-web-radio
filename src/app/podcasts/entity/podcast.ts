@@ -5,7 +5,7 @@ export class Podcast extends AdmnistrableItem {
 
   public key : string;
   public description : string;
-  public pictures : {};
+  public pictures : any;
   public audioLength : number;
   public url : string;
   public updatedTime : Date;
@@ -13,7 +13,5 @@ export class Podcast extends AdmnistrableItem {
   
   constructor() {
     super(AIType.Podcast);
-  }
-
-  
+  }  
 }

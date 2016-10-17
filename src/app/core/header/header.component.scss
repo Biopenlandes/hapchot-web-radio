@@ -37,12 +37,13 @@
   border-bottom : 1px solid black;
   margin: 1rem 0; */
   background-color: $color-dark;
-  color: $color-white;
+  
   
 
   .nav-item
   {
-    font-size: .9rem;    
+    font-size: .9rem;  
+    color: $color-white;
     font-weight: bold;
     display: inline-block;
     margin: 0;

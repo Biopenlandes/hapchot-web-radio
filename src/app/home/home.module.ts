@@ -9,10 +9,11 @@ import { NewsItemComponent } from '../news/news-list/news-item/news-item.compone
 import { HangoutsGridComponent } from '../hangouts/hangouts-grid/hangouts-grid.component';
 import { ProgramListComponent } from '../podcasts/program-list/program-list.component';
 
+
+
 @NgModule({
   imports: [
-    CommonModule,
-    
+    CommonModule,    
   ],
   declarations: [
     HomeComponent,
@@ -20,8 +21,7 @@ import { ProgramListComponent } from '../podcasts/program-list/program-list.comp
     NewsListComponent,
     NewsItemComponent,
     HangoutsGridComponent,
-    ProgramListComponent,
-    
+    ProgramListComponent, 
   ]
 })
 export class HomeModule { }

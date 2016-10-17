@@ -12,10 +12,10 @@
     </button>
 
     <div id="radio-player" *ngIf="modeRadio">
-      <div id="player-picture">
+      <div class="player-picture">
         <img (click)="soundPlayer.stopRadio()" [src]="(track.cover && (radioState == RadioState.Playing)) ? track.cover : 'assets/img/radio-cover.jpg'" /> 
-        <div id="picture-actions">
-            <div *ngIf="radioState == RadioState.Loading" class="preloader-wrapper active">
+        <div *ngIf="radioState == RadioState.Loading" id="picture-loader">
+            <div  class="preloader-wrapper active">
               <div class="spinner-layer spinner-blue-only">
                 <div class="circle-clipper left">
                   <div class="circle"></div>
@@ -33,6 +33,14 @@
       <div *ngIf="track.artist && (radioState == RadioState.Playing)" id="track-artist">
         {{ track.artist}}<span *ngIf="track.album"> / {{ track.album}}</span>
       </div>
+   </div>
+
+   <div id="podcast-player" [hidden]="modeRadio">
+      <div class="player-picture">
+        <img [src]="track.cover ? track.cover : 'assets/img/radio-cover.jpg'" />         
+      </div>
+      <!-- <h3>En écoute</h3> -->
+      <iframe id="mixcloud-frame" width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fhapchot%2Fvie-de-m%25C3%25A8re-la-motricit%25C3%25A9%2F&hide_cover=1&hide_artwork=1&light=1" frameborder="0"></iframe>
     </div>
 
     <div id="next-program">
@@ -49,10 +57,7 @@
       </li>
     </ul>
 
-    <div id="podcast-player" [hidden]="modeRadio">
-      <h3>En écoute</h3>
-      <iframe id="mixcloud-frame" width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fhapchot%2Fvie-de-m%25C3%25A8re-la-motricit%25C3%25A9%2F&hide_cover=1&light=1" frameborder="0"></iframe>
-    </div>
+    
 
 <!--   </div>
 </div>

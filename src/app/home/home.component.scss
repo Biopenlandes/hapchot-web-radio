@@ -1,20 +1,30 @@
 @import '../core/variables';
 
-#main-page
-{
-  max-width: 900px;
-  padding: 2rem;
-  padding-top: 1.5rem;
-  margin : 0 auto;
-  background-color: $color-yellow;
-}
-
 #main-subtitle
 {
   font-family: Anton;
   font-size: 1.3rem;
   text-transform: capitalize;
   text-align: center;
+}
+
+.logo-jeanot
+{
+  width: 70%;
+  margin-top: .7rem;
+  opacity: .9;
+}
+
+.logo-social-container
+{
+  margin-bottom: .8rem;
+}
+
+.logo-social
+{
+  display: inline-block;
+  width: 30px;
+  margin: 0 .5rem;
 }
 
 

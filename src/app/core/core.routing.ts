@@ -9,6 +9,7 @@ import { CalendarComponent }  from '../calendar/calendar.component';
 import { HangoutComponent } from '../hangouts/hangout/hangout.component';
 import { NewsComponent } from '../news/news/news.component';
 import { ProgramComponent } from '../podcasts/program/program.component';
+import { ProgramListComponent } from '../podcasts/program-list/program-list.component';
 
 
 const coreRoutes: Routes = [
@@ -19,9 +20,10 @@ const coreRoutes: Routes = [
         { path: '',    component: HomeComponent },
         { path: 'le-projet', component: PresentationComponent },
         { path: 'grille-des-programmes', component: CalendarComponent },
-        { path: 'evenement/:id', component: HangoutComponent },
-        { path: 'actu/:id', component: NewsComponent },
-        { path: 'emission/:id', component: ProgramComponent }
+        { path: 'evenement/:slug', component: HangoutComponent },
+        { path: 'actu/:slug', component: NewsComponent },
+        { path: 'emissions', component: ProgramListComponent },
+        { path: 'emission/:slug', component: ProgramComponent }
     ]
   }
 ];

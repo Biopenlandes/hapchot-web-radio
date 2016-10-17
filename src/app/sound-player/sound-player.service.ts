@@ -74,6 +74,12 @@ export class SoundPlayerService {
       this.stopRadio();
       this.setModeRadio(false);
       this.mixcloudPlayer.load(podcast.key, true);
+
+      let track = new Track();
+      track.title = podcast.key;
+      track.cover = podcast.pictures.large;
+
+      this.radioTrackStream.next(track)
     }
     else console.log("Mixcloud is not yet initialized");    
   }

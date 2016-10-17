@@ -93,12 +93,30 @@ export class DatabaseService {
          + this.getPathFromType(itemType);    
   }
 
-
   addItem(item: AdmnistrableItem)
   {
     console.log("DB item added : ", item);
     this.getDbItem(item).set(item);
-    if (item.ownerType) this.getDbItemInOwnerSlug(item).set(item);      
+    if (item.ownerType) 
+    {
+      console.log("DB item added in owner : ", item.ownerSlug);
+      this.getDbItemInOwnerSlug(item).set(item); 
+
+      // getting the owner
+      this.getItem(item.ownerType, item.ownerSlug).take(1).subscribe(itemOwner =>
+      {
+        console.log("owner", itemOwner);
+        if (itemOwner.ownerType)
+        {
+          console.log("owner has owner : ", itemOwner.ownerSlug);
+          delete itemOwner['$key']; 
+          delete itemOwner['$exists'];
+          //this.deleteItem(itemOwner);
+          this.getDbItemInOwnerSlug(itemOwner).set(itemOwner); 
+        }
+      });
+    }
+
   } 
 
   updateItem(item: AdmnistrableItem) {
@@ -144,6 +162,15 @@ export class DatabaseService {
       return items;
     });
   }
+
+  getProgramFromSlug(slug : string) : Observable<Program>
+  {
+    return this.getItem(AIType.Program, slug).map( (item : Program) => 
+    {
+      item.podcasts = this.transformObjectToArray(item.podcasts);
+      return item;
+    });
+  }  
 
   getPrograms() : Observable<Program[]>
   {

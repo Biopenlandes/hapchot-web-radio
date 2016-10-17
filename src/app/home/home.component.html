@@ -1,21 +1,31 @@
 
-<div id="main-page">
+
 
   <!-- <div id=#main-subtitle>La radio qui décorce</div> -->
 
-  <div class="row">
-    <div class="col s9">
-      <app-news-list></app-news-list> 
-      <app-program-list></app-program-list>
-     
+<div class="row">
+  <div class="col s9">
+    <app-news-list></app-news-list> 
+    <app-program-list></app-program-list>
+  </div>
+
+  <div class="col s3 center-align">  
+    <h2 class="square">Nous suivre</h2>
+    <a href="http://jeanot.fr">
+      <img class="logo-jeanot" [src]="'assets/img/logo-jeanot.png'"/>
+    </a>
+    <div class="logo-social-container">
+      <a href="https://www.facebook.com/pages/Radio-Hapchot/1477837695793858?fref=ts">
+        <img class="logo-social" [src]="'assets/img/logo-facebook.png'"/> </a>
+      <a href="https://twitter.com/ecolieujeanot">
+        <img class="logo-social" [src]="'assets/img/logo-twitter.png'"/> </a>
+      <a href="https://play.google.com/store/apps/details?id=app.hapchot&hl=fr">
+        <img class="logo-social" [src]="'assets/img/logo-google-play.png'"/> </a>
     </div>
-  
-    <div class="col s3 center-align">      
-      <app-newsletter></app-newsletter>
-      <app-hangouts-grid></app-hangouts-grid>
-    </div>
-  </div> 
-  
-</div>
+    <app-newsletter></app-newsletter>
+    <app-hangouts-grid></app-hangouts-grid>
+  </div>
+</div> 
+
 
 

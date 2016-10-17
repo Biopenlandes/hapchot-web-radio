@@ -29,12 +29,13 @@ export class PodcastsService {
     return podcast;
   }
 
-  fillPodcastInfosFromUrl(url : string) : Observable<Podcast>
+  fillPodcastInfosFromUrl(key_ : string) : Observable<Podcast>
   {
-    if (url[0] != '/') url = '/' + url;
-    if (url[url.length-1] != '/') url = url + '/';
+    let key = key_.replace("https://www.mixcloud.com", "");
+    if (key[0] != '/') key = '/' + key;
+    if (key[key.length-1] != '/') key = key + '/';
 
-    let mixcloudUrl = 'https://api.mixcloud.com' + url;
+    let mixcloudUrl = 'https://api.mixcloud.com' + key;
 
     // TODO: Add error handling
     return this.http.get(mixcloudUrl).map(response => 
@@ -48,6 +49,7 @@ export class PodcastsService {
       podcast.pictures = result.pictures;
       podcast.updatedTime = result.updated_time;
       podcast.createdTime = result.created_time;
+      podcast.key = key;
       return podcast;
     });
   }
