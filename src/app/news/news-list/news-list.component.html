@@ -1,2 +1,7 @@
 <h2 class="square color-red">Les actualités</h2>
-<app-news-item [item]="item"></app-news-item>
+<div id="slider">
+  <div class="slide" *ngFor="let item of items">
+    <app-news-item [item]="item"></app-news-item>
+  </div>
+</div>
+<!-- <app-news-item [item]="item"></app-news-item> -->

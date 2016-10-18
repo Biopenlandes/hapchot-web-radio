@@ -28,7 +28,7 @@ export class ProgramComponent implements OnInit {
        {
            this.program = program;
            console.log("program", program);
-           document.getElementById("content").innerHTML = program.content;
+           if (program.content) document.getElementById("content").innerHTML = program.content;
        });
     });
   }

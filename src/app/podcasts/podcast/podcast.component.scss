@@ -3,6 +3,11 @@
   margin-top: 1rem;
 }
 
+.row
+{
+  height: 100%;
+}
+
 .image
 {
   position: relative;
@@ -46,6 +51,8 @@
 .content
 {
   padding-left: .3rem;
+  overflow: hidden;
+  height: 100%;
 
   h4
   {
@@ -69,7 +76,7 @@
   .description
   {
     margin: .5rem 0;
-    font-size: .9rem;
-    overflow: hidden;
+    font-size: .9rem;    
+    text-align: justify;
   }
 }
