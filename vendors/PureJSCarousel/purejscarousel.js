@@ -17,9 +17,9 @@
     this.oneByOne          = settings.oneByOne || false;
     this.speed             = settings.speed || 400;
     this.delay             = settings.delay || 0;
-    this.effect            = settings.effect || 'linear';
-    this.infinite          = settings.infinite || true;
-    this.autoplay          = settings.autoplay || true;
+    this.effect            = settings.effect || 'ease-in-out';
+    this.infinite          = settings.infinite || false;
+    this.autoplay          = settings.autoplay || false;
     this.autoplayDelay     = settings.autoplayDelay || 5000;
     this.autoplayDirection = settings.autoplayDirection || 'next';
 

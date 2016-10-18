@@ -18,12 +18,15 @@ import "rxjs/add/operator/switchMap";
 export class PodcastEditComponent implements OnInit {
 
   private urlStream = new Subject<string>();
+  podcastDate :Date;
 
   @Input() podcast : Podcast; 
 
   constructor(private podcastsService : PodcastsService) { }
 
   ngOnInit() {
+    if (!this.podcast.publishOn) this.podcast.publishOn = Date.now();
+    this.podcastDate = new Date(this.podcast.publishOn);
   }
 
   getInfosFromUrl(url: string) 
@@ -35,6 +38,11 @@ export class PodcastEditComponent implements OnInit {
         this.podcast.description = "Podcast introuvable";
         this.podcast.pictures = null; 
       });
+  }
+
+  onDateChange(value: any)
+  {
+    this.podcast.publishOn = new Date(value).getTime();
   } 
 
 }

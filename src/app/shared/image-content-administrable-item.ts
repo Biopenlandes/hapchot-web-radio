@@ -6,9 +6,10 @@ export class ImageContentAdmnistrableItem extends AdmnistrableItem {
   
   public content : string;
   public pictures : Picture; 
+  public publishOn : number;
 
   constructor(type : AIType) {
-    super(type);
+    super(type);    
   }
 }
 

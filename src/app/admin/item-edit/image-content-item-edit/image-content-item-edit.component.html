@@ -1,5 +1,8 @@
 <app-program-edit *ngIf="itemConfig.type == AIType.Program" [program]="imageContentItem"></app-program-edit>
 
+<input (change)="onDateChange($event.target.value)" type="date"/>
+<!-- <vaadin-date-picker ></vaadin-date-picker> -->
+
 <div *ngIf="imageContentItem.pictures">
     <h3>Image actuelle</h3>
     <img [src]="imageContentItem.pictures.medium" width=400 />

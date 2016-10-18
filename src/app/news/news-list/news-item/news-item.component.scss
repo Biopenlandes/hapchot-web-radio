@@ -10,9 +10,9 @@
 
   .item-picture
   {
-    width : $slider-width;
+    width : 50%;
     height: 100%;
-    position: absolute;
+    float: left;
     background-size: cover;
     background-repeat: no-repeat;
     left: 0;
@@ -20,8 +20,9 @@
 
   .item-content
   {
-    margin-left : $slider-width;
     height: 100%;
+    overflow: hidden;
+    position: relative;
     background-color: $color-white;
     padding: 1rem;
 
@@ -37,14 +38,18 @@
     .content-description
     {
       font-size: 0.85rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin: 0;
     }
 
     .content-btn
     {
-      position: absolute;      
-      bottom: .5rem;
+      position: absolute; 
+      left: 0;
+      right: 0; 
+      bottom: 0;
+      background-color: $color-white;
+      padding-bottom: 1.3rem;    
+      text-align: center;
     }
   }
 }

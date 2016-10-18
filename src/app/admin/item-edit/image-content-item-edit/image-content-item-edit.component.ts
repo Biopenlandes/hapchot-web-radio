@@ -4,6 +4,8 @@ import { AIType } from '../../shared/admin-item-config.types';
 import { AdminItemConfig } from '../../shared/admin-item-config.class';
 import { Picture } from '../../../shared/picture.class';
 
+declare var datePicker : any;
+
 @Component({
   selector: 'app-image-content-item-edit',
   templateUrl: './image-content-item-edit.component.html',
@@ -20,9 +22,22 @@ export class ImageContentItemEditComponent implements OnInit {
   ngOnInit() {
     this.AIType = AIType;
 
+    if (!this.imageContentItem.publishOn) this.imageContentItem.publishOn = Date.now();
+    
+    /*var vaadinDatePicker : any;
+    vaadinDatePicker = document.querySelector('vaadin-upload');
+    vaadinDatePicker.addEventListener('value-changed', 
+      (event:any) =>  {console.log('Selected: ' + vaadinDatePicker.value);this.imageContentItem.publishOn = vaadinDatePicker.value;
+    });*/
+
     var vaadinUpload = document.querySelector('vaadin-upload');
     vaadinUpload.addEventListener('upload-success', 
       (event:any) => this.imageContentItem.pictures = new Picture(event.detail.file.name));
   }  
+
+  onDateChange(value: any)
+  {
+    this.imageContentItem.publishOn = new Date(value).getTime();
+  }
 
 }

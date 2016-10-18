@@ -10,6 +10,7 @@ export class Podcast extends AdmnistrableItem {
   public url : string;
   public updatedTime : Date;
   public createdTime : Date;
+  public publishOn : number = Date.now();
   
   constructor() {
     super(AIType.Podcast);

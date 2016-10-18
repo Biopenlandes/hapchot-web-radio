@@ -184,9 +184,15 @@ export class DatabaseService {
     });
   }  
 
-  getNews() : FirebaseListObservable<News[]>
+  getNews() : Observable<News[]>
   {
-    return this.getItems(AIType.News);
+    return this.af.database.list(this.getPathFromType(AIType.News), {
+      query: { orderByChild: 'publishOn' }
+    }).map(array =>
+    {
+      let now = Date.now();
+      return array.filter(item => item.publishOn < now).reverse();
+    });
   }
 
   getLatestPodcasts(value : number = 3) : Observable<Podcast[]>
@@ -195,7 +201,8 @@ export class DatabaseService {
       query: { orderByChild: 'updatedTime', limitToLast: value }
     }).map(array =>
     {
-      return array.reverse();
+      let now = Date.now();
+      return array.filter(item => item.publishOn < now).reverse();
     });
   }
 

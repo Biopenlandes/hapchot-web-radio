@@ -2,8 +2,9 @@ import { ImageContentAdmnistrableItem } from '../../shared/image-content-adminis
 import { AIType } from '../../admin/shared/admin-item-config.module';
 
 export class News extends ImageContentAdmnistrableItem { 
-  
+
   constructor() {
     super(AIType.News);
   }
 }
+
