@@ -40,7 +40,7 @@ export class NewsListComponent implements OnInit {
 
     $('#slider').hover(
       ()=> {if(this.carousel) this.carousel.stopAutoPlay()},
-      ()=> {if(this.carousel) this.carousel.startAutoPlay('next')}
+      ()=> {if(this.carousel) setTimeout( () => this.carousel.startAutoPlay('next'), 2000);}
     );    
   }
 

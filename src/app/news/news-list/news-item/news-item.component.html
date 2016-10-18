@@ -4,7 +4,7 @@
     <div class="content-title">{{ item.title }}</div>
     <div #content class="content-description"></div>
     <div class="content-btn">
-      <button class="hapchot-btn color-red">
+      <button class="hapchot-btn color-red" (click)="onClick()">
         {{ item.type == AIType.News ? 'Lire la suite' : 'Ecouter le podcast' }}
       </button>
     </div>

@@ -1,6 +1,9 @@
 import { Component, OnInit , Input, ViewChild, AfterViewInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { ImageContentAdmnistrableItem } from '../../../shared/image-content-administrable-item';
 import { AIType } from '../../../admin/shared/admin-item-config.types';
+
+import { SoundPlayerService } from '../../../sound-player/sound-player.service';
 
 
 declare var $ : any;
@@ -18,7 +21,7 @@ export class NewsItemComponent implements OnInit, AfterViewInit {
 
   AIType = AIType;
 
-  constructor() {}
+  constructor(private soundPlayer : SoundPlayerService, private router : Router) {}
 
   ngOnInit() {    
   }
@@ -41,6 +44,18 @@ export class NewsItemComponent implements OnInit, AfterViewInit {
       }
       
       this.content.nativeElement.innerHTML = content;
+    }
+  }
+
+  onClick()
+  {
+    if (this.item.type == AIType.News)
+    {
+      this.router.navigate(['/actu', this.item.slug]);
+    }
+    else if (this.item.type == AIType.Podcast)
+    {
+      this.soundPlayer.playPodcast(this.item);
     }
   }
 
