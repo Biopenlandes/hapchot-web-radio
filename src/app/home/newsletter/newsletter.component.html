@@ -1,3 +1,4 @@
 <h2 class="square color-blue">Newsletter</h2>
-<input type="text" placeholder="Votre Adress Mail">
-<button class="hapchot-btn color-light-blue">S'inscrire</button>
+<input #input type="text" placeholder="Votre Adress Mail">
+<div *ngIf="validationInfo">{{ validationInfo }}</div>
+<button (click)="addAdress(input.value)" class="hapchot-btn color-light-blue">S'inscrire</button>

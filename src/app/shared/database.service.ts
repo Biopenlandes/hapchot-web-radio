@@ -95,6 +95,21 @@ export class DatabaseService {
          + this.getPathFromType(itemType);    
   }
 
+  addNewsletterAddress(mail : string)
+  {
+    this.af.database.list('/mails').push(mail);
+  }
+
+  deleteNewsletterAdresses()
+  {
+    this.af.database.list('/mails').remove();
+  }
+
+  getNewsletterAdresses() : Observable<string[]>
+  {
+    return this.af.database.list('/mails');
+  }
+
   addItem(item: AdmnistrableItem)
   {
     console.log("DB item added : ", item);

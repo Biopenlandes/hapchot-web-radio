@@ -29,6 +29,7 @@ import { ItemManagerService } from './item-manager/item-manager.service';
 
 import { PodcastsService } from '../podcasts/podcasts.service';
 import { PresentationEditComponent } from './presentation-edit/presentation-edit.component';
+import { NewsletterComponent } from './newsletter/newsletter.component';
 
 @NgModule({
   imports:      [ 
@@ -52,7 +53,8 @@ import { PresentationEditComponent } from './presentation-edit/presentation-edit
     PodcastEditComponent,
     ImageContentItemEditComponent,
     ItemManagerComponent,
-    PresentationEditComponent,    
+    PresentationEditComponent,
+    NewsletterComponent,    
   ],
   providers: [ 
     AuthService, 

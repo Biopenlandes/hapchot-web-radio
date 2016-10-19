@@ -7,6 +7,7 @@ import { LoginComponent }      from './login/login.component';
 import { AuthGuardService }    from './auth-guard.service';
 
 import { PresentationEditComponent }  from './presentation-edit/presentation-edit.component';
+import { NewsletterComponent }  from './newsletter/newsletter.component';
 /*import { ItemsListComponent }  from './items-list/items-list.component';*/
 import { AdminHomeComponent } from './admin-home.component';
 import { ItemManagerComponent } from './item-manager/item-manager.component';
@@ -38,6 +39,7 @@ const adminRoutes: Routes = [
         ]
       },*/
       { path: 'calendar', component: AdminHomeComponent },
+      { path: 'newsletter', component: NewsletterComponent },
       { path: 'presentation', component: PresentationEditComponent },
       { path: ':itemType', component: ItemManagerComponent}, 
       { path: '', component: AdminHomeComponent },
