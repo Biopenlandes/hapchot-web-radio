@@ -1,3 +1,9 @@
-<p>
-  presentation works!
-</p>
+<h2>{{ presentation.title }}</h2>
+
+<div class="divider"></div>
+
+<div *ngIf="presentation.pictures" id="presentation-picture">
+  <img [src]="presentation.pictures?.large" />
+</div>
+
+<div id="content"></div>

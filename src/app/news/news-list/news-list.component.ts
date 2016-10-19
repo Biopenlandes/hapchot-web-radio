@@ -12,7 +12,8 @@ declare var PureJSCarousel : any;
 export class NewsListComponent implements OnInit {
 
   carousel : any;
-  resizeTimer : any;
+  initCarouselTimer : any;
+  nextSlideCarouselTimer : any;
 
   // fake actu
   item = { title : "Le cri du pihnada",
@@ -24,27 +25,48 @@ export class NewsListComponent implements OnInit {
   news : AdmnistrableItem[] = [];
   podcasts : AdmnistrableItem[] = [];
   isNewsInitialized : boolean = false;
-  isPodcastsInitialized : boolean = false;
+  isPodcastsInitialized : boolean = false;  
   
   constructor(private db : DatabaseService) { }
 
   ngOnInit() 
   {    
-    this.db.getNews().take(1).subscribe(news => {this.news = news; console.log("News",news);this.isNewsInitialized = true;this.init(); });
-    this.db.getLatestPodcasts(3).take(1).subscribe(podcasts => { this.podcasts = podcasts;this.isPodcastsInitialized = true;console.log("Podcasts",podcasts); this.init(); })
-    $(window).on('resize', () =>
+    this.db.getNews().subscribe(news => 
     {
-      clearTimeout(this.resizeTimer);
-      this.resizeTimer = setTimeout(() => this.initCarousel(), 250);
+      this.news = news; 
+      this.isNewsInitialized = true;
+      this.handleNewItems(); 
+    });
+    this.db.getLatestPodcasts(3).subscribe(podcasts => 
+    {
+      this.podcasts = podcasts;
+      this.isPodcastsInitialized = true; 
+      this.handleNewItems(); 
+    });
+
+    
+    $(window).on('resize', () =>
+    {      
+      $('.slide').css('width',$('#slider').width());
+      if (this.carousel) this.carousel.destroy();
+      clearTimeout(this.initCarouselTimer);
+      this.initCarouselTimer = setTimeout(() => this.initCarousel(), 500);
     });
 
     $('#slider').hover(
-      ()=> {if(this.carousel) this.carousel.stopAutoPlay()},
-      ()=> {if(this.carousel) setTimeout( () => this.carousel.startAutoPlay('next'), 2000);}
+      ()=> {if(this.carousel) this.carousel.stopAutoPlay(); },
+      ()=> 
+      {
+        if(this.carousel) 
+        {          
+          clearTimeout(this.nextSlideCarouselTimer);
+          this.nextSlideCarouselTimer = setTimeout( () => {if(this.carousel) this.carousel.goToNextSlide()}, 2000);
+        }
+      }
     );    
   }
 
-  private init()
+  private handleNewItems()
   {
     if (this.isPodcastsInitialized && this.isNewsInitialized)
     {
@@ -59,17 +81,20 @@ export class NewsListComponent implements OnInit {
       }
       console.log("items",this.items);
       
-      if (this.items.length) setTimeout(() => this.initCarousel(),400);
+      if (this.items.length) 
+      {
+        clearTimeout(this.initCarouselTimer);
+        if (this.carousel) this.carousel.destroy();        
+        this.initCarouselTimer = setTimeout(() => this.initCarousel(),600);
+      }
     }
     
   }
 
   private initCarousel()
-  {
+  {            
     $('.slide').css('width',$('#slider').width());
-    
-    if (this.carousel) this.carousel.destroy();
-    
+
     this.carousel = new PureJSCarousel({
       carousel: '#slider',
       slide: '.slide',

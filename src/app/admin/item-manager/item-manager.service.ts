@@ -129,7 +129,8 @@ export class ItemManagerService {
 
   updateItem(item : AdmnistrableItem)
   {
-    delete item['$key']; 
+    delete item['$key'];
+    delete item['$value'];  
     delete item['$exists'];
     console.log("updateItem",item);
     this.db.deleteItem(item);

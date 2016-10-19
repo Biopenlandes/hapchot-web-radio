@@ -27,12 +27,13 @@ export class ItemEditComponent implements OnInit {
 
   addItem()
   {    
-    // TODO check form complete
+    
+    console.log("addItem itemeditcomponent",this.item);// TODO check form complete
     if (!this.item.title) { console.log("item non rempli", this.item); return;}    
 
     let result = this.itemService.addItem(this.item);
 
-    if(!result) alert("ce titre est déjà pris pour une sortie !");
+    if(!result) alert("ce titre est déjà pris !");
     else { this.onItemEditDone.emit(); }  
   } 
 

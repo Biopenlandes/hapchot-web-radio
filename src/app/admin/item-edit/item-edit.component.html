@@ -11,7 +11,8 @@
   <app-image-content-item-edit 
     *ngIf="itemConfig.type == AIType.Hangout  
         || itemConfig.type == AIType.News  
-        || itemConfig.type == AIType.Program" 
+        || itemConfig.type == AIType.Program
+        || itemConfig.type == AIType.Presentation" 
     [imageContentItem]="item"
     [itemConfig]="itemConfig" >
   </app-image-content-item-edit>

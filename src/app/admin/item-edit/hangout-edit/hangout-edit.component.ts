@@ -15,4 +15,9 @@ export class HangoutEditComponent implements OnInit {
 
   ngOnInit() {
   }  
+
+  onDateChange(value: any)
+  {
+    this.hangout.dateTimestamp = new Date(value).getTime();
+  }
 }

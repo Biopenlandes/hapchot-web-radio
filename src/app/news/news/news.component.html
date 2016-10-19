@@ -1,3 +1,10 @@
-<p>
-  news works!
-</p>
+<h2>{{ news.title }}</h2>
+<h3>{{ formatDate(news.publishOn) }}</h3>
+
+<div class="divider"></div>
+
+<div *ngIf="news.pictures" id="news-picture">
+  <img [src]="news.pictures?.large" />
+</div>
+
+<div id="content"></div>

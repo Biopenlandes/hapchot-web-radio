@@ -14,6 +14,7 @@ const AIConfigList : AdminItemConfig[] =
   new AdminItemConfig(AIType.Podcast,"podcast"    ,"un podcast"    ,"le podcast"    , "du podcast"    , "podcasts", false, false, AIType.Program),
   new AdminItemConfig(AIType.Program,"émission"  ,"une émission"    ,"l'émission"  , "de l'émission"  , "emissions", true, false, AIType.Theme),
   new AdminItemConfig(AIType.Theme  ,"thème"    ,"un thème"        , "le thème"  , "de la sortie"      , "themes", true, true),
+  new AdminItemConfig(AIType.Presentation  ,"présentation"    ,"la présentation"        , "la présentation"  , "de la présentation" , "presentation", true, true),
   ]
 
 @Injectable()

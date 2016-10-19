@@ -246,13 +246,13 @@
     }
 
     function windowResize() {
-      if (window.innerWidth !== windowWidth || window.innerHeight !== windowHeight) {
+      /*if (window.innerWidth !== windowWidth || window.innerHeight !== windowHeight) {
         clearTimeout(windowResizeTimeout);
         windowResizeTimeout = setTimeout(function() {
           _.destroy();
           _.build();
         }, 400);
-      }
+      }*/
     }
   };
 

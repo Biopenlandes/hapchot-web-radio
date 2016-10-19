@@ -1,3 +1,11 @@
-<p>
-  hangout works!
-</p>
+<h2>{{ hangout.title }}</h2>
+<h3>{{ formatDate(hangout.dateTimestamp) }} / {{ hangout.place }}</h3>
+
+<div class="divider"></div>
+
+<div *ngIf="hangout.pictures" id="hangout-picture">
+  <img [src]="hangout.pictures?.large" />
+</div>
+
+<div id="content"></div>
+

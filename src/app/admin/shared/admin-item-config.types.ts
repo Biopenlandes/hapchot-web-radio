@@ -3,7 +3,8 @@ export enum AIType {
     News,
     Program,
     Theme,
-    Podcast
+    Podcast,
+    Presentation
 }
 
 

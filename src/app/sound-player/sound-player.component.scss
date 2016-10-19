@@ -5,7 +5,7 @@
   background-color : $color-dark;
   color : $color-white;
   text-align: center;
-  font-size: .85rem;
+  font-size: .9rem;
   padding-top:2rem;
 }
 
@@ -14,10 +14,11 @@
 h3
 {
   padding-right: .9rem;
-  font-size: 1rem;
+  font-size: 1.05rem;
   margin: 0;
   font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: .4px;
   line-height: 1.7rem;
   border-bottom: 1px solid $color-white;
 }
@@ -118,7 +119,7 @@ h3
   li.item
   {
     min-height: 4rem;
-    font-size: .8rem;
+    font-size: .85rem;
     cursor: pointer;
     position: relative;
     text-align: justify;

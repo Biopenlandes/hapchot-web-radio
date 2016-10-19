@@ -12,6 +12,7 @@ import { Theme }           from '../podcasts/entity/theme';
 import { Podcast }         from '../podcasts/entity/podcast';
 import { Program }         from '../podcasts/entity/program';
 import { News }            from '../news/entity/news';
+import { Presentation }    from '../presentation/presentation.class';
 
 
 
@@ -23,7 +24,8 @@ export class DatabaseService {
     { type: AIType.News, path : "/news" },
     { type: AIType.Podcast, path : "/podcasts" },
     { type: AIType.Program, path : "/programs" },
-    { type: AIType.Theme, path : "/themes" }
+    { type: AIType.Theme, path : "/themes" },
+    { type: AIType.Presentation, path : "/presentation" }
   ];
 
   constructor(public af: AngularFire) 
@@ -96,6 +98,13 @@ export class DatabaseService {
   addItem(item: AdmnistrableItem)
   {
     console.log("DB item added : ", item);
+    if (item.type == AIType.Presentation)
+    {
+      console.log("Presentation adding item", this.getPathFromType(AIType.Presentation));
+      this.getPresentation().set(item);
+      return;
+    }
+
     this.getDbItem(item).set(item);
     if (item.ownerType) 
     {
@@ -136,6 +145,11 @@ export class DatabaseService {
 
   deleteItem(item: AdmnistrableItem) { 
     console.log("deleting item", item);
+    if (item.type == AIType.Presentation)
+    {
+      this.getPresentation().remove();
+      return;
+    }
     this.deleteDbItem(this.getDbItem(item));
     if (item.ownerType) this.deleteDbItem(this.getDbItemInOwnerSlug(item));
   }
@@ -146,10 +160,26 @@ export class DatabaseService {
     else console.log("delete item, ce item n'existe pas");
   }
 
-  getHangouts() : FirebaseListObservable<Hangout[]>
+  getHangouts(value ? : number) : Observable<Hangout[]>
   {
-    return this.getItems(AIType.Hangout);
+    return this.af.database.list(this.getPathFromType(AIType.Hangout), {
+      query: { orderByChild: 'dateTimestamp' }
+    }).map((items : Hangout[]) =>
+    {
+      let now = Date.now();
+      let newItems = items.filter(item => item.publishOn < now && item.dateTimestamp > now);
+      if (value && newItems.length > value)
+      {
+        newItems = newItems.slice(0,value);
+      }
+      return newItems;
+    });
   }
+
+  getHangoutFromSlug(slug : string) : Observable<Hangout>
+  {
+    return this.getItem(AIType.Hangout, slug);
+  }  
 
   getThemes() : Observable<Theme[]>
   {
@@ -195,6 +225,11 @@ export class DatabaseService {
     });
   }
 
+  getNewsFromSlug(slug : string) : Observable<News>
+  {
+    return this.getItem(AIType.News, slug);
+  }  
+
   getLatestPodcasts(value : number = 3) : Observable<Podcast[]>
   {
     return this.af.database.list(this.getPathFromType(AIType.Podcast), {
@@ -204,6 +239,11 @@ export class DatabaseService {
       let now = Date.now();
       return array.filter(item => item.publishOn < now).reverse();
     });
+  }
+
+  getPresentation() : FirebaseObjectObservable<Presentation>
+  {
+    return this.af.database.object(this.getPathFromType(AIType.Presentation));
   }
 
   private transformObjectToArray(object)
