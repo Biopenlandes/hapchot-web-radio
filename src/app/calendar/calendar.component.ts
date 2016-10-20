@@ -1,4 +1,5 @@
 import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router'
 import { DatabaseService } from '../shared/database.service';
 import { Program } from '../podcasts/entity/program';
 import { AuthService }      from '../admin/login/auth.service';
@@ -18,7 +19,7 @@ export class CalendarComponent implements OnInit {
   initSchedulerTimer : any;
   readyToInit : boolean = false;
 
-  constructor(private db : DatabaseService, public authService: AuthService) { }
+  constructor(private db : DatabaseService, public authService: AuthService, private router : Router) { }
 
   ngOnInit() 
   {    
@@ -33,6 +34,11 @@ export class CalendarComponent implements OnInit {
         this.initSchedulerTimer = setTimeout( () => this.initScheduler(), 500);
       });        
     });    
+  }
+
+  navigateToAdmin()
+  {
+    this.router.navigate(['/admin']);
   }
 
   private initSchedulerForAdmin()
@@ -110,7 +116,7 @@ export class CalendarComponent implements OnInit {
         {
           return program.title + " <i>" + event.rediff + "</i>";
         }
-        return event.title;      
+        return program.title;      
       };
     });     
 

@@ -25,6 +25,19 @@
     background-color: #3F51B5;
     border-radius: 8px;
   }
+
+  input[type="radio"]
+  {
+    position: relative;
+    left: 0;
+    opacity: 1;
+  }
+    
+}
+
+:host
+{
+  text-align: center;
 }
 
 #scheduler_here { 

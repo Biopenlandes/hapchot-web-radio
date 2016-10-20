@@ -1,8 +1,11 @@
+@import '../../../assets/vendors/materialize/admin';
+
 #main-content {
   margin: 0 auto;
   width: 500px;
   padding: 2rem;
-  text-align: center,
+  text-align: center;
+  font-family: 'Roboto';
 }
 
 h2 { font-size: 2rem; }

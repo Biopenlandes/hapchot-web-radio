@@ -38,7 +38,7 @@ const adminRoutes: Routes = [
           { path: 'new', component: ItemEditComponent }                 
         ]
       },*/
-      { path: 'calendar', component: CalendarComponent },
+      { path: 'calendar', redirectTo: '/grille-des-programmes', pathMatch: 'full'},
       { path: 'newsletter', component: NewsletterComponent },
       { path: 'presentation', component: PresentationEditComponent },
       { path: ':itemType', component: ItemManagerComponent}, 
