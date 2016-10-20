@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { AuthService }      from './login/auth.service';
 import { Router } from '@angular/router';
@@ -7,7 +7,8 @@ import { AdminItemConfigService, AdminItemConfig } from './shared/admin-item-con
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  styleUrls: ['./admin.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AdminComponent implements OnInit {
 

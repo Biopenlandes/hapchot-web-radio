@@ -7,6 +7,7 @@ export class Program extends ImageContentAdmnistrableItem {
   public subtitle : string;
   public broadcasting : string;
   public podcasts : Podcast[];
+  public backgroundColor : string;
 
   constructor() {
     super(AIType.Program);

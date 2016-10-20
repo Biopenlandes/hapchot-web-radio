@@ -12,7 +12,7 @@ import { NewsletterComponent }  from './newsletter/newsletter.component';
 import { AdminHomeComponent } from './admin-home.component';
 import { ItemManagerComponent } from './item-manager/item-manager.component';
 /*import { ItemEditResolve } from './item-edit/item-edit-resolve.service';*/
-
+import { CalendarComponent } from '../calendar/calendar.component';
 
 const adminRoutes: Routes = [
   { 
@@ -38,7 +38,7 @@ const adminRoutes: Routes = [
           { path: 'new', component: ItemEditComponent }                 
         ]
       },*/
-      { path: 'calendar', component: AdminHomeComponent },
+      { path: 'calendar', component: CalendarComponent },
       { path: 'newsletter', component: NewsletterComponent },
       { path: 'presentation', component: PresentationEditComponent },
       { path: ':itemType', component: ItemManagerComponent}, 

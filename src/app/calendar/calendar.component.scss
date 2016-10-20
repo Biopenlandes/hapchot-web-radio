@@ -1,0 +1,33 @@
+/deep/
+{
+  select {display:inline-block; height: auto; width: auto;}
+  td {padding : 0}
+
+  /* .dhx_scale_hour{ 
+    line-height:normal;
+  } */
+
+  .dhx_cal_event .dhx_body
+  {
+    text-align: center;
+  }
+
+  .dhx_cal_event_clear {
+    font-family: 'Roboto';
+    font-size: 12px;
+    cursor: pointer;
+    height: auto;
+    white-space: normal;
+    overflow: visible;
+    line-height: 10px;
+    padding: 2px 5px;
+    color: #f1f1f1;
+    background-color: #3F51B5;
+    border-radius: 8px;
+  }
+}
+
+#scheduler_here { 
+  margin-top: 1.5rem;
+  box-sizing: content-box; 
+}

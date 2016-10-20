@@ -17,16 +17,21 @@
       "styles": [
         "styles.css",
         "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.css",
-        "../node_modules/materialize-css/dist/css/materialize.css",
         "../vendors/PureJSCarousel/purejscarousel.css"
       ],
       "scripts": [
         "../node_modules/soundmanager2/script/soundmanager2-nodebug-jsmin.js",
         "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.js",
+        "../node_modules/dhtmlx-scheduler/codebase/ext/dhtmlxscheduler_recurring.js",
+        "../node_modules/dhtmlx-scheduler/codebase/locale/locale_fr.js",
+        "../node_modules/dhtmlx-scheduler/codebase/locale/recurring/locale_recurring_fr.js",
         "assets/bower_components/webcomponentsjs/webcomponents-lite.min.js",
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/sortablejs/Sortable.js",
-        "../vendors/PureJSCarousel/purejscarousel.js"
+        "../vendors/PureJSCarousel/purejscarousel.js",
+        "../node_modules/firebase/firebase.js",
+        "../vendors/dhtmlx_scheduler_firebase.js",
+        "../vendors/jscolor.min.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

@@ -31,6 +31,7 @@ import { PodcastsService } from '../podcasts/podcasts.service';
 import { PresentationEditComponent } from './presentation-edit/presentation-edit.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
 
+
 @NgModule({
   imports:      [ 
     CommonModule, 
@@ -54,7 +55,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     ImageContentItemEditComponent,
     ItemManagerComponent,
     PresentationEditComponent,
-    NewsletterComponent,    
+    NewsletterComponent, 
   ],
   providers: [ 
     AuthService, 
