@@ -95,6 +95,7 @@ export class CalendarComponent implements OnInit {
        if (program && program.backgroundColor)
        {
          ev.color = '#' + program.backgroundColor;
+         ev.textColor = this.getTextColorFromBackdColor(ev.color);
        }
     }); 
     
@@ -125,5 +126,11 @@ export class CalendarComponent implements OnInit {
     events = data.child("events");
     scheduler.firebase(events);
   }
+
+   getTextColorFromBackdColor(bgColor)
+   {
+    if (!bgColor) { return ''; }
+    return (parseInt(bgColor.replace('#', ''), 16) > 0xffffff / 2) ? '#000' : '#fff';
+    }
 
 }

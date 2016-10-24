@@ -43,6 +43,12 @@ export class PodcastEditComponent implements OnInit {
   onDateChange(value: any)
   {
     this.podcast.publishOn = new Date(value).getTime();
+    
   } 
+
+  getDate()
+  {
+    
+  }
 
 }

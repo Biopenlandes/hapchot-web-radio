@@ -271,5 +271,16 @@ export class DatabaseService {
     return array.sort( (a, b) => a.index - b.index );
   }
 
+  getNextProgram() : Observable<any>
+  {
+    return this.af.database.list("events/", {
+      query: { orderByChild: 'start_date' }
+    }).map(array =>
+    {
+      let now = Date.now();
+      return array.filter(item => item.start_date > now);      
+    });
+  }
+
   
 }

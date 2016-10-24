@@ -40,4 +40,10 @@ export class ImageContentItemEditComponent implements OnInit {
     this.imageContentItem.publishOn = new Date(value).getTime();
   }
 
+  getDate()
+  {
+    var options = {weekday: "long", month: "long", day: "numeric"};
+    return new Date(this.imageContentItem.publishOn).toLocaleDateString("fr-FR", options);
+  }
+
 }

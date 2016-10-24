@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { Track } from './track.class'
+import { Track } from './track.class';
+import { DatabaseService } from "../shared/database.service";
 import { Podcast } from '../podcasts/entity/podcast';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -12,7 +13,10 @@ declare var Mixcloud: any;
 const radioStream = "http://www.radioking.com/play/hapchot-webradio";
 const radioInfosUrl = 'https://www.radioking.com/widgets/currenttrack.php?radio=3046&format=json';
 
+
 const checkRadioTrackIntevalSeconde = 15;
+const checkNextProgramIntevalSeconde = 120;
+
 
 export enum RadioState
 {
@@ -31,7 +35,10 @@ export class SoundPlayerService {
   radioTrackStream : BehaviorSubject<Track> = new BehaviorSubject<Track>(new Track());
   checkTrackTimer;
 
-  constructor(private http : Http) { 
+  nextProgramStream : BehaviorSubject<any> = new BehaviorSubject<any>({});
+  nextProgramTimer;
+
+  constructor(private http : Http, private db :DatabaseService) { 
     soundManager.setup({
       url: '/path/to/swf-files/',
       onready: () =>
@@ -55,6 +62,9 @@ export class SoundPlayerService {
           break;
       }
     });  
+
+    this.checkNextProgram();
+    setInterval(() => this.checkNextProgram(), checkNextProgramIntevalSeconde * 1000);
   }
 
   // -----------------
@@ -120,6 +130,11 @@ export class SoundPlayerService {
     return this.radioStateStream.asObservable();
   }
 
+  getNextProgram(): Observable<any>
+  {
+    return this.nextProgramStream.asObservable();
+  }
+
   toggleRadio()
   {
     if( this.radioState == RadioState.Playing) this.stopRadio();
@@ -174,6 +189,19 @@ export class SoundPlayerService {
     }).toPromise().then(track => this.radioTrackStream.next(track));
   }
 
-
-
+  private checkNextProgram()
+  {
+    this.db.getNextProgram().subscribe( (events:any) =>
+    {
+      if (!events[0]) return;
+      let event = events[0];
+      let NextProgram : any = {};
+      NextProgram.start_date = event.start_date;
+      this.db.getProgramFromSlug(event.slug).take(1).subscribe(program =>
+      {
+        NextProgram.title = program.title;
+        this.nextProgramStream.next(NextProgram);
+      });
+    });
+  }
 }

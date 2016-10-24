@@ -8,9 +8,10 @@
   
   <div class="item-title">{{ hangout.title }}</div>   
   <img class="item-picture effect2" [src]="hangout.pictures.medium"/>
-  <div *ngIf="hangout.date" class="item-date">{{ formatDate(hangout.dateTimestamp) }}</div>  
-  <div class="item-place">{{ hangout.place }}</div>  
-  
+  <div class="item-bottom">
+    <div *ngIf="hangout.date" class="item-date">{{ formatDate(hangout.dateTimestamp) }}</div>  
+    <div class="item-place">{{ hangout.place }}</div>  
+  </div>
 
 
 </div>

@@ -19,6 +19,7 @@ export class SoundPlayerComponent implements OnInit {
   modeRadio;
   radioState : RadioState;
   RadioState = RadioState;
+  nextProgram;
 
   constructor(private db : DatabaseService,
               private soundPlayer : SoundPlayerService) { }
@@ -30,6 +31,7 @@ export class SoundPlayerComponent implements OnInit {
     this.soundPlayer.getModeRadio().subscribe(mode => this.modeRadio = mode);
     this.soundPlayer.getRadioState().subscribe(state => this.radioState = state);
     this.soundPlayer.getRadioTrack().subscribe(track => this.track = track);
+    this.soundPlayer.getNextProgram().subscribe(nextProgram => this.nextProgram = nextProgram);
 
     this.db.getLatestPodcasts().subscribe(podcasts => this.podcasts = podcasts);    
   }
@@ -41,6 +43,14 @@ export class SoundPlayerComponent implements OnInit {
       playing: this.radioState == RadioState.Playing,     // true
     };
     return classes;
+  }
+
+  formatTime(timestamp : number)
+  {
+    if (!timestamp) return "";
+    let date = new Date(timestamp);
+    let minutes = date.getMinutes();
+    return date.getHours() + 'h' + (minutes < 10 ? "0" + minutes : minutes);
   }
 
 }

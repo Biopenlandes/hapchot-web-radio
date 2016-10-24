@@ -20,4 +20,10 @@ export class HangoutEditComponent implements OnInit {
   {
     this.hangout.dateTimestamp = new Date(value).getTime();
   }
+
+  getDate()
+  {
+    var options = {weekday: "long", month: "long", day: "numeric"};
+    return new Date(this.hangout.dateTimestamp).toLocaleDateString("fr-FR", options);
+  }
 }

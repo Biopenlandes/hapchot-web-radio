@@ -15,7 +15,7 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
-        "styles.css",
+        "styles.scss",
         "../node_modules/dhtmlx-scheduler/codebase/dhtmlxscheduler.css",
         "../vendors/PureJSCarousel/purejscarousel.css"
       ],
