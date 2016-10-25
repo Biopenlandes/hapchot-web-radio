@@ -5,6 +5,8 @@ var fs      = require('fs')
 /*var thumb = require('node-thumbnail').thumb;*/
 var app     =   express();
 
+//"start": "concurrently \"ng serve\" \"node server/server.js\"",
+
 /*var uploadDir = '../src/assets/uploads';*/
 var uploadDir = './src/assets/uploads';
 
