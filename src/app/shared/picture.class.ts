@@ -1,4 +1,4 @@
-const uploadDir = "assets/uploads/";
+const uploadDir = "https://hapchot-web-radio-server.herokuapp.com/uploads/";
 
 export class Picture
 {

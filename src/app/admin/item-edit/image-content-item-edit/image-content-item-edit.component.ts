@@ -32,7 +32,7 @@ export class ImageContentItemEditComponent implements OnInit {
 
     var vaadinUpload = document.querySelector('vaadin-upload');
     vaadinUpload.addEventListener('upload-success', 
-      (event:any) => this.imageContentItem.pictures = new Picture(event.detail.file.name));
+      (event:any) => {console.log("upload success",event.detail.file.name);this.imageContentItem.pictures = new Picture(event.detail.file.name);});
   }  
 
   onDateChange(value: any)

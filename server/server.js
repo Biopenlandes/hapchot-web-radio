@@ -9,7 +9,7 @@ var fs      = require('fs')
 var app     =   express();
 
 //"start": "concurrently \"ng serve\" \"node server/server.js\"",
-
+//"start": "concurrently \"http-server dist/\" \"node server/server.js\"",
 /*var uploadDir = '../src/assets/uploads';*/
 var uploadDir = './src/assets/uploads';
 
