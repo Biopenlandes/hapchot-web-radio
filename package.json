@@ -2,7 +2,7 @@
   "name": "hapchot-web-radio",
   "version": "0.0.0",
   "engines": {
-    "node": "6.5.0",
+    "node": "6.5.0"
   },
   "license": "MIT",
   "angular-cli": {},
