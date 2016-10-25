@@ -1,1 +1,1 @@
-web: http-server dist/
+web: concurrently "http-server dist/" "node server/server.js"
