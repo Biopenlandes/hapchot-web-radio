@@ -4,7 +4,7 @@
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve",
+    "start": "concurrently --kill-others \"ng serve\" \"node server/server.js\"",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update",
@@ -39,6 +39,7 @@
     "@types/jasmine": "^2.2.30",
     "angular-cli": "1.0.0-beta.16",
     "codelyzer": "~0.0.26",
+    "concurrently": "^3.1.0",
     "jasmine-core": "2.4.1",
     "jasmine-spec-reporter": "2.5.0",
     "karma": "1.2.0",

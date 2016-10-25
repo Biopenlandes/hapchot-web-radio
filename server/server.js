@@ -6,7 +6,7 @@ var fs      = require('fs')
 var app     =   express();
 
 /*var uploadDir = '../src/assets/uploads';*/
-var uploadDir = './assets/uploads';
+var uploadDir = './src/assets/uploads';
 
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
