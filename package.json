@@ -42,7 +42,9 @@
     "express": "^4.14.0",
     "body-parser": "~1.0.1",
     "fs": "0.0.1-security",
-    "multer": "^1.2.0"
+    "multer": "^1.2.0",
+    "node-gyp" : "^3.4.0",
+    "sharp" : "^0.16.2"  
   },
   "devDependencies": {
     "@types/jasmine": "^2.2.30",
