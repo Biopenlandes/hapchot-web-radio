@@ -1,6 +1,9 @@
 var express =   require("express");
 var multer  =   require('multer');
-var gm      = require('gm');
+/*var gm      = require('gm');*/
+var gm = require('gm').subClass({
+    imageMagick: true
+});
 var fs      = require('fs')
 /*var thumb = require('node-thumbnail').thumb;*/
 var app     =   express();
