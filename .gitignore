@@ -5,7 +5,7 @@ src/assets/uploads
 server/assets/uploads
 
 # compiled output
-#/dist
+/dist
 /tmp
 
 # design folder

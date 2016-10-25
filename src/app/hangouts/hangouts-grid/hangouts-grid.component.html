@@ -1,13 +1,9 @@
 <h2 class="square color-red">Ou sortir ?</h2>
-<!-- <div class="hangout-item" >   
-   <img [src]="hangout.pictures.medium"  class="effect2" />
-   
-   <div>{{ hangout.title }}</div>
-</div>  -->
+
 <div class="hangout" *ngFor="let hangout of hangouts" (click)="onClick(hangout)">
   
   <div class="item-title">{{ hangout.title }}</div>   
-  <img class="item-picture effect2" [src]="hangout.pictures.medium"/>
+  <img class="item-picture effect2" [src]="hangout.pictures.thumbnail"/>
   <div class="item-bottom">
     <div *ngIf="hangout.date" class="item-date">{{ formatDate(hangout.dateTimestamp) }}</div>  
     <div class="item-place">{{ hangout.place }}</div>  

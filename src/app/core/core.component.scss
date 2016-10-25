@@ -46,6 +46,13 @@ footer
   color: $color-white;
   padding: 1rem;
   font-weight: 500;
+
+  #admin-link
+  {
+    color: $color-white;
+    text-decoration: underline;
+    margin-top: .5rem;
+  }
 }
 
 /deep/
