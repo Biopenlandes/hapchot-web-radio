@@ -22,7 +22,7 @@ export class ItemEditComponent implements OnInit {
   ngOnInit() 
   { 
     this.AIType = AIType;  
-    console.log("on Init", this.item);
+    console.log("ITEM Edit on Init", this.item);
   }
 
   addItem()

@@ -42,7 +42,7 @@ export class ImageContentItemEditComponent implements OnInit {
 
   getDate()
   {
-    var options = {weekday: "long", month: "long", day: "numeric"};
+    var options = {weekday: "long", month: "long", day: "numeric", year:"numeric"};
     return new Date(this.imageContentItem.publishOn).toLocaleDateString("fr-FR", options);
   }
 

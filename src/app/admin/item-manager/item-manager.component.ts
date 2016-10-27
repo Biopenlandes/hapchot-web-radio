@@ -59,8 +59,7 @@ export class ItemManagerComponent implements OnInit {
         this.showEdit = this.itemConfig.showEditInSameWindow;
 
         if (this.itemsSubscribtion) this.itemsSubscribtion.unsubscribe();
-        console.log("Manager subscribing");      
-        this.itemsSubscribtion = this.itemService.getItems().subscribe(items => {console.log("Manager items",items);this.items = items});
+        this.itemsSubscribtion = this.itemService.getItems().subscribe(items => this.items = items);
 
         if (this.ownersSubscription) this.ownersSubscription.unsubscribe();
         this.ownersSubscription = this.itemService.getOwners().subscribe(owners => this.owners = owners);       

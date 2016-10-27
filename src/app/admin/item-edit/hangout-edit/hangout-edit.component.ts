@@ -23,7 +23,7 @@ export class HangoutEditComponent implements OnInit {
 
   getDate()
   {
-    var options = {weekday: "long", month: "long", day: "numeric"};
+    var options = {weekday: "long", month: "long", day: "numeric", year:"numeric"};
     return new Date(this.hangout.dateTimestamp).toLocaleDateString("fr-FR", options);
   }
 }

@@ -53,4 +53,25 @@ export class SoundPlayerComponent implements OnInit {
     return date.getHours() + 'h' + (minutes < 10 ? "0" + minutes : minutes);
   }
 
+  formatDate(timestamp : number)
+  {
+    
+    if (!timestamp) return "";
+    let diffJoursTime = Math.floor((timestamp - Date.now())/(24*3600*1000));
+    //console.log("date jours time", diffJoursTime);
+    if (diffJoursTime < 6)
+    {
+      let diffJours = (new Date(timestamp).getDay() - new Date(Date.now()).getDay() );
+      //console.log("diff jours", diffJours);
+
+      if (diffJours == 0) return "Aujourd'hui à ";
+      if (diffJours == 1) return "Demain à ";
+
+      var options = {weekday: "long"};
+      return new Date(timestamp).toLocaleDateString("fr-FR", options) + ' à ';  
+    }  
+   
+    var options2 = {weekday: "long", month: "long", day: "numeric"};
+    return new Date(timestamp).toLocaleDateString("fr-FR", options2) + ' à ';
+  }
 }

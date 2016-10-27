@@ -46,8 +46,14 @@
     </div>
 
     <div id="next-program">
-      <h3>Prochaine Emission</h3>
-      <div *ngIf="nextProgram">{{ formatTime(nextProgram.start_date)}} : {{ nextProgram.title }}</div>
+      <h3>Prochaine Emission</h3>      
+      <div *ngIf="nextProgram">
+        <div style="text-transform: Capitalize">
+          {{ formatDate(nextProgram.start_date) }}
+          {{ formatTime(nextProgram.start_date) }}
+        </div>
+        <div id="next-program-title">{{ nextProgram.title }}</div>      
+      </div>
     </div>
 
     <h3>Derniers podcasts</h3>

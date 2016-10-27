@@ -40,7 +40,7 @@ const adminRoutes: Routes = [
       },*/
       { path: 'calendar', redirectTo: '/grille-des-programmes', pathMatch: 'full'},
       { path: 'newsletter', component: NewsletterComponent },
-      { path: 'presentation', component: PresentationEditComponent },
+      { path: 'info/:slug', component: PresentationEditComponent },
       { path: ':itemType', component: ItemManagerComponent}, 
       { path: '', component: AdminHomeComponent },
     ]

@@ -25,7 +25,8 @@ export class DatabaseService {
     { type: AIType.Podcast, path : "/podcasts" },
     { type: AIType.Program, path : "/programs" },
     { type: AIType.Theme, path : "/themes" },
-    { type: AIType.Presentation, path : "/presentation" }
+    { type: AIType.Presentation, path : "/presentation" },
+    { type: AIType.Friends, path : "/partenaires" }
   ];
 
   constructor(public af: AngularFire) 
@@ -119,6 +120,12 @@ export class DatabaseService {
       this.getPresentation().set(item);
       return;
     }
+    else if (item.type == AIType.Friends)
+    {
+      console.log("Friends adding item", this.getPathFromType(AIType.Friends));
+      this.getFriends().set(item);
+      return;
+    }
 
     this.getDbItem(item).set(item);
     if (item.ownerType) 
@@ -163,6 +170,11 @@ export class DatabaseService {
     if (item.type == AIType.Presentation)
     {
       this.getPresentation().remove();
+      return;
+    }
+    else if (item.type == AIType.Friends)
+    {
+      this.getFriends().remove();
       return;
     }
     this.deleteDbItem(this.getDbItem(item));
@@ -248,17 +260,27 @@ export class DatabaseService {
   getLatestPodcasts(value : number = 3) : Observable<Podcast[]>
   {
     return this.af.database.list(this.getPathFromType(AIType.Podcast), {
-      query: { orderByChild: 'updatedTime', limitToLast: value }
+      query: { orderByChild: 'updatedTime'/*, limitToLast: value*/ }
     }).map(array =>
     {
+      //console.log("getLatestPodcasts before mapping", array);
       let now = Date.now();
-      return array.filter(item => item.publishOn < now).reverse();
+      let array2 = array.filter(item => item.publishOn < now);
+      //console.log("getLatestPodcasts after filtering", array2);
+      array2 = array2.reverse();
+      //console.log("getLatestPodcasts after reverse", array2);
+      return array2.slice(0,value);
     });
   }
 
   getPresentation() : FirebaseObjectObservable<Presentation>
   {
     return this.af.database.object(this.getPathFromType(AIType.Presentation));
+  }
+
+  getFriends() : FirebaseObjectObservable<Presentation>
+  {
+    return this.af.database.object(this.getPathFromType(AIType.Friends));
   }
 
   private transformObjectToArray(object)

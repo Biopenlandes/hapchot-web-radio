@@ -4,7 +4,8 @@ export enum AIType {
     Program,
     Theme,
     Podcast,
-    Presentation
+    Presentation,
+    Friends
 }
 
 

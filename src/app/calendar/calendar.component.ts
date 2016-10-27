@@ -77,9 +77,9 @@ export class CalendarComponent implements OnInit {
     scheduler.config.readonly = !this.adminMode; 
     if (this.adminMode) this.initSchedulerForAdmin();  
 
-    scheduler.config.time_step = 30;
+    scheduler.config.time_step = 15;
     scheduler.config.first_hour = 8;
-    scheduler.config.last_hour = 21;
+    //scheduler.config.last_hour = 21;
     scheduler.config.edit_on_create = true;
     scheduler.config.details_on_create = true;
     scheduler.config.details_on_dblclick = true;
@@ -87,7 +87,7 @@ export class CalendarComponent implements OnInit {
     scheduler.config.xml_date="%Y-%m-%d %H:%i";
     scheduler.config.hour_date="%G:%i";
     
-    scheduler.config.hour_size_px=40;   
+    //scheduler.config.hour_size_px = 80;   
 
     scheduler.attachEvent("onEventAdded", (id,ev) => 
     {

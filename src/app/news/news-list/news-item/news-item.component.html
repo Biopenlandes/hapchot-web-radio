@@ -2,7 +2,8 @@
   <div class="item-picture" [ngStyle]="{'background-image': 'url(' + item.pictures?.large + ')'}"></div>
   <div class="item-content">
     <div class="content-title">{{ item.title }}</div>
-    <div #content class="content-description"></div>
+    <div *ngIf="item.content" #content class="content-description"></div>
+    <div *ngIf="item.description" class="content-description">{{ item.description }}</div>
     <div class="content-btn">
       <button class="hapchot-btn color-red" (click)="onClick()">
         {{ item.type == AIType.News ? 'Lire la suite' : 'Ecouter le podcast' }}

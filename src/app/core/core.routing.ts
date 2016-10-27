@@ -17,9 +17,9 @@ const coreRoutes: Routes = [
     path: '',
     component: CoreComponent,
     children: [
-        { path: '',    component: HomeComponent },
-        { path: 'le-projet', component: PresentationComponent },
+        { path: '',    component: HomeComponent },        
         { path: 'grille-des-programmes', component: CalendarComponent },
+        { path: 'info/:slug', component: PresentationComponent },
         { path: 'evenement/:slug', component: HangoutComponent },
         { path: 'actu/:slug', component: NewsComponent },
         { path: 'emissions', component: ProgramListComponent },

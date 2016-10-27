@@ -84,7 +84,7 @@ export class ItemManagerService {
     this.itemsSubscriber = this.db.getItems(this.itemConfig.type, this.itemConfig.ownerType, this.ownerSlug).subscribe( (items) => 
     {
       this.items = items; 
-      //console.log("Getting items", items);
+      console.log("Getting items", items);
       this.itemsSubject.next(items);      
     });
   }
@@ -113,6 +113,7 @@ export class ItemManagerService {
 
   addItem(item : AdmnistrableItem) : boolean
   {    
+    console.log("ITEM Manager addItem", item);
     item.slug = this.slugify(item.title); 
     this.addingOwnersInfosToItem(item);
     
@@ -132,7 +133,9 @@ export class ItemManagerService {
     delete item['$key'];
     delete item['$value'];  
     delete item['$exists'];
-    console.log("updateItem",item);
+    console.log("ITEM Manager updateItem");
+    let index = this.items.indexOf(item) 
+    if (index > -1) this.items.splice(index, 1);
     this.db.deleteItem(item);
     this.addItem(item);
 

@@ -15,7 +15,7 @@ const radioInfosUrl = 'https://www.radioking.com/widgets/currenttrack.php?radio=
 
 
 const checkRadioTrackIntevalSeconde = 15;
-const checkNextProgramIntevalSeconde = 120;
+const checkNextProgramIntevalSeconde = 12;
 
 
 export enum RadioState
@@ -191,14 +191,17 @@ export class SoundPlayerService {
 
   private checkNextProgram()
   {
-    this.db.getNextProgram().subscribe( (events:any) =>
+    //console.log("checkNextProgram");
+    this.db.getNextProgram().take(1).subscribe( (events:any) =>
     {
       if (!events[0]) return;
+      //console.log("checkNextProgram getting events");
       let event = events[0];
       let NextProgram : any = {};
       NextProgram.start_date = event.start_date;
       this.db.getProgramFromSlug(event.slug).take(1).subscribe(program =>
       {
+        //console.log("checkNextProgram getting Program");
         NextProgram.title = program.title;
         this.nextProgramStream.next(NextProgram);
       });

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { DatabaseService }from '../shared/database.service';
 import { Presentation }        from './presentation.class';
+import { AIType } from '../admin/shared/admin-item-config.module';
 
 @Component({
   selector: 'app-presentation',
@@ -10,16 +12,32 @@ import { Presentation }        from './presentation.class';
 })
 export class PresentationComponent implements OnInit {
 
-  presentation: Presentation = new Presentation();
+  presentation: Presentation = new Presentation(AIType.Presentation);
 
-  constructor(private db : DatabaseService) { }
+  constructor(private db : DatabaseService, private route: ActivatedRoute ) { }
 
   ngOnInit() {
-    this.db.getPresentation().subscribe(presentation => 
+
+    this.route.params.subscribe( (params : Params) => 
     {
-       this.presentation = presentation;
-       console.log("presentation", presentation);
-       if (presentation.content) document.getElementById("content").innerHTML = presentation.content;
+      console.log("PresentationComonent", params['slug']);
+      let suscriber;
+      if (params['slug'] == "le-projet") 
+      {
+        suscriber = this.db.getPresentation();
+      }
+      else if (params['slug'] == "amis-et-partenaires") 
+      {
+        suscriber = this.db.getFriends();
+        this.presentation = new Presentation(AIType.Friends);
+      }
+      else return;
+      suscriber.subscribe(presentation => 
+      {
+         this.presentation = presentation;
+         console.log("presentation", presentation);
+         if (presentation.content) document.getElementById("content").innerHTML = presentation.content;
+      });
     });
   }
 

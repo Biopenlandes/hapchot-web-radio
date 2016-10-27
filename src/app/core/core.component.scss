@@ -35,6 +35,35 @@ app-sound-player
   margin : 0 auto;
   position: relative;
   background-color: $color-yellow;
+
+  #logo-container
+  {
+    //margin-top: -.8rem;
+    position: absolute;
+    left: 100%;
+    top: 2rem;
+    margin-left: 10px;
+    width: 30px;
+  }
+
+  .logo-jeanot
+  {
+    width: 45px;
+    margin-bottom: 5px;
+  }
+
+  .logo-social-container
+  {
+    margin-left: 6px;
+    display: inline-block;
+  }
+
+  .logo-social
+  {
+    display: inline-block;
+    width: 25px;
+    margin: 5px 0;
+  }
 }
 
 footer

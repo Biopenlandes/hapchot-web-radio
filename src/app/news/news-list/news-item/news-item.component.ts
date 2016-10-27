@@ -23,28 +23,33 @@ export class NewsItemComponent implements OnInit, AfterViewInit {
 
   constructor(private soundPlayer : SoundPlayerService, private router : Router) {}
 
-  ngOnInit() {    
+  ngOnInit() {  
+    //console.log("ngOnInit news item", this.item.description); 
   }
 
   ngAfterViewInit () {
+    //console.log("ngAfterViewInit news item");    
     this.updateContent();
   }
 
   private updateContent()
   {
-    let content = this.item.content ? this.item.content : this.item.description;
-    if (content) 
+    //console.log("updateContent");
+    let content_ = this.item.content; /*? this.item.content : this.item.description;*/
+    if (content_) 
     {      
       let maxLength = 180;
-      if (content.length >= maxLength)
-      {
-        content = jQuery(content).text();
-        content = content.slice(0, maxLength);
-        content += ' (...)';
+      content_ = jQuery(content_).text();
+      //console.log("updateContent", content_);
+      if (content_.length >= maxLength)
+      {        
+        content_ = content_.slice(0, maxLength);
+        content_ += ' (...)';
       }
       
-      this.content.nativeElement.innerHTML = content;
+      this.content.nativeElement.innerHTML = content_;
     }
+    else console.log("pas item content");
   }
 
   onClick()
