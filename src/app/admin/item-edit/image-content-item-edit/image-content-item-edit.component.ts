@@ -4,7 +4,7 @@ import { AIType } from '../../shared/admin-item-config.types';
 import { AdminItemConfig } from '../../shared/admin-item-config.class';
 import { Picture } from '../../../shared/picture.class';
 
-declare var datePicker : any;
+declare var $ : any;
 
 @Component({
   selector: 'app-image-content-item-edit',
@@ -23,11 +23,16 @@ export class ImageContentItemEditComponent implements OnInit {
     this.AIType = AIType;
 
     if (!this.imageContentItem.publishOn) this.imageContentItem.publishOn = Date.now();
-    
-    /*var vaadinDatePicker : any;
+/*    
+    var vaadinDatePicker : any;
     vaadinDatePicker = document.querySelector('vaadin-upload');
     vaadinDatePicker.addEventListener('value-changed', 
       (event:any) =>  {console.log('Selected: ' + vaadinDatePicker.value);this.imageContentItem.publishOn = vaadinDatePicker.value;
+    });
+
+    $('.datepicker').pickadate({
+      selectMonths: true, // Creates a dropdown to control month
+      selectYears: 15 // Creates a dropdown of 15 years to control year
     });*/
 
     var vaadinUpload = document.querySelector('vaadin-upload');

@@ -1,10 +1,12 @@
+
+
 <app-program-edit *ngIf="itemConfig.type == AIType.Program" [program]="imageContentItem"></app-program-edit>
 
 <app-hangout-edit *ngIf="itemConfig.type == AIType.Hangout" [hangout]="imageContentItem"></app-hangout-edit>
 
 <h3>Date de publication sur le site (ne rien mettre si publication immédiate)</h3>
 <div>{{ getDate() }}</div>
-<input (change)="onDateChange($event.target.value)" type="date" style="width: 200px;"/>
+<input (change)="onDateChange($event.target.value)" type="date" class="datepicker" style="width: 200px;"/>
 <!-- <vaadin-date-picker ></vaadin-date-picker> -->
 
 <div *ngIf="imageContentItem.pictures">

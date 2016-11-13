@@ -35,16 +35,16 @@ export class NewsItemComponent implements OnInit, AfterViewInit {
   private updateContent()
   {
     //console.log("updateContent");
-    let content_ = this.item.content; /*? this.item.content : this.item.description;*/
+    let content_ = this.item.content; 
     if (content_) 
     {      
-      let maxLength = 180;
+      let maxLength = 160;
       content_ = jQuery(content_).text();
       //console.log("updateContent", content_);
       if (content_.length >= maxLength)
       {        
         content_ = content_.slice(0, maxLength);
-        content_ += ' (...)';
+        content_ += '... (suite)';
       }
       
       this.content.nativeElement.innerHTML = content_;
