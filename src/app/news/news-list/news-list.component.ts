@@ -13,7 +13,6 @@ export class NewsListComponent implements OnInit {
 
   carousel : any;
   initCarouselTimer : any;
-  nextSlideCarouselTimer : any;
 
   items : AdmnistrableItem[] = [];
   news : AdmnistrableItem[] = [];
@@ -49,15 +48,8 @@ export class NewsListComponent implements OnInit {
     });
 
     $('#slider').hover(
-      ()=> {if(this.carousel) this.carousel.stopAutoPlay(); },
-      ()=> 
-      {
-        if(this.carousel) 
-        {          
-          clearTimeout(this.nextSlideCarouselTimer);
-          this.nextSlideCarouselTimer = setTimeout( () => {if(this.carousel) this.carousel.goToNextSlide()}, 2000);
-        }
-      }
+      ()=> { if(this.carousel) this.carousel.stopAutoPlay();  },
+      ()=> { if(this.carousel) this.carousel.startAutoPlay(); }
     );    
   }
 
@@ -96,6 +88,7 @@ export class NewsListComponent implements OnInit {
       oneByOne : true,
       autoplay : true,
       autoplayDelay : 3500,
+      autoplayDirection : "next",
       infinite : true
     });
   }

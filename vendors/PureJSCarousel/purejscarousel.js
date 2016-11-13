@@ -366,7 +366,7 @@
         _.slidesContainer.style.marginLeft = - _.slidesContainer.offsetWidth / 3 + 'px';
       }
       _.enableControl();
-      _.autoplayTimer = _.autoplay === true ? (_.autoplayDirection === 'next' ? setTimeout(function(){_.goToNextSlide()}, _.autoplayDelay) : setTimeout(function(){_.goToPrevSlide()}, _.autoplayDelay)) : null;
+      _.autoplayTimer = _.autoplay === true ? (_.autoplayDirection == 'next' ? setTimeout(function(){_.goToNextSlide()}, _.autoplayDelay) : setTimeout(function(){_.goToPrevSlide()}, _.autoplayDelay)) : null;
     }
   };
 
@@ -379,7 +379,7 @@
   PureJSCarousel.prototype.startAutoPlay = function (direction)
   {
     this.autoplay = true;
-    this.autoplayDirection = direction;
+    this.autoplayDirection = direction || 'next';
     this.goToNextSlide();
   }
 
