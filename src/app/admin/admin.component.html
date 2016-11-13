@@ -1,22 +1,25 @@
-<nav>
-    <div class="nav-wrapper">
-      <!-- <a href="#" class="brand-logo left">Admin</a> -->
-      <ul id="nav-mobile" class="center">
-        <li *ngFor="let config of itemConfigList">
-          <a routerLink="{{ config.route }}" routerLinkActive="active">
-            {{ config.text | uppercase}}
-          </a>
-        </li>
-        <li></li>
-        <li><a routerLink="calendar" routerLinkActive="active">CALENDRIER</a></li>
-        <li><a routerLink="newsletter" routerLinkActive="active">NEWSLETTER</a></li>
-        <li><a (click)="logout()">LOGOUT</a></li>
-      </ul>
-    </div>
-  </nav>
-<section id="main-container">
-  <router-outlet></router-outlet>
-</section>
+<div class="admin-content">
+  <nav>
+      <div class="nav-wrapper">
+        <!-- <a href="#" class="brand-logo left">Admin</a> -->
+        <ul id="nav-mobile" class="center">
+          <li><a (click)="backToWebsite()">Retour au site</a></li>
+          <li *ngFor="let config of itemConfigList">
+            <a routerLink="{{ config.route }}" routerLinkActive="active">
+              {{ config.text | uppercase}}
+            </a>
+          </li>
+          <li></li>
+          <li><a routerLink="calendar" routerLinkActive="active">CALENDRIER</a></li>
+          <li><a routerLink="newsletter" routerLinkActive="active">NEWSLETTER</a></li>
+          <li><a (click)="logout()">LOGOUT</a></li>
+        </ul>
+      </div>
+    </nav>
+  <section id="main-container">
+    <router-outlet></router-outlet>
+  </section>
+</div>
 
 
 

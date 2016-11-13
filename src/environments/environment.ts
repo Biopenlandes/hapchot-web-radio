@@ -4,5 +4,11 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  uploadDir: "http://jeanot.fr/hapchot-server/uploads/"
 };
+
+//const uploadDir = "https://hapchot-web-radio-server.herokuapp.com/uploads/";
+//const uploadDir = "http://localim.toile-libre.org/hapchot-server/uploads/";
+//const uploadDir = "http://jeanot.fr/hapchot-server/uploads/";
+//const uploadDir = "../hapchot-server/uploads/";

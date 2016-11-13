@@ -25,6 +25,11 @@ export class AdminComponent implements OnInit {
   {
     this.authService.logout();
     console.log("logout " + this.authService.isLoggedIn);
+    this.backToWebsite();
+  }
+
+  backToWebsite()
+  {
     this.router.navigate(['/']);
   }
 

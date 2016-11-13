@@ -24,4 +24,13 @@ export class ProgramListComponent implements OnInit {
     this.router.navigate(['/emission', program.slug]);
   }
 
+  onProgramHover(program: Program, theme: any) {
+    theme.currentProgramSubtitle = program.subtitle;
+  }
+
+  onProgramLeave(theme:any)
+  {
+    theme.currentProgramSubtitle = null;
+  }
+
 }

@@ -1,4 +1,4 @@
-const uploadDir = "https://hapchot-web-radio-server.herokuapp.com/uploads/";
+import { environment } from '../../environments/environment';
 
 export class Picture
 {
@@ -15,6 +15,6 @@ export class Picture
 
   private getPath(type : string)
   {
-    return uploadDir + type + '/' + this.pictureName;
+    return environment.uploadDir + type + '/' + this.pictureName;
   }
 }

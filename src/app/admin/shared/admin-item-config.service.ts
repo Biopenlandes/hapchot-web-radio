@@ -8,9 +8,9 @@ import 'rxjs/add/operator/share';
 
 
 const AIConfigList : AdminItemConfig[] = 
-[
-  new AdminItemConfig(AIType.Hangout,"sortie"    ,"une sortie"      , "la sortie"  ,"de la sortie"    , "sorties",false, false),
+[ 
   new AdminItemConfig(AIType.News   ,"actualité"  ,"une actualité"   ,"l'actualité", "de l'actualité"  , "actus", false, false),
+  new AdminItemConfig(AIType.Hangout,"sortie"    ,"une sortie"      , "la sortie"  ,"de la sortie"    , "sorties",false, false),
   new AdminItemConfig(AIType.Podcast,"podcast"    ,"un podcast"    ,"le podcast"    , "du podcast"    , "podcasts", false, false, AIType.Program),
   new AdminItemConfig(AIType.Program,"émission"  ,"une émission"    ,"l'émission"  , "de l'émission"  , "emissions", true, false, AIType.Theme),
   new AdminItemConfig(AIType.Theme  ,"thème"    ,"un thème"        , "le thème"  , "de la sortie"      , "themes", true, true),

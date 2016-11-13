@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  uploadDir: "http://jeanot.fr/hapchot-server/uploads/"
 };

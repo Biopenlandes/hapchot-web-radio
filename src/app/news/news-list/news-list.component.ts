@@ -32,7 +32,7 @@ export class NewsListComponent implements OnInit {
     });
     this.db.getLatestPodcasts(3).subscribe(podcasts => 
     {
-      console.log("Lastest podcasts", podcasts);
+      //console.log("Lastest podcasts", podcasts);
       this.podcasts = podcasts;
       this.isPodcastsInitialized = true; 
       this.handleNewItems(); 
