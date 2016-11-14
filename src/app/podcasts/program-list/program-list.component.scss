@@ -46,6 +46,14 @@
     padding: .2rem 1rem;
     background-color: rgba(49, 125, 128, 0.55);
 
+    &.color0 { background-color: rgba(0, 125, 0, 0.55); }
+    &.color1 { background-color: rgba(0, 125, 128, 0.55);}
+    &.color2 { background-color: rgba(49, 0, 0, 0.55); }
+    &.color3 { background-color: rgba(0, 0, 128, 0.55);   }
+    &.color4 { background-color: rgba(49, 0, 128, 0.55);}
+    &.color5 { background-color: rgba(49, 125, 128, 0.55); }
+    &.color6 { background-color: rgba(49, 125, 0, 0.55);  }
+
     &:hover
     {
       cursor: pointer;
@@ -53,6 +61,15 @@
       transition: all .3s ease;
       .program-title{ color: $color-white; text-shadow: none;}
       .program-subtitle {  }
+
+      &.color0 { background-color: rgba(0, 91, 0, 0.9); }
+      &.color1 { background-color: rgba(0, 91, 93, 0.9); }
+      &.color2 { background-color: rgba(37, 0, 0, 0.9); }
+      &.color3 { background-color: rgba(0, 0, 93, 0.9);   }
+      &.color4 { background-color: rgba(37, 0, 93, 0.9);}
+      &.color5 { background-color: rgba(37, 91, 93, 0.9); }
+      &.color6 { background-color: rgba(37, 91, 0, 0.9); }
+
     }
 
     .program-title

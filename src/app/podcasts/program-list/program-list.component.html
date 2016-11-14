@@ -1,14 +1,14 @@
 <h2 class="square color-blue">Les emissions</h2>
 
-<div class="theme-item" *ngFor="let theme of themes">
+<div class="theme-item" *ngFor="let theme of themes; let i = index">
+  
+  <div [ngClass]="'color'+i" class="theme-title"><h3>{{ theme.title }}</h3></div>
 
-  <div class="theme-title"><h3>{{ theme.title }}</h3></div>
-
-  <div class="program-item" *ngFor="let program of theme.programs" 
+  <div class="program-item" [ngClass]="'color'+i" *ngFor="let program of theme.programs" 
   (click)="onSelect(program)"
   on-mouseover='onProgramHover(program, theme)' 
   on-mouseleave='onProgramLeave(theme)'>
-    <span class="program-title">{{ program.title }}</span>
+    <span class="program-title" [ngClass]="'color'+i">{{ program.title }}</span>
   </div>
 
   <div class="program-subtitle">{{ theme.currentProgramSubtitle }}</div>
