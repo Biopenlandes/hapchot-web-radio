@@ -12,14 +12,18 @@ app-sound-player
   top : 0;
   bottom :0;
   left : 0;
-  width : $sidebar-width;
+  display: none;
+  @media screen and (min-width: 850px) { display:block; width : $sidebar-width-medium-screen; }
+  @media screen and (min-width: 1000px) { display:block; width : $sidebar-width-large-screen; }
+  
 }
 
 #main-page
 {
   position: relative;
   min-height: 100%;
-  margin-left : $sidebar-width;
+  @media screen and (min-width: 850px) { margin-left : $sidebar-width-medium-screen; }
+  @media screen and (min-width: 1000px) { margin-left : $sidebar-width-large-screen; }
   overflow: hidden;
   background-color: $color-dark;
   font-family: 'Open Sans', sans-serif;

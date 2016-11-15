@@ -12,6 +12,14 @@ $color-pink-dark: #b54735;
 $color-grey: rgba(24, 26, 27, 0.89); 
 $color-dark-grey: #474a4c;
 
-$sidebar-width: 220px;
+$sidebar-width-medium-screen: 180px;
+$sidebar-width-large-screen: 220px;
 $slider-height: 200px;
 $slider-width: 300px;
+
+$small-screen-up: 601px !default;
+$medium-screen-up: 851px !default;
+$large-screen-up: 1001px !default;
+$small-screen: 600px !default;
+$medium-screen: 850px !default;
+$large-screen: 1000px !default;

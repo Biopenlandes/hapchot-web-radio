@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { DatabaseService }from '../shared/database.service';
@@ -8,7 +8,8 @@ import { AIType } from '../admin/shared/admin-item-config.module';
 @Component({
   selector: 'app-presentation',
   templateUrl: './presentation.component.html',
-  styleUrls: ['./presentation.component.scss']
+  styleUrls: ['./presentation.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PresentationComponent implements OnInit {
 

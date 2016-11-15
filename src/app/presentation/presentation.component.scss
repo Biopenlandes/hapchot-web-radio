@@ -1,6 +1,52 @@
+/deep/
+{
+
 #content
 {
-  padding: 1rem 2rem;
+  padding: 0 2rem 4rem 2rem;
+
+  h2, h2 span, h2 strong
+  {
+    clear: both !important;
+    font-weight: bold !important;
+    font-family: anton !important;
+    font-size: 1.5rem !important;
+    text-transform: uppercase !important;
+    margin-bottom: 1.5rem;
+  } 
+
+  p { margin: 0;} 
+
+  div
+  {
+    @media screen and (min-width: 1000px)
+    {
+      width: 33% !important;
+      padding: 0 2rem;
+    }
+
+    @media screen and (min-width: 850px)
+    {
+      width: 33% !important;
+      padding: 0 1rem;
+    }
+
+    width: 50% !important;
+    padding: 0 1rem;
+
+    text-align: center;
+    float: left;
+    display: inline-block;    
+    margin-bottom: 1.5rem;
+
+    img
+    {
+      width: 100% !important;
+      height: auto !important;
+    }
+  }      
+}
+
 }
 
 #presentation-picture
