@@ -5,8 +5,12 @@
   background-color : $color-dark;
   color : $color-white;
   text-align: center;
-  font-size: .9rem;
-  padding-top:2rem;
+  font-size: .9rem; 
+
+  @media screen and (min-width: 850px) 
+  {
+    padding-top:2rem;
+  }
 }
 
 h3
@@ -33,15 +37,27 @@ h3
 {
   font-size: 1.2rem;
   height: 2.7rem;
+  margin: 0 auto;
+  @media screen and (min-width: 850px) 
+  {
+    margin: 0;
+  }
 }
 
 .player-picture
 {
   position: relative;
-  width : 150px;
-  height: 150px;
-  margin: 0 auto;
-  margin-bottom: .5rem;
+  width: 130px;
+  height: 130px;
+  margin: 10px;  
+
+  @media screen and (min-width: 850px) 
+  {
+    width : 150px;
+    height: 150px;
+    margin: 0 auto;
+    margin-bottom: .5rem;
+  }
 
   img
   {
@@ -49,7 +65,7 @@ h3
     height: 100%;
   }
 
-  .btn-play
+  .btn-control 
   {
     width: 60px;
     height: 60px;
@@ -64,10 +80,13 @@ h3
     transition: background .2s linear;
     border-radius: 100px;
     background-clip: padding-box;
-    background-image: url('assets/img/play-button-white.png');
+    
     background-size: 22px 24px;
     background-position: 54% 50%;
     background-repeat: no-repeat;
+
+    &.btn-play { background-image: url('assets/img/play-button-white.png'); }
+    &.btn-stop { background-image: url('assets/img/stop-button-white.png'); }
 
     &:hover
     {
@@ -80,9 +99,14 @@ h3
 #radio-player
 {
   margin-bottom: .7rem;
+  height: 100%;
+  @media screen and (min-width: 850px) 
+  {
+    height: auto;
+  }  
 
   .player-picture
-  { 
+  {   
 
     #picture-loader
     {
@@ -120,11 +144,42 @@ h3
   #track-title
   {
     font-weight: 500;
+    /* width: 50%;
+    @media screen and (min-width: 850px) 
+    {
+      width: 100%;
+    } */
   }
 
   #track-artist
   {
     font-style: italic;
+    /* width: 50%;
+    @media screen and (min-width: 850px) 
+    {
+      width: 100%;
+    } */
+  }
+}
+
+.player-picture-container
+{
+  float: left;
+  height: 100%;
+  @media screen and (min-width: 850px) 
+  {
+    height: auto;
+    float: none;
+  }
+}
+
+.radio-info-container
+{
+  margin-right: 10px;
+  height: 100%;
+  @media screen and (min-width: 850px) 
+  {
+    height: auto;
   }
 }
 
@@ -177,6 +232,10 @@ h3
 
 #podcast-player
 {
-  /* position: absolute;
+  height: 100%;
+  @media screen and (min-width: 850px) 
+  {
+    height: auto;
+  } /* position: absolute;
   bottom: 0; */
 }

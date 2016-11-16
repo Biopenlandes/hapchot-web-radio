@@ -1,0 +1,55 @@
+#logo-container
+{
+  margin-bottom: .7rem;
+  @media screen and (max-width : 600px)
+  {
+    margin-top: 1rem;
+  }
+
+  &.style-aside
+  {
+    position: absolute;
+    left: 100%;
+    top: 2rem;
+    margin-bottom: 0;
+    margin-left: 10px;
+    width: 30px;
+  }
+}
+
+.logo-jeanot
+{
+  width: 120px;
+
+  &.style-aside
+  {
+    width: 45px;
+    margin-bottom: 5px;
+  }
+}
+
+.logo-social-container
+{
+  margin-left: 6px;
+  display: inline-block;
+
+  &.style-aside
+  {
+    margin: 5px 0;
+  }
+}
+
+.logo-social
+{
+  margin: 0 .3rem;
+  display: inline-block;
+  width: 25px;
+
+  &.style-aside
+  {
+    margin: 5px 0;
+  }
+  
+  
+  
+}

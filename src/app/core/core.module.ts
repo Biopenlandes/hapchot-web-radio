@@ -15,6 +15,9 @@ import { HeaderComponent } from './header/header.component';
 
 import { SoundPlayerComponent } from '../sound-player/sound-player.component';
 
+import { MatchMediaService } from '../shared/match-media.service';
+import { SocialLinksComponent } from './social-links/social-links.component';
+
 @NgModule({
   imports: [ 
     CommonModule, 
@@ -31,7 +34,7 @@ import { SoundPlayerComponent } from '../sound-player/sound-player.component';
     HeaderComponent,
     SoundPlayerComponent
   ],
-  providers: [ ]
+  providers: [ MatchMediaService ]
 })
 export class CoreModule {}
 

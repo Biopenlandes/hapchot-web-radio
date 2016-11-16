@@ -34,26 +34,35 @@
     {
       color: $color-blue;
     }
-
-
   }
 
   .purejscarousel-btn-next {
-    border-bottom: 8px solid ;
-    border-right: 8px solid ;
-    right: 20px;
-    -moz-transform: rotate(315deg);
-    -webkit-transform: rotate(315deg);
-    transform: rotate(315deg);
+    display:none;
+    @media screen and (min-width: 500px)
+    {
+      display: block;
+      border-bottom: 8px solid ;
+      border-right: 8px solid ;
+      right: 20px;
+      -moz-transform: rotate(315deg);
+      -webkit-transform: rotate(315deg);
+      transform: rotate(315deg);
+    }
+    
   }
 
   .purejscarousel-btn-prev {
-    border-bottom: 8px solid ;
-    border-left: 8px solid ;
-    left: 20px;
-    -moz-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
+    display:none;
+    @media screen and (min-width: 500px)
+    {
+      display: block;
+      border-bottom: 8px solid ;
+      border-left: 8px solid ;
+      left: 20px;
+      -moz-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
   }
 
   .purejscarousel-dots-container {

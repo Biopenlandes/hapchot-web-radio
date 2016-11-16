@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-
+import { MatchMediaService } from '../shared/match-media.service';
 import { Hangout } from '../hangouts/entity/hangout';
 
 declare var $ : any;
@@ -11,7 +11,7 @@ declare var $ : any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private matchMediaService : MatchMediaService) { }
 
   ngOnInit() {
   }

@@ -8,7 +8,7 @@ import { NewsListComponent } from '../news/news-list/news-list.component';
 import { NewsItemComponent } from '../news/news-list/news-item/news-item.component';
 import { HangoutsGridComponent } from '../hangouts/hangouts-grid/hangouts-grid.component';
 import { ProgramListComponent } from '../podcasts/program-list/program-list.component';
-
+import { SocialLinksComponent } from '../core/social-links/social-links.component';
 
 
 @NgModule({
@@ -21,7 +21,9 @@ import { ProgramListComponent } from '../podcasts/program-list/program-list.comp
     NewsListComponent,
     NewsItemComponent,
     HangoutsGridComponent,
-    ProgramListComponent, 
-  ]
+    ProgramListComponent,
+    SocialLinksComponent 
+  ],
+  exports: [ SocialLinksComponent ]
 })
 export class HomeModule { }

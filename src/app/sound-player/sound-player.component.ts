@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DatabaseService } from '../shared/database.service';
 import { SoundPlayerService, RadioState } from './sound-player.service';
+import { MatchMediaService } from '../shared/match-media.service';
 
 import { Podcast } from '../podcasts/entity/podcast';
 import { Track } from './track.class'
@@ -22,7 +23,8 @@ export class SoundPlayerComponent implements OnInit {
   nextProgram;
 
   constructor(private db : DatabaseService,
-              private soundPlayer : SoundPlayerService) { }
+              private soundPlayer : SoundPlayerService,
+              private matchMedia : MatchMediaService) { }
 
   ngOnInit() 
   {

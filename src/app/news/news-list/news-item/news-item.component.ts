@@ -4,7 +4,7 @@ import { ImageContentAdmnistrableItem } from '../../../shared/image-content-admi
 import { AIType } from '../../../admin/shared/admin-item-config.types';
 
 import { SoundPlayerService } from '../../../sound-player/sound-player.service';
-
+import { MatchMediaService } from '../../../shared/match-media.service';
 
 declare var $ : any;
 declare var jQuery : any;
@@ -21,7 +21,9 @@ export class NewsItemComponent implements OnInit, AfterViewInit {
 
   AIType = AIType;
 
-  constructor(private soundPlayer : SoundPlayerService, private router : Router) {}
+  constructor(private soundPlayer : SoundPlayerService, 
+              private router : Router,
+              private matchMedia : MatchMediaService) {}
 
   ngOnInit() {  
     //console.log("ngOnInit news item", this.item.description); 

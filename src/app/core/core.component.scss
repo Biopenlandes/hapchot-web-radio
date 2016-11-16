@@ -9,12 +9,24 @@ app-sound-player
 {
   position: fixed;
   z-index: 2;
-  top : 0;
-  bottom :0;
-  left : 0;
-  display: none;
-  @media screen and (min-width: 850px) { display:block; width : $sidebar-width-medium-screen; }
-  @media screen and (min-width: 1000px) { display:block; width : $sidebar-width-large-screen; }
+  @media screen and (max-width: 849px)
+  {
+    bottom : 0;
+    left: 0;
+    right: 0;
+    height : $sidebar-height-small-screen; 
+  }
+  @media screen and (min-width: 850px) 
+  { 
+    top : 0;
+    bottom :0;
+    left : 0;
+    width : $sidebar-width-medium-screen; 
+  }
+  @media screen and (min-width: 1000px) 
+  { 
+    width : $sidebar-width-large-screen; 
+  }
   
 }
 
@@ -34,40 +46,22 @@ app-sound-player
 {
   max-width: 900px;
   min-height: 300px;
-  padding: 2rem;
-  padding-top: 1.5rem;
+  padding: 1.5rem 0 1rem 0;
+
+  @media screen and (min-width: 400px) 
+  { 
+    padding: 1rem;
+  }
+  
+  @media screen and (min-width: 600px) 
+  { 
+    padding: 2rem;
+    padding-top: 1.5rem;
+  }
+
   margin : 0 auto;
   position: relative;
-  background-color: $color-yellow;
-
-  #logo-container
-  {
-    //margin-top: -.8rem;
-    position: absolute;
-    left: 100%;
-    top: 2rem;
-    margin-left: 10px;
-    width: 30px;
-  }
-
-  .logo-jeanot
-  {
-    width: 45px;
-    margin-bottom: 5px;
-  }
-
-  .logo-social-container
-  {
-    margin-left: 6px;
-    display: inline-block;
-  }
-
-  .logo-social
-  {
-    display: inline-block;
-    width: 25px;
-    margin: 5px 0;
-  }
+  background-color: $color-yellow; 
 }
 
 footer
@@ -159,7 +153,12 @@ footer
   {
     font-family: Anton;  
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 2.5rem;
+    @media screen and (min-width: 600px) 
+    { 
+      font-size: 3.5rem;
+    }
+    
     letter-spacing: .1px;
     margin: .5rem 0;
   }

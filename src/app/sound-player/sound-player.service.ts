@@ -100,6 +100,13 @@ export class SoundPlayerService {
     else console.log("Mixcloud is not yet initialized");
   }
 
+  stopPodcast()
+  {
+    this.pausePodcast();
+    this.setModeRadio(true);
+    this.setRadioState(RadioState.Stopped);
+  }
+
   // -----------------
   //      COMMUN
   // -----------------

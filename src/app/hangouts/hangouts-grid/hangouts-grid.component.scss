@@ -15,9 +15,20 @@ h2
 .hangout
 {
   position: relative;
-  width: 100%;
-  margin-bottom: .5rem;
+
+  width: 50%;
+  display: inline-block;
+  float: left;
+  padding: 0 1rem;
   transition: all .3s ease;
+
+  @media screen and (min-width: 600px)
+  {
+    width: 100%;
+    padding: 0;
+    margin-bottom: .5rem;
+  }  
+  
 
   &:hover
   {
@@ -65,7 +76,15 @@ h2
   .item-bottom
   {
     font-size: .8rem;
-    width: 100%;
+    right: 1rem;
+    left: 1rem;
+
+     @media screen and (min-width: 600px)
+    {
+      right: 0;
+      left: 0;
+    }  
+
     position: absolute;
     bottom: 0;
     transition: background-color .3s ease;

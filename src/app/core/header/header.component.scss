@@ -4,7 +4,11 @@
 {
   $panel-height: 7rem;
 
-  height: $panel-height;
+  @media screen and (min-width: 600px) 
+  { 
+    height: $panel-height;
+  }
+  
   background-color:$color-dark;
   color : $color-yellow;
   font-family: Anton;
@@ -13,11 +17,17 @@
   
   h1
   {
-    font-size: 4rem;
-    line-height: 7rem;
-    text-transform: uppercase;
-    margin: 0 2rem;
+    font-size: 2rem;
+    
+    text-transform: uppercase;   
     display: inline-block;
+
+    @media screen and (min-width: 600px) 
+    { 
+      font-size: 4rem;
+      line-height: 7rem;
+      margin: 0 2rem;
+    }
   }
 
   span

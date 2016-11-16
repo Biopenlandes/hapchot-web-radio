@@ -4,7 +4,8 @@
     <app-program-list></app-program-list>
   </div>
 
-  <div class="col s12 m3 center-align">     
+  <div class="col s12 m3 center-align">
+    <app-social-links *ngIf="!matchMediaService.isLargeDesktop()" [display]="'block'"></app-social-links>
     <app-newsletter></app-newsletter>    
     <app-hangouts-grid></app-hangouts-grid>
   </div>

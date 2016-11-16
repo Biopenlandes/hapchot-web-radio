@@ -6,7 +6,7 @@
     <div *ngIf="item.description" class="content-description">{{ item.description }}</div>
     <div class="content-btn">
       <button class="hapchot-btn color-red" (click)="onClick()">
-        {{ item.type == AIType.News ? 'Lire la suite' : 'Ecouter le podcast' }}
+        {{ item.type == AIType.News ? 'Lire la suite' : matchMedia.isPhone() ? 'Ecouter' : 'Ecouter le podcast'}}
       </button>
     </div>
   </div>

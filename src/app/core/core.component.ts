@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { MatchMediaService } from '../shared/match-media.service';
+
 
 @Component({
   selector: 'app-core',
@@ -7,7 +9,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class CoreComponent implements OnInit {
 
-  constructor() { }
+  constructor(private matchMediaService : MatchMediaService) { }
 
   ngOnInit() {
   }
