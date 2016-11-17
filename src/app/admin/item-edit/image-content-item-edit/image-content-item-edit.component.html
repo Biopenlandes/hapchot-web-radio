@@ -20,4 +20,20 @@
 
 <h3>Contenu {{ itemConfig.textArticleDu }}</h3>
 
-<ckeditor [(ngModel)]="imageContentItem.content" debounce="500"></ckeditor>  
+<div class="explanations">
+  <p *ngIf="itemConfig.type == AIType.Presentation">
+    Infos : ACTIVER L'OPTION "Afficher les blocs" EN BAS A DROITE DE LA TOOLBAR.
+    Ne pas mettre en forme le texte ici (changer police, taille...) il sera automatiquement mis en forme sur le site !
+    Pour les titre mettre au format "titre2".
+    Pour ajouter un membre de l'équipe, mettre l'image sous un format "division" et le texte à côté.
+  </p>
+  <p *ngIf="itemConfig.type == AIType.Friends">
+    Infos : ACTIVER L'OPTION "Afficher les blocs" EN BAS A DROITE DE LA TOOLBAR.
+    Rajouter une image à la suite des autres à l'intérieur du même bloc paragraphe, en gardant ses proportions natives.
+  </p>
+</div>
+
+<ckeditor [(ngModel)]="imageContentItem.content" 
+    debounce="500">
+    [config]="config"   
+</ckeditor>   

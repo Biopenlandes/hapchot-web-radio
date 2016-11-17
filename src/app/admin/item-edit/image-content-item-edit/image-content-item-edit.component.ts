@@ -16,6 +16,7 @@ export class ImageContentItemEditComponent implements OnInit {
   @Input() imageContentItem : ImageContentAdmnistrableItem; 
   @Input() itemConfig : AdminItemConfig;
   AIType;
+  config : any = {};
 
   constructor() { }
 
@@ -34,6 +35,12 @@ export class ImageContentItemEditComponent implements OnInit {
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15 // Creates a dropdown of 15 years to control year
     });*/
+
+    /*this.config.height = 600;    
+    this.config.autoGrow_onStartup = true;*/
+    this.config.startupOutlineBlocks = true;
+
+    console.log("ckeditor config", this.config);
 
     var vaadinUpload = document.querySelector('vaadin-upload');
     vaadinUpload.addEventListener('upload-success', 

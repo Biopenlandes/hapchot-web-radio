@@ -8,7 +8,7 @@ body, html
 app-sound-player
 {
   position: fixed;
-  z-index: 2;
+  z-index: 20;
   @media screen and (max-width: 849px)
   {
     bottom : 0;
@@ -34,6 +34,10 @@ app-sound-player
 {
   position: relative;
   min-height: 100%;
+  @media screen and (max-width: 849px)
+  {
+    margin-bottom : $sidebar-height-small-screen; 
+  }
   @media screen and (min-width: 850px) { margin-left : $sidebar-width-medium-screen; }
   @media screen and (min-width: 1000px) { margin-left : $sidebar-width-large-screen; }
   overflow: hidden;

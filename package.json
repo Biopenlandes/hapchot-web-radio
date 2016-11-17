@@ -26,7 +26,6 @@
     "@angular/router": "3.0.0",
     "@vaadin/angular2-polymer": "^1.0.0-beta5",
     "angularfire2": "^2.0.0-beta.5",
-    "ckeditor": "^4.5.11",
     "core-js": "^2.4.1",
     "dhtmlx-scheduler": "^4.3.1",
     "firebase": "^3.4.1",

@@ -11,6 +11,7 @@
       </div>
     </button>
 
+    <!-- RADIO PLAYER -->
     <div id="radio-player" *ngIf="modeRadio">
       <div class="player-picture-container">
         <div class="player-picture">
@@ -35,24 +36,39 @@
         </div>
       </div>
 
-    <div class="radio-info-container" [ngClass]="!matchMedia.isPlayerAside() ? 'valign-wrapper' : ''">
-      <button *ngIf="!matchMedia.isPlayerAside() 
-                      && (radioState == RadioState.Stopped || radioState == RadioState.Loading)" 
-              (click)="soundPlayer.toggleRadio()" class="hapchot-btn color-light" id="listen-live-button">
-        <div [ngSwitch]="radioState">
-          <div *ngSwitchCase="RadioState.Stopped">Ecouter en Direct</div>
-          <div *ngSwitchCase="RadioState.Loading">Chargement ...</div> 
-          <div *ngSwitchCase="RadioState.Playing">Arrêter le direct</div>  
+      <div class="radio-info-container" [ngClass]="!matchMedia.isPlayerAside() ? 'valign-wrapper' : ''">
+        <div class="valign">
+          <button *ngIf="!matchMedia.isPlayerAside() 
+                          && (radioState == RadioState.Stopped || radioState == RadioState.Loading)" 
+                  (click)="soundPlayer.toggleRadio()" class="hapchot-btn color-light" id="listen-live-button">
+            <div [ngSwitch]="radioState">
+              <div *ngSwitchCase="RadioState.Stopped">Ecouter en Direct</div>
+              <div *ngSwitchCase="RadioState.Loading">Chargement ...</div> 
+              <div *ngSwitchCase="RadioState.Playing">Arrêter le direct</div>  
+            </div>
+          </button>
+          
+          <div *ngIf="track.title && (radioState == RadioState.Playing)" id="track-title">{{ track.title }}</div>
+          <div *ngIf="track.artist && (radioState == RadioState.Playing)" id="track-artist">
+            {{ track.artist}}<span *ngIf="track.album"> / {{ track.album}}</span>
+          </div>
         </div>
-      </button>
-      
-      <div *ngIf="track.title && (radioState == RadioState.Playing)" id="track-title">{{ track.title }}</div>
-      <div *ngIf="track.artist && (radioState == RadioState.Playing)" id="track-artist">
-        {{ track.artist}}<span *ngIf="track.album"> / {{ track.album}}</span>
       </div>
-    </div>
-   </div>
 
+      <div id="next-program" class="smallScreen" *ngIf="!matchMedia.isPlayerAside()">
+        <h3>Prochaine Emission</h3>      
+        <div *ngIf="nextProgram">
+          <div style="text-transform: Capitalize">
+            {{ formatDate(nextProgram.start_date) }}
+            {{ formatTime(nextProgram.start_date) }}
+          </div>
+          <div id="next-program-title">{{ nextProgram.title }}</div>      
+        </div>
+      </div>
+   </div>
+   <!-- END OF RADIO PLAYER -->
+
+    <!-- PODCAST PLAYER -->
    <div id="podcast-player" [hidden]="modeRadio">
       <div class="player-picture-container">
         <div class="player-picture">
@@ -67,6 +83,7 @@
         <iframe id="mixcloud-frame" width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fhapchot%2Fvie-de-m%25C3%25A8re-la-motricit%25C3%25A9%2F&hide_cover=1&hide_artwork=1&light=1" frameborder="0"></iframe>
       </div>
     </div>
+    <!-- END OF RADIO PLAYER -->
 
     <div id="next-program" *ngIf="matchMedia.isPlayerAside()">
       <h3>Prochaine Emission</h3>      

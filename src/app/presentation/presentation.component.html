@@ -6,4 +6,6 @@
   <img [src]="presentation.pictures?.large" />
 </div>
 
-<div id="content"></div>
+<div id="content" [ngClass]="presentation.type == AIType.Presentation ? 'presentation' : 'friends'">
+  
+</div>

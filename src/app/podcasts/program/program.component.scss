@@ -1,13 +1,22 @@
 @import "../../core/variables";
 
 #program-picture
-{
-  height: 200px;
+{  
+  height: 120px;
+  margin: 1rem 0;
   text-align: center;
+
+  @media screen and (min-width: 600px)
+  {
+    height: 200px;
+  }
 
   img
   {
     height: 100%;
+    max-width: 80%;
+    object-fit: cover;
+    object-position: center;
   }
 }
 
@@ -27,7 +36,6 @@
 .podcast-container
 {
   //width: 50%;
-  height: 200px;
   display: inline-block;
   margin-bottom: 1rem;
 }

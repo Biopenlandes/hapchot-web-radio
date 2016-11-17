@@ -13,6 +13,7 @@ import { AIType } from '../admin/shared/admin-item-config.module';
 })
 export class PresentationComponent implements OnInit {
 
+  AIType = AIType;
   presentation: Presentation = new Presentation(AIType.Presentation);
 
   constructor(private db : DatabaseService, private route: ActivatedRoute ) { }
@@ -21,7 +22,6 @@ export class PresentationComponent implements OnInit {
 
     this.route.params.subscribe( (params : Params) => 
     {
-      console.log("PresentationComonent", params['slug']);
       let suscriber;
       if (params['slug'] == "le-projet") 
       {

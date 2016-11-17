@@ -59,8 +59,13 @@
     display: inline-block;
     margin: 0;
     text-transform: uppercase;
-    padding: 0 1rem;
+    padding: 0 .5rem;    
     line-height: 2.5rem;
+
+    @media screen and (min-width:600px)
+    {
+      padding: 0 1rem;
+    }
 
     &:hover
     {
