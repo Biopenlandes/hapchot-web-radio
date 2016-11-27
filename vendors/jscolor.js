@@ -12,7 +12,6 @@
 
 
 "use strict";
-²
 
 if (!window.jscolor) { window.jscolor = (function () {
 

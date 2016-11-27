@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdmnistrableItem } from '../../shared/administrable-item';
 import { DatabaseService } from '../../shared/database.service';
+
 declare var $ : any;
 declare var PureJSCarousel : any;
 
@@ -66,7 +67,7 @@ export class NewsListComponent implements OnInit {
       {
         this.items = this.items.slice(0,6);
       }
-      console.log("items",this.items);
+      //console.log("items",this.items);
       
       if (this.items.length) 
       {
@@ -89,7 +90,7 @@ export class NewsListComponent implements OnInit {
       autoplay : true,
       autoplayDelay : 3500,
       autoplayDirection : "next",
-      infinite : true
+      infiniteBasic : true
     });
   }
 

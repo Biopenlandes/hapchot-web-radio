@@ -19,6 +19,7 @@
     this.delay             = settings.delay || 0;
     this.effect            = settings.effect || 'ease-in-out';
     this.infinite          = settings.infinite || false;
+    this.infiniteBasic     = settings.infiniteBasic || false;
     this.autoplay          = settings.autoplay || false;
     this.autoplayDelay     = settings.autoplayDelay || 5000;
     this.autoplayDirection = settings.autoplayDirection || 'next';
@@ -264,7 +265,7 @@
       this.dots[i].disabled = false;
     }
     this.dots[this.activeIndex].disabled = true;
-    if (this.infinite === false) {
+    if (this.infinite === false && this.infiniteBasic === false) {
       if (this.activeIndex === this.maxIndex) {
         this.btnNext.disabled = true;
       }
@@ -292,7 +293,7 @@
   PureJSCarousel.prototype.goToNextSlide = function() {
     var newActiveIndex;
     if (this.btnNext.disabled === false) {
-      if (this.infinite === true) {
+      if (this.infinite === true || this.infiniteBasic === true) {
         newActiveIndex = this.activeIndex + 1 > this.maxIndex ? 0 : this.activeIndex + 1;
       } else {
         newActiveIndex = this.activeIndex + 1;
@@ -304,7 +305,7 @@
   PureJSCarousel.prototype.goToPrevSlide = function() {
     var newActiveIndex;
     if (this.btnPrev.disabled === false) {
-      if (this.infinite === true) {
+      if (this.infinite === true || this.infiniteBasic === true) {
         newActiveIndex = this.activeIndex - 1 < 0 ? this.maxIndex : this.activeIndex - 1;
       } else {
         newActiveIndex = this.activeIndex - 1;
@@ -327,12 +328,20 @@
       scrollWidth = scrollWidth + slidesContainerWidth - ((this.maxIndex + 1) * blockWidth);
     }
     slidesCount = scrollWidth / this.slides[0].offsetWidth;
+    
     if (this.infinite === true) {
       newPos = direction === 'next' ? currentPos - scrollWidth : currentPos + scrollWidth;
-    } else {
+    } 
+    else if (this.infiniteBasic === true)
+    {
+      newPos = direction === 'next' ? currentPos - scrollWidth : currentPos + scrollWidth;
+      if (newPos < this.minPos) newPos = 0;
+      else if(newPos > 0) newPos= this.minPos;
+    } 
+    else {
       newPos = direction === 'next' ? Math.max(this.minPos, currentPos - scrollWidth) : Math.min(0, currentPos + scrollWidth);
-    }
-
+    }    
+    
     this.disableControl();
     if ('transition' in document.body.style) {
       this.slidesContainer.style.transition = 'margin-left ' + this.speed + 'ms' + ' ' + this.effect + ' ' + this.delay + 'ms';
@@ -366,6 +375,7 @@
         _.slidesContainer.style.marginLeft = - _.slidesContainer.offsetWidth / 3 + 'px';
       }
       _.enableControl();
+      clearTimeout(_.autoplayTimer);
       _.autoplayTimer = _.autoplay === true ? (_.autoplayDirection == 'next' ? setTimeout(function(){_.goToNextSlide()}, _.autoplayDelay) : setTimeout(function(){_.goToPrevSlide()}, _.autoplayDelay)) : null;
     }
   };

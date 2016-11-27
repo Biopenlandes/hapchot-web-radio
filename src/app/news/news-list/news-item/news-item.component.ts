@@ -51,11 +51,11 @@ export class NewsItemComponent implements OnInit, AfterViewInit {
       
       this.content.nativeElement.innerHTML = content_;
     }
-    else console.log("pas item content");
   }
 
   onClick()
   {
+    console.log("On clic item type", this.item.type);
     if (this.item.type == AIType.News)
     {
       this.router.navigate(['/actu', this.item.slug]);

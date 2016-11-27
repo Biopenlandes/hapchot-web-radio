@@ -50,7 +50,7 @@ app-sound-player
 {
   max-width: 900px;
   min-height: 300px;
-  padding: 1.5rem 0 1rem 0;
+  padding: 0.75rem 0 1rem 0;
 
   @media screen and (min-width: 400px) 
   { 
@@ -157,7 +157,7 @@ footer
   {
     font-family: Anton;  
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     @media screen and (min-width: 600px) 
     { 
       font-size: 3.5rem;

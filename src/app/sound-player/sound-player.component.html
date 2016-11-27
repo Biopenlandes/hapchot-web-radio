@@ -55,14 +55,18 @@
         </div>
       </div>
 
-      <div id="next-program" class="smallScreen" *ngIf="!matchMedia.isPlayerAside()">
-        <h3>Prochaine Emission</h3>      
-        <div *ngIf="nextProgram">
-          <div style="text-transform: Capitalize">
-            {{ formatDate(nextProgram.start_date) }}
-            {{ formatTime(nextProgram.start_date) }}
+      <div id="next-program" 
+            class="smallScreen valign-wrapper" 
+            *ngIf="!matchMedia.isPlayerAside()">
+        <div class="valign">
+          <h3>Prochaine Emission</h3>      
+          <div *ngIf="nextProgram" class="next-program-detail">
+            <div style="text-transform: Capitalize">
+              {{ formatDate(nextProgram.start_date) }}
+              {{ formatTime(nextProgram.start_date) }}
+            </div>
+            <div id="next-program-title">{{ nextProgram.title }}</div>      
           </div>
-          <div id="next-program-title">{{ nextProgram.title }}</div>      
         </div>
       </div>
    </div>
@@ -78,7 +82,7 @@
         </div>
       </div>
 
-      <div class="radio-info-container" [ngClass]="!matchMedia.isPlayerAside() ? 'valign-wrapper' : ''">
+      <div class="radio-info-container podcast" [ngClass]="!matchMedia.isPlayerAside() ? 'valign-wrapper' : ''">
       <!-- <h3>En écoute</h3> -->
         <iframe id="mixcloud-frame" width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?feed=https%3A%2F%2Fwww.mixcloud.com%2Fhapchot%2Fvie-de-m%25C3%25A8re-la-motricit%25C3%25A9%2F&hide_cover=1&hide_artwork=1&light=1" frameborder="0"></iframe>
       </div>
@@ -87,7 +91,7 @@
 
     <div id="next-program" *ngIf="matchMedia.isPlayerAside()">
       <h3>Prochaine Emission</h3>      
-      <div *ngIf="nextProgram">
+      <div *ngIf="nextProgram" class="next-program-detail">
         <div style="text-transform: Capitalize">
           {{ formatDate(nextProgram.start_date) }}
           {{ formatTime(nextProgram.start_date) }}

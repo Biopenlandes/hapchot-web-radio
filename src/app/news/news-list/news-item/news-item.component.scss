@@ -32,7 +32,7 @@
       margin-bottom: .5rem;
       font-weight: 600;
       text-transform: capitalize;      
-      overflow: hidden;
+      //overflow: hidden;
     }
 
     .content-description
@@ -50,6 +50,7 @@
       background-color: $color-white;
       padding-bottom: 22px;
       text-align: center;
+      
     }
   }
 }
