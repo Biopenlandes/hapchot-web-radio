@@ -1,7 +1,5 @@
 import { ModuleWithProviders, NgModule }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CoreComponent } from './core/core.component';
-import { AdminComponent } from './admin/admin.component';
 
 const appRoutes: Routes = [
 ];

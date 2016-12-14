@@ -9,7 +9,7 @@
       "outDir": "dist",
       "assets": "assets",
       "index": "index.html",
-      "main": "main-polymer.ts",
+      "main": "main.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.json",
       "prefix": "app",
@@ -25,13 +25,12 @@
         "../node_modules/dhtmlx-scheduler/codebase/ext/dhtmlxscheduler_recurring.js",
         "../node_modules/dhtmlx-scheduler/codebase/locale/locale_fr.js",
         "../node_modules/dhtmlx-scheduler/codebase/locale/recurring/locale_recurring_fr.js",
-        "assets/bower_components/webcomponentsjs/webcomponents-lite.min.js",
         "../node_modules/jquery/dist/jquery.js",
+        "../vendors/jquery-form.min.js",        
         "../node_modules/sortablejs/Sortable.js",
         "../vendors/PureJSCarousel/purejscarousel.js",
         "../node_modules/firebase/firebase.js",
-        "../vendors/dhtmlx_scheduler_firebase.js",
-        "../vendors/jscolor.min.js"
+        "../vendors/dhtmlx_scheduler_firebase.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
