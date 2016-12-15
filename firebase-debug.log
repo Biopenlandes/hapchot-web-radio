@@ -1,10 +1,13 @@
 [debug] ----------------------------------------------------------------------
-[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\MARIETTE\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --project hapchot-web-radio
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\MARIETTE\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --project default
 [debug] CLI Version:  3.2.0
 [debug] Platform:     win32
 [debug] Node Version: v6.5.0
-[debug] Time:         Thu Dec 15 2016 13:55:44 GMT+0100 (Paris, Madrid)
+[debug] Time:         Thu Dec 15 2016 14:02:44 GMT+0100 (Paris, Madrid)
 [debug] ----------------------------------------------------------------------
 [debug] 
 [debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
-[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/hapchot-web-radio 
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/hapchot-web-radio-43cd6 
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/hapchot-web-radio-43cd6/tokens 
+[debug] <<< HTTP RESPONSE 200

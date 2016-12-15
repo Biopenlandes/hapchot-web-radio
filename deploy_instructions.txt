@@ -1,3 +1,3 @@
 1) (delete dist dir, rm -rf dist)
 2) ng build --prod
-3) firebase deploy --project hapchot-web-radio
+3) firebase deploy --project default
