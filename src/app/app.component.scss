@@ -1,0 +1,59 @@
+.sprite {
+    background-image: url('../assets/spritesheet.png');
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-favicon {
+    width: 30px;
+    height: 30px;
+    background-position: -5px -5px;
+}
+
+.sprite-logo-facebook {
+    width: 200px;
+    height: 200px;
+    background-position: -45px -5px;
+}
+
+.sprite-logo-google-play {
+    width: 100px;
+    height: 100px;
+    background-position: -255px -5px;
+}
+
+.sprite-logo-jeanot {
+    width: 250px;
+    height: 102px;
+    background-position: -5px -215px;
+}
+
+.sprite-logo-jeanot-vertical {
+    width: 102px;
+    height: 250px;
+    background-position: -265px -115px;
+}
+
+.sprite-logo-twitter {
+    width: 100px;
+    height: 100px;
+    background-position: -365px -5px;
+}
+
+.sprite-play-button-white {
+    width: 22px;
+    height: 24px;
+    background-position: -475px -5px;
+}
+
+.sprite-radio-cover {
+    width: 200px;
+    height: 200px;
+    background-position: -507px -5px;
+}
+
+.sprite-stop-button-white {
+    width: 22px;
+    height: 24px;
+    background-position: -377px -215px;
+}

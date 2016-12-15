@@ -15,7 +15,7 @@
     <div id="radio-player" *ngIf="modeRadio">
       <div class="player-picture-container">
         <div class="player-picture">
-          <img (click)="soundPlayer.stopRadio()" [src]="(track.cover && (radioState == RadioState.Playing)) ? track.cover : 'assets/img/radio-cover.jpg'" /> 
+          <img (click)="soundPlayer.stopRadio()" [src]="(track.cover && (radioState == RadioState.Playing)) ? track.cover : 'assets/img/radio-cover.png'" /> 
           <div *ngIf="radioState == RadioState.Stopped" class="btn-control btn-play"
             (click)="soundPlayer.playRadio()"></div>
           <div *ngIf="radioState == RadioState.Playing" class="btn-control btn-stop"
@@ -76,7 +76,7 @@
    <div id="podcast-player" [hidden]="modeRadio">
       <div class="player-picture-container">
         <div class="player-picture">
-          <img [src]="track.cover ? track.cover : 'assets/img/radio-cover.jpg'" />  
+          <img [src]="track.cover ? track.cover : 'assets/img/radio-cover.png'" />  
           <div class="btn-control btn-stop"
             (click)="soundPlayer.stopPodcast()"></div>       
         </div>
