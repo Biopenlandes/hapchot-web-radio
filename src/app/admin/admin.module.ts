@@ -1,7 +1,7 @@
 import { NgModule }                from '@angular/core';
 import { CommonModule }            from '@angular/common';
 import { FormsModule }             from '@angular/forms';
-import { CKEditorModule }          from 'ng2-ckeditor';
+/*import { CKEditorModule }          from 'ng2-ckeditor';*/
 /*import { PolymerElement }          from '@vaadin/angular2-polymer';*/
 import { HttpModule, JsonpModule }  from '@angular/http';
 
@@ -37,7 +37,7 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     CommonModule, 
     AdminRouting, 
     FormsModule, 
-    CKEditorModule,
+    /*CKEditorModule,*/
     HttpModule,
     JsonpModule
   ],

@@ -3,7 +3,7 @@
     "rules": "database.rules.json"
   },
   "hosting": {
-    "public": "dist-admin",
+    "public": "dist",
     "rewrites": [ {
       "source": "**",
       "destination": "/index.html"
