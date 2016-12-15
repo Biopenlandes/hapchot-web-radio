@@ -7,6 +7,9 @@ import { Podcast } from '../podcasts/entity/podcast';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
+
 declare var soundManager: any;
 declare var Mixcloud: any;
 

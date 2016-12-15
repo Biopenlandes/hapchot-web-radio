@@ -8,8 +8,7 @@ import { AIType } from '../admin/shared/admin-item-config.module';
 @Component({
   selector: 'app-presentation',
   templateUrl: './presentation.component.html',
-  styleUrls: ['./presentation.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./presentation.component.scss']
 })
 export class PresentationComponent implements OnInit {
 

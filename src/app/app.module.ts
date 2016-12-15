@@ -7,7 +7,7 @@ import { RouterModule }                  from '@angular/router';
 import { AppComponent }                  from './app.component';
 import { HapchotWebRadioRoutingModule }  from './app.routing';
 
-import { AdminModule }                   from './admin/admin.module';
+//import { AdminModule }                   from './admin/admin.module';
 import { CoreModule }                    from './core/core.module';
 
 import { AngularFireModule, AngularFire }from 'angularfire2';
@@ -32,7 +32,7 @@ import { MaterializeModule } from 'angular2-materialize';*/
     HapchotWebRadioRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
     CoreModule,
-    AdminModule,
+    //AdminModule,
     CalendarModule
   ],
   providers: [ AngularFire, DatabaseService ],

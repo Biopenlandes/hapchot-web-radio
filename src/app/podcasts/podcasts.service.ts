@@ -5,6 +5,7 @@ import { Podcast } from './entity/podcast';
 import { Observable }       from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PodcastsService {

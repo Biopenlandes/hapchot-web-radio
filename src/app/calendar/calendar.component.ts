@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router'
 import { DatabaseService } from '../shared/database.service';
 import { Program } from '../podcasts/entity/program';
-import { AuthService }      from '../admin/login/auth.service';
+//import { AuthService }      from '../admin/login/auth.service';
 
 declare var scheduler: any;
 declare var Firebase: any;
@@ -19,11 +19,11 @@ export class CalendarComponent implements OnInit {
   initSchedulerTimer : any;
   readyToInit : boolean = false;
 
-  constructor(private db : DatabaseService, public authService: AuthService, private router : Router) { }
+  constructor(private db : DatabaseService, private router : Router) { }
 
   ngOnInit() 
   {    
-    this.authService.isLoggedIn.take(1).subscribe(isLogged =>
+    /*this.authService.isLoggedIn.take(1).subscribe(isLogged =>
     {
       this.adminMode = isLogged;
       this.db.getPrograms().subscribe(programs =>
@@ -33,7 +33,15 @@ export class CalendarComponent implements OnInit {
         clearTimeout(this.initSchedulerTimer);
         this.initSchedulerTimer = setTimeout( () => this.initScheduler(), 500);
       });        
-    });    
+    });*/  
+
+    this.db.getPrograms().subscribe(programs =>
+    {
+      this.programs = programs;
+      this.readyToInit = true;
+      clearTimeout(this.initSchedulerTimer);
+      this.initSchedulerTimer = setTimeout( () => this.initScheduler(), 500);
+    });   
   }
 
   navigateToAdmin()

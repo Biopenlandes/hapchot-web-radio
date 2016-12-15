@@ -1,5 +1,5 @@
 import { Injectable  } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseAuthState } from 'angularfire2';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -17,7 +17,7 @@ export class AuthService{
     this.isLoggedIn = this.af.auth.map( (auth) => !!auth);   
   }
 
-  loginAsUser(email : string, password : string) 
+  loginAsUser(email : string, password : string) : firebase.Promise<FirebaseAuthState>
   {
     return this.af.auth.login({
         email: email,

@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/share';
 
-import { AdminItemConfig, AIType } from '../admin/shared/admin-item-config.module';
+//import { AIType } from '../admin/shared/admin-item-config.module';
 
 import { AdmnistrableItem }from './administrable-item';
 import { Hangout }         from '../hangouts/entity/hangout';
@@ -15,6 +15,15 @@ import { News }            from '../news/entity/news';
 import { Presentation }    from '../presentation/presentation.class';
 
 
+export enum AIType {
+    Hangout,
+    News,
+    Program,
+    Theme,
+    Podcast,
+    Presentation,
+    Friends
+}
 
 @Injectable()
 export class DatabaseService {
