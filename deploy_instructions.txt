@@ -1,3 +1,6 @@
+branche master
+problème avec polymer et angular-cli beta 22-1, ne compile plus
+
 1) delete dist dir
 2) ng build --prod
-3) firebase deploy
+3) firebase deploy --project admin
