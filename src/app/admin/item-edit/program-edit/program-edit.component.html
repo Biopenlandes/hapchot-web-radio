@@ -1,6 +1,0 @@
- <input [(ngModel)]="program.subtitle" type="text" id="subtitle" placeholder="Sous titre" >
-
- <input [(ngModel)]="program.broadcasting" id="broadcasting" type="text" placeholder="Programmation régulière si existe. Exple : 'Les mardis de 17h à 19h'" >
-
-<h3>La couleur de fond de l'emission dans l'agenda (par default générée aléatoirement)</h3>
-<input id="inputColor" #color [value]="program.backgroundColor" (change)="colorChanged(color.value)" class="jscolor" style="width:200px">
