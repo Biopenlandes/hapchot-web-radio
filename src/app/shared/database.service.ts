@@ -202,8 +202,12 @@ export class DatabaseService {
       query: { orderByChild: 'dateTimestamp' }
     }).map((items : Hangout[]) =>
     {
-      let now = Date.now();
-      let newItems = items.filter(item => item.publishOn < now && item.dateTimestamp > now);
+      let now = new Date();
+      var yesterday = new Date();
+      yesterday.setDate(now.getDate()-1);
+
+      let newItems = items.filter(item => item.publishOn < now.getTime() 
+                                          && item.dateTimestamp > yesterday.getTime());
       if (value && newItems.length > value)
       {
         newItems = newItems.slice(0,value);

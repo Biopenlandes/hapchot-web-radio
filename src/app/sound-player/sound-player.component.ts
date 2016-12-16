@@ -5,7 +5,9 @@ import { SoundPlayerService, RadioState } from './sound-player.service';
 import { MatchMediaService } from '../shared/match-media.service';
 
 import { Podcast } from '../podcasts/entity/podcast';
-import { Track } from './track.class'
+import { Track } from './track.class';
+
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-sound-player',
